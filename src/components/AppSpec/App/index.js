@@ -64,6 +64,7 @@ function App({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
+  console.log(`in App, app=${JSON.stringify(app, null, 2)}`);
   
   const userTypeData = app.children && app.children.find(child => child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];

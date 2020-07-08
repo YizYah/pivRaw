@@ -11,13 +11,19 @@ import App from '../App';
 import { SOURCE_APP_SPEC_ID } from '../../../config';
 import { APP_SPEC_RELATIONSHIPS, SOURCE_APP_SPEC_QUERY } from '../../source-props/appSpec';
 
+// np__added_start unit: appSpec, comp: Apps, loc: addedImports
+import FirstTimeAppCreationForm from '../FirstTimeAppCreationForm';
+import { TYPE_DESCRIPTION_ID } from '../../../config';
+// np__added_end unit: appSpec, comp: Apps, loc: addedImports
+
 // np__added_start unit: appSpec, comp: Apps, loc: styling
 
-// add styling here
+// add a prop called `show`
 const AppsStyleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  // mystyling...
 `;
 // np__added_end unit: appSpec, comp: Apps, loc: styling
 
@@ -76,22 +82,40 @@ class Apps extends Component {
           };
 
           const apps = data.unitData.map(el => flattenData(el));
+          console.log(`apps=${JSON.stringify(apps,null, 2)}`);
+
+          // np__added_start unit: appSpec, comp: Apps, loc: beforeReturn
+          const noApp = apps.length===0 ||
+              !(apps[0].value && apps[0].value !== '') // &&
+              // find in apps[0].children array an object o where o.typeId === TYPE_DESCRIPTION_ID
+              // and where o.instances contains an object oi where oi.value && oi.value !== ''
+          const show = !noApp;
+          // np__added_end unit: appSpec, comp: Apps, loc: beforeReturn
 
           return (
             <>
-              <AppCreationForm  customerId={ customerId } refetchQueries={refetchQueries}/>
-              <AppsStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-                { apps && apps.map(app => (
+              {/*// np__added_start unit: appSpec, comp: Apps, loc: creationForm*/}
+              { noApp && <FirstTimeAppCreationForm  customerId={ customerId } refetchQueries={refetchQueries}/>}
+              {/*// np__added_end unit: appSpec, comp: Apps, loc: creationForm*/}
+
+
+
+              <AppsStyleWrapper
+                  ref={this.wrapperRef}
+                  onClick={this.handleClick}
+                  show>
+              {apps && apps.map(app => (
                   <App
-                    key={v4()}
-                    parentId={ customerId }
-                    app={ app }
-                    selected={ app.id === selectedAppId }
-                    refetchQueries={refetchQueries}
-                    onSelect={this.handleSelect}
+                      key={v4()}
+                      parentId={customerId}
+                      app={app}
+                      selected={app.id === selectedAppId}
+                      refetchQueries={refetchQueries}
+                      onSelect={this.handleSelect}
                   />
-                )) }
+              ))}
               </AppsStyleWrapper>
+
                 {/* np__added_start unit: appSpec, comp: Apps, loc: renderEnding */}
                 {/* np__added_end unit: appSpec, comp: Apps, loc: renderEnding */}
             </>

@@ -13,7 +13,7 @@
 // stack id
 export const PLATFORM_ID = 'us-east-1_IDHU1YQ1O';
 
-// sources
+// sources (units)
 export const SOURCE_APP_SPEC_ID='e36aa4c6-8029-4969-b1fe-d659bdb9eb42';
 export const SOURCE_PARENT_ID='2bb38a1e-6802-4aa6-8c23-2ae8a7f1fe08';
 
