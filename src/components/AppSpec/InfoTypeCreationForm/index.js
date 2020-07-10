@@ -1,30 +1,134 @@
-import React, { useState } from 'react';
-import { graphql } from '@apollo/react-hoc';
-import styled from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
-import compose from '@shopify/react-compose';
+import React, { useState } from "react";
+import { graphql } from "@apollo/react-hoc";
+import styled, {keyframes} from "styled-components";
+import { withNoStack, EXECUTE } from "@nostack/no-stack";
+import compose from "@shopify/react-compose";
 
-import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID
- } from '../../../config';
+import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from "../../../config";
 
-// np__added_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__added_start unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import CloseIcon from "@material-ui/icons/Close";
+import { makeStyles } from "@material-ui/core";
+import IconButton from "@material-ui/core/Button";
+// ns__added_end unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+
+// ns__added_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
   padding: 1.5em;
   border: none;
   border-radius: 5px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 `;
-// np__added_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`; 
+const Input = styled.input`
+  :focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border: 0;
+  }
+  border: 0;
+  -webkit-appearance: none;
+  background-color: inherit;
+  padding: 10px 0;
+  border-radius: 10px;
+`;
+
+const InputContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+`;
+
+const fadeInDown = keyframes`
+  0% {
+    opacity: 0;
+    
+  }
+  100% {
+    opacity: 1;
+    
+  }
+`;
+
+const CalloutBox = styled.div`
+  padding: 1rem;
+  animation: ${fadeInDown} 1.5s;
+  background-color: #f9d162;
+  width: inherit;
+  border-radius: 10px;  
+  position: relative;
+  margin: .5rem;
+  display: flex;
+  justify-content: space-between;
+  
+
+  :after{
+    background-color: #f9d162;
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    border-top: 0px solid #f9d162;
+    border-right: 2px solid #f9d162;
+    border-left: 0px solid #f9d162;
+    border-bottom: 2px solid #f9d162;
+    left: 62%;
+    
+    content: '';
+    transform: rotate(45deg);
+    margin-top: -13px;
+    }
+  }
+`;
+
+const useStyles = makeStyles({
+  button: {
+    minWidth: 0,
+  },
+  customWidth: {
+    maxWidth: "500",
+    minWidth: "300",
+    backgroundColor: "blue",
+  },
+  helpIcon: {
+    fontSize: "1.5rem",
+    color: "#f9d162",
+  },
+  closeIcon: {
+    color: "white",
+    fontSize: "1rem",
+  },
+});
+// ns__added_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
 `;
 
-function InfoTypeCreationForm({ parentId, createInfoType, refetchQueries }) {
-  const [ infoTypeValue, updateInfoTypeValue ] = useState('');
-  const [ loading, updateLoading ] = useState(false);
+function InfoTypeCreationForm({
+  parentId,
+  createInfoType,
+  refetchQueries,
+  // ns__added_start unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+  validateInfoTypes,
+  // ns__added_end unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+}) {
+  const [infoTypeValue, updateInfoTypeValue] = useState("");
+  const [loading, updateLoading] = useState(false);
+
+  // ns__added_start unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
+  const styles = useStyles();
+  const [callout, setCallout] = useState(false);
+  let showCalloutBox = callout || validateInfoTypes === 0;
+  let callOutText = `What's the name of the type info?`;
+  // ns__added_end unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
 
   function handleChange(e) {
     updateInfoTypeValue(e.target.value);
@@ -48,15 +152,15 @@ function InfoTypeCreationForm({ parentId, createInfoType, refetchQueries }) {
         }),
         unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
 
     
-
-
-    updateInfoTypeValue('');
+    
+    
+    updateInfoTypeValue("");
     updateLoading(false);
   }
 
@@ -66,31 +170,48 @@ function InfoTypeCreationForm({ parentId, createInfoType, refetchQueries }) {
     }
   }
 
+  // ns__added_start unit: appSpec, comp: Screens_creation, loc: callOutFunction
+  const showCallout = () => {
+    console.log(`calling`, callout)
+
+    setCallout(!callout);
+  };
+  // ns__added_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+
   return (
     <Form>
-      <label htmlFor="infoType-value">
+      {/*// ns__added_start unit: appSpec, comp: Screens_creation, loc: callOut*/}
+      <Label htmlFor="infoType-value">
         InfoType:
-        <input
-          id="infoType-value"
-          type="text"
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-          value={ infoTypeValue }
-          disabled={loading}
-        />
-      </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
-        {
-          loading
-            ? 'Creating InfoType...'
-            : 'Create InfoType'
-        }
-      </Button>
+        <InputContainer>
+          <Input
+            id="infoType-value"
+            type="text"
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+            value={infoTypeValue}
+            disabled={loading}
+          />
+           <IconButton className={styles.button} onClick={showCallout}>
+            <HelpOutlineIcon className={styles.helpIcon} />
+          </IconButton>
+        </InputContainer>
+        <Button type="submit" disabled={loading} onClick={handleSubmit}>
+          {loading ? "Creating InfoType..." : "Create InfoType"}
+        </Button>
+      </Label>
+      
+      {showCalloutBox ? (
+        <CalloutBox>
+          {callOutText}{" "}
+          <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+        </CalloutBox>
+      ) : null}
+      {/*// ns__added_end unit: appSpec, comp: Screens_creation, loc: callOut*/}
     </Form>
   );
 }
 
-export default compose(
-  graphql(EXECUTE, { name: 'createInfoType' }),
-  
-)(InfoTypeCreationForm);
+export default compose(graphql(EXECUTE, { name: "createInfoType" }))(
+  InfoTypeCreationForm
+);

@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import DescriptionCreationForm from '../DescriptionCreationForm';
 import Description from '../Description';
 
-// np__added_start unit: appSpec, comp: Descriptions, loc: styling
+// ns__added_start unit: appSpec, comp: Descriptions, loc: styling
 
 const DescriptionsStyleWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// np__added_end unit: appSpec, comp: Descriptions, loc: styling
+// ns__added_end unit: appSpec, comp: Descriptions, loc: styling
 
 class Descriptions extends Component {
   state = {
@@ -48,8 +48,8 @@ class Descriptions extends Component {
     const { appId, descriptions, refetchQueries, onUpdate } = this.props;
     const { selectedDescriptionId } = this.state;
 
-    {/* np__added_start unit: appSpec, comp: Descriptions, loc: renderBeginning */}
-    {/* np__added_end unit: appSpec, comp: Descriptions, loc: renderBeginning */}
+    {/* ns__added_start unit: appSpec, comp: Descriptions, loc: renderBeginning */}
+    {/* ns__added_end unit: appSpec, comp: Descriptions, loc: renderBeginning */}
 
     return (
       <DescriptionsStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
@@ -69,8 +69,8 @@ class Descriptions extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* np__added_start unit: appSpec, comp: Descriptions, loc: renderEnding */}
-  {/* np__added_end unit: appSpec, comp: Descriptions, loc: renderEnding */}
+  {/* ns__added_start unit: appSpec, comp: Descriptions, loc: renderEnding */}
+  {/* ns__added_end unit: appSpec, comp: Descriptions, loc: renderEnding */}
 
   </DescriptionsStyleWrapper>
   )

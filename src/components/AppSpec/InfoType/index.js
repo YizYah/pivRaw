@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { EXECUTE } from '@nostack/no-stack';
-import compose from '@shopify/react-compose';
-import { graphql } from '@apollo/react-hoc';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { EXECUTE } from "@nostack/no-stack";
+import compose from "@shopify/react-compose";
+import { graphql } from "@apollo/react-hoc";
 
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-} from '../../../config';
+} from "../../../config";
 
-import EditInstanceForm from '../../EditInstanceForm';
-import DeleteInstanceMenu from '../../DeleteInstanceMenu';
-
-
-
-
+import EditInstanceForm from "../../EditInstanceForm";
+import DeleteInstanceMenu from "../../DeleteInstanceMenu";
 
 // add styling here
-const InfoTypeStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const InfoTypeStyleWrapper = styled.div(
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: ${selected ? "1px solid aquamarine" : "1px solid white"};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
-  background-color: ${isDeleting && 'tomato'};
-  cursor: ${selected ? 'auto' : 'pointer'};
+  background-color: ${isDeleting && "tomato"};
+  cursor: ${selected ? "auto" : "pointer"};
 
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
 
 const Button = styled.button`
   background: none;
@@ -43,7 +38,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || "#000000"};
   }
 `;
 
@@ -62,13 +57,10 @@ function InfoType({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  
-
-
   if (!selected) {
     return (
       <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
-        { infoTypeValue }
+        {infoTypeValue}
       </InfoTypeStyleWrapper>
     );
   }
@@ -103,9 +95,9 @@ function InfoType({
     return (
       <InfoTypeStyleWrapper>
         <EditInstanceForm
-          id={ infoType.id }
+          id={infoType.id}
           label="InfoType Value:"
-          value={ infoTypeValue }
+          value={infoTypeValue}
           onChange={handleInfoTypeValueChange}
           onSave={handleInfoTypeValueSave}
           onCancel={handleCancelEdit}
@@ -127,7 +119,7 @@ function InfoType({
             instanceId: infoType.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -140,11 +132,8 @@ function InfoType({
 
   if (isDeleteMode) {
     return (
-      <InfoTypeStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { infoTypeValue }
+      <InfoTypeStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {infoTypeValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -156,28 +145,18 @@ function InfoType({
 
   return (
     <InfoTypeStyleWrapper selected={selected}>
-      { infoTypeValue }
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      {infoTypeValue}
+      <Button type="button" onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type="button" onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
-
-      
-
-
     </InfoTypeStyleWrapper>
   );
 }
 
 export default compose(
-  graphql(EXECUTE, { name: 'updateInstance' }),
-  graphql(EXECUTE, { name: 'deleteInstance' })
+  graphql(EXECUTE, { name: "updateInstance" }),
+  graphql(EXECUTE, { name: "deleteInstance" })
 )(InfoType);
