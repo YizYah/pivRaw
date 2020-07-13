@@ -1,3 +1,7 @@
+// ns__added_start unit: appSpec, comp: Apps, loc: beforeImports
+
+// ns__added_end unit: appSpec, comp: Apps, loc: beforeImports
+
 import React, { Component, createRef } from "react";
 import { Unit } from "@nostack/no-stack";
 import styled from "styled-components";
@@ -5,7 +9,7 @@ import { v4 } from "uuid";
 
 import { flattenData } from "../../../flattenData";
 
-import AppCreationForm from "../AppCreationForm";
+// import AppCreationForm from "../AppCreationForm";
 import App from "../App";
 
 import { SOURCE_APP_SPEC_ID } from "../../../config";
@@ -83,10 +87,10 @@ class Apps extends Component {
           const apps = data.unitData.map((el) => flattenData(el));
           console.log(`apps=${JSON.stringify(apps, null, 2)}`);
 
-          //ns__added_start unit: appSpec, comp: Apps, loc: beforeRecursive
+          // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
           const findDescriptionIdValue = (source, id) => {
             for (let key in source) {
-              var item = source[key];
+              let item = source[key];
               let length;
 
               if (typeof item === "object") {
@@ -105,7 +109,7 @@ class Apps extends Component {
               // Item not returned yet. Search its children by recursive call.
               if (item.children) {
                 console.log(`item.children`, item.children);
-                var subresult = findDescriptionIdValue(item.children, id);
+                let subresult = findDescriptionIdValue(item.children, id);
 
                 // If the item was found in the subchildren, return it.
                 if (subresult) return subresult;
@@ -114,9 +118,7 @@ class Apps extends Component {
             // Nothing found yet? return null.
             return null;
           };
-          //ns__added_ unit: appSpec, comp: Apps, loc: beforeRecursive
 
-          // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
           const descriptionValue = findDescriptionIdValue(
             apps[0],
             TYPE_DESCRIPTION_ID.toString()
