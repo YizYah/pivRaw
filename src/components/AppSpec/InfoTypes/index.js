@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import InfoTypeCreationForm from '../InfoTypeCreationForm';
 import InfoType from '../InfoType';
 
-// ns__added_start unit: appSpec, comp: InfoTypes, loc: styling
+// np__added_start unit: appSpec, comp: InfoTypes, loc: styling
 
 const InfoTypesStyleWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__added_end unit: appSpec, comp: InfoTypes, loc: styling
+// np__added_end unit: appSpec, comp: InfoTypes, loc: styling
 
 class InfoTypes extends Component {
   state = {
@@ -47,22 +47,15 @@ class InfoTypes extends Component {
   render () {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
-    
-    /* ns__added_start unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
-    let validateInfoTypes = infoTypes.length
-    /* ns__added_end unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
-    
-    {/* ns__added_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */}
-    {/* ns__added_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */}
+
+    {/* np__added_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */}
+    {/* np__added_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */}
 
     return (
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <InfoTypeCreationForm
           parentId={ screenId }
           refetchQueries={refetchQueries}
-          /* ns__added_start unit: appSpec, comp: InfoTypes, loc: validateInfoTypes */
-          validateInfoTypes = {validateInfoTypes}
-          /* ns__added_End unit: appSpec, comp: InfoTypes, loc: validateInfoTypes */
         />
 
         { infoTypes.map(infoType => (
@@ -76,8 +69,8 @@ class InfoTypes extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* ns__added_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
-  {/* ns__added_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+  {/* np__added_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+  {/* np__added_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
 
   </InfoTypesStyleWrapper>
   )

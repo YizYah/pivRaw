@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { graphql } from '@apollo/react-hoc';
-import styled, { keyframes } from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
-import compose from '@shopify/react-compose';
+import React, { useState } from "react";
+import { graphql } from "@apollo/react-hoc";
+import styled from "styled-components";
+import { withNoStack, EXECUTE } from "@nostack/no-stack";
+import compose from "@shopify/react-compose";
 
+import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from "../../../config";
 
 // ns__added_start unit: appSpec, comp: Screens_Creation, loc: additionalImports
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core';
-import IconButton from '@material-ui/core/Button';
-import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import CloseIcon from "@material-ui/icons/Close";
+import { makeStyles } from "@material-ui/core";
+import IconButton from "@material-ui/core/Button";
+import { keyframes } from "styled-components";
 // ns__added_end unit: appSpec, comp: Screens_Creation, loc: additionalImports
 
 // ns__added_start unit: appSpec, comp: Screens_Creation, loc: styling
@@ -95,17 +95,17 @@ const useStyles = makeStyles({
     minWidth: 0,
   },
   customWidth: {
-    maxWidth: '500',
-    minWidth: '300',
-    backgroundColor: 'blue',
+    maxWidth: "500",
+    minWidth: "300",
+    backgroundColor: "blue",
   },
   helpIcon: {
-    fontSize: '1.5rem',
-    color: '#f9d162',
+    fontSize: "1.5rem",
+    color: "#f9d162",
   },
   closeIcon: {
-    color: 'white',
-    fontSize: '1rem',
+    color: "white",
+    fontSize: "1rem",
   },
 });
 
@@ -123,14 +123,14 @@ function ScreenCreationForm({
   validateScreens,
   // ns__added_end unit: appSpec, comp: Screens_Creation, loc: validateScreens
 }) {
-  const [screenValue, updateScreenValue] = useState('');
+  const [screenValue, updateScreenValue] = useState("");
   const [loading, updateLoading] = useState(false);
 
   // ns__added_start unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
-  const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = 'What\'s the name of this screen?';
+  let showCalloutBox = callout || validateScreens === 0;
+  let callOutText = `What's the name of this screen?`;
   // ns__added_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
 
   function handleChange(e) {
@@ -163,7 +163,7 @@ function ScreenCreationForm({
     
     
     
-    updateScreenValue('');
+    updateScreenValue("");
     updateLoading(false);
   }
 
@@ -199,12 +199,12 @@ function ScreenCreationForm({
           </IconButton>
         </InputContainer>
         <Button type="submit" disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating Screen...' : 'Create Screen'}
+          {loading ? "Creating Screen..." : "Create Screen"}
         </Button>
       </Label>
       {showCalloutBox ? (
         <CalloutBox>
-          {callOutText}{' '}
+          {callOutText}{" "}
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
@@ -213,6 +213,6 @@ function ScreenCreationForm({
   );
 }
 
-export default compose(graphql(EXECUTE, { name: 'createScreen' }))(
+export default compose(graphql(EXECUTE, { name: "createScreen" }))(
   ScreenCreationForm
 );

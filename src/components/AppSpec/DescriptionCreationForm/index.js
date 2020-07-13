@@ -7,7 +7,7 @@ import compose from '@shopify/react-compose';
 import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID
  } from '../../../config';
 
-// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: styling
+// np__added_start unit: appSpec, comp: Descriptions_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -16,7 +16,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #F5F5F5;
 `;
-// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: styling
+// np__added_end unit: appSpec, comp: Descriptions_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;

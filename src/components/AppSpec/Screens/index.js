@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import ScreenCreationForm from '../ScreenCreationForm';
 import Screen from '../Screen';
 
-// ns__added_start unit: appSpec, comp: Screens, loc: styling
+// np__added_start unit: appSpec, comp: Screens, loc: styling
 
 const ScreensStyleWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__added_end unit: appSpec, comp: Screens, loc: styling
+// np__added_end unit: appSpec, comp: Screens, loc: styling
 
 class Screens extends Component {
   state = {
@@ -48,21 +48,14 @@ class Screens extends Component {
     const { userTypeId, screens, refetchQueries, onUpdate } = this.props;
     const { selectedScreenId } = this.state;
 
-     // ns__added_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-     const validateScreens = screens.length
-     // ns__added_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-
-    {/* ns__added_start unit: appSpec, comp: Screens, loc: renderBeginning */}
-    {/* ns__added_end unit: appSpec, comp: Screens, loc: renderBeginning */}
+    {/* np__added_start unit: appSpec, comp: Screens, loc: renderBeginning */}
+    {/* np__added_end unit: appSpec, comp: Screens, loc: renderBeginning */}
 
     return (
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <ScreenCreationForm
           parentId={ userTypeId }
           refetchQueries={refetchQueries}
-          /* ns__added_start unit: appSpec, comp: Screens, loc: validateScreens */
-          validateScreens={validateScreens}
-          /* ns__added_end unit: appSpec, comp: Screens, loc: validateScreens */
         />
 
         { screens.map(screen => (
@@ -76,8 +69,8 @@ class Screens extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* ns__added_start unit: appSpec, comp: Screens, loc: renderEnding */}
-  {/* ns__added_end unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* np__added_start unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* np__added_end unit: appSpec, comp: Screens, loc: renderEnding */}
 
   </ScreensStyleWrapper>
   )

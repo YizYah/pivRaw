@@ -7,23 +7,20 @@ import { Unit } from "@nostack/no-stack";
 import styled from "styled-components";
 import { v4 } from "uuid";
 
-import { flattenData } from "../../../flattenData";
+import { flattenData } from '../../../flattenData';
 
 // import AppCreationForm from "../AppCreationForm";
 import App from "../App";
 
-import { SOURCE_APP_SPEC_ID } from "../../../config";
-import {
-  APP_SPEC_RELATIONSHIPS,
-  SOURCE_APP_SPEC_QUERY,
-} from "../../source-props/appSpec";
+import { SOURCE_APP_SPEC_ID } from '../../../config';
+import { APP_SPEC_RELATIONSHIPS, SOURCE_APP_SPEC_QUERY } from '../../source-props/appSpec';
 
-// ns__added_start unit: appSpec, comp: Apps, loc: addedImports
-import FirstTimeAppCreationForm from "../FirstTimeAppCreationForm";
-import { TYPE_DESCRIPTION_ID } from "../../../config";
-// ns__added_end unit: appSpec, comp: Apps, loc: addedImports
+// np__added_start unit: appSpec, comp: Apps, loc: addedImports
+import FirstTimeAppCreationForm from '../FirstTimeAppCreationForm';
+import { TYPE_DESCRIPTION_ID } from '../../../config';
+// np__added_end unit: appSpec, comp: Apps, loc: addedImports
 
-// ns__added_start unit: appSpec, comp: Apps, loc: styling
+// np__added_start unit: appSpec, comp: Apps, loc: styling
 
 // add a prop called `show`
 const AppsStyleWrapper = styled.div`
@@ -32,11 +29,11 @@ const AppsStyleWrapper = styled.div`
   justify-content: space-evenly;
   // mystyling...
 `;
-// ns__added_end unit: appSpec, comp: Apps, loc: styling
+// np__added_end unit: appSpec, comp: Apps, loc: styling
 
 class Apps extends Component {
-  // ns__added_start unit: appSpec, comp: Apps, loc: beginning
-  // ns__added_end unit: appSpec, comp: Apps, loc: beginning
+// np__added_start unit: appSpec, comp: Apps, loc: beginning
+// np__added_end unit: appSpec, comp: Apps, loc: beginning
   state = {
     selectedAppId: null,
   };
@@ -44,22 +41,26 @@ class Apps extends Component {
   wrapperRef = createRef();
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClick);
-  }
+    document.addEventListener('mousedown', this.handleClick);
+    }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClick);
+    document.removeEventListener('mousedown', this.handleClick);
   }
 
-  handleClick = (e) => {
+  handleClick = e => {
     const node = this.wrapperRef.current;
 
-    if (node && node !== e.target && !node.contains(e.target)) {
+    if (
+      node &&
+      node !== e.target &&
+      !node.contains(e.target)
+    ) {
       this.setState({ selectedAppId: null });
     }
-  };
+  }
 
-  handleSelect = (id) => this.setState({ selectedAppId: id });
+  handleSelect = id => this.setState({ selectedAppId: id });
 
   render() {
     const { customerId } = this.props;
@@ -71,13 +72,13 @@ class Apps extends Component {
 
     return (
       <Unit
-        id={SOURCE_APP_SPEC_ID}
-        typeRelationships={APP_SPEC_RELATIONSHIPS}
-        query={SOURCE_APP_SPEC_QUERY}
+        id={ SOURCE_APP_SPEC_ID }
+        typeRelationships={ APP_SPEC_RELATIONSHIPS }
+        query={ SOURCE_APP_SPEC_QUERY }
         parameters={parameters}
       >
-        {({ loading, error, data, refetchQueries }) => {
-          if (loading) return "Loading...";
+        {({loading, error, data, refetchQueries}) => {
+          if (loading) return 'Loading...';
 
           if (error) {
             console.error(error);
@@ -124,48 +125,40 @@ class Apps extends Component {
             TYPE_DESCRIPTION_ID.toString()
           );
 
-          const noApp =
-            apps.length === 0 ||
-            !(apps[0].value && apps[0].value !== "") ||
-            !descriptionValue; // &&
-          // find in apps[0].children array an object o where o.typeId === TYPE_DESCRIPTION_ID
-          // and where o.instances contains an object oi where oi.value && oi.value !== ''
+          // np__added_start unit: appSpec, comp: Apps, loc: beforeReturn
+          const noApp = apps.length===0 ||
+              !(apps[0].value && apps[0].value !== '') // &&
+              // find in apps[0].children array an object o where o.typeId === TYPE_DESCRIPTION_ID
+              // and where o.instances contains an object oi where oi.value && oi.value !== ''
           const show = !noApp;
-
-          // ns__added_end unit: appSpec, comp: Apps, loc: beforeReturn
+          // np__added_end unit: appSpec, comp: Apps, loc: beforeReturn
 
           return (
             <>
-              {/*// ns__added_start unit: appSpec, comp: Apps, loc: creationForm*/}
-              {/*// ns__added_end unit: appSpec, comp: Apps, loc: creationForm*/}
+              {/*// np__added_start unit: appSpec, comp: Apps, loc: creationForm*/}
+              { noApp && <FirstTimeAppCreationForm  customerId={ customerId } refetchQueries={refetchQueries}/>}
+              {/*// np__added_end unit: appSpec, comp: Apps, loc: creationForm*/}
 
-              {noApp ? (
-                <FirstTimeAppCreationForm
-                  customerId={customerId}
-                  refetchQueries={refetchQueries}
-                />
-              ) : (
-                <AppsStyleWrapper
+
+
+              <AppsStyleWrapper
                   ref={this.wrapperRef}
                   onClick={this.handleClick}
-                  show
-                >
-                  {apps &&
-                    apps.map((app) => (
-                      <App
-                        key={v4()}
-                        parentId={customerId}
-                        app={app}
-                        selected={app.id === selectedAppId}
-                        refetchQueries={refetchQueries}
-                        onSelect={this.handleSelect}
-                      />
-                    ))}
-                </AppsStyleWrapper>
-              )}
+                  show>
+              {apps && apps.map(app => (
+                  <App
+                      key={v4()}
+                      parentId={customerId}
+                      app={app}
+                      selected={app.id === selectedAppId}
+                      refetchQueries={refetchQueries}
+                      onSelect={this.handleSelect}
+                  />
+              ))}
+              </AppsStyleWrapper>
 
-              {/* ns__added_start unit: appSpec, comp: Apps, loc: renderEnding */}
-              {/* ns__added_end unit: appSpec, comp: Apps, loc: renderEnding */}
+                {/* np__added_start unit: appSpec, comp: Apps, loc: renderEnding */}
+                {/* np__added_end unit: appSpec, comp: Apps, loc: renderEnding */}
             </>
           );
         }}

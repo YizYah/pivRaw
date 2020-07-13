@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import UserTypeCreationForm from '../UserTypeCreationForm';
 import UserType from '../UserType';
 
-// ns__added_start unit: appSpec, comp: UserTypes, loc: styling
+// np__added_start unit: appSpec, comp: UserTypes, loc: styling
 
 const UserTypesStyleWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__added_end unit: appSpec, comp: UserTypes, loc: styling
+// np__added_end unit: appSpec, comp: UserTypes, loc: styling
 
 class UserTypes extends Component {
   state = {
@@ -48,22 +48,14 @@ class UserTypes extends Component {
     const { appId, userTypes, refetchQueries, onUpdate } = this.props;
     const { selectedUserTypeId } = this.state;
 
-
-    // ns__added_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-    const validateUserTypes = userTypes.length
-    // ns__added_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-
-    {/* ns__added_start unit: appSpec, comp: UserTypes, loc: renderBeginning */}
-    {/* ns__added_end unit: appSpec, comp: UserTypes, loc: renderBeginning */}
+    {/* np__added_start unit: appSpec, comp: UserTypes, loc: renderBeginning */}
+    {/* np__added_end unit: appSpec, comp: UserTypes, loc: renderBeginning */}
 
     return (
       <UserTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <UserTypeCreationForm
           parentId={ appId }
           refetchQueries={refetchQueries}
-          // ns__added_start unit: appSpec, comp: UserTypes, loc: validateUserTypes 
-          validateUserTypes={validateUserTypes}
-          // ns__added_start unit: appSpec, comp: UserTypes, loc: validateUserTypes 
         />
 
         { userTypes.map(userType => (
@@ -77,8 +69,8 @@ class UserTypes extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* ns__added_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
-  {/* ns__added_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
+  {/* np__added_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
+  {/* np__added_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
 
   </UserTypesStyleWrapper>
   )
