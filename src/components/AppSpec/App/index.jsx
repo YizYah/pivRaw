@@ -4,6 +4,7 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types'; 
 import {
   UPDATE_APP_FOR_APP_SPEC_ACTION_ID,
   DELETE_APP_FOR_APP_SPEC_ACTION_ID, TYPE_USER_TYPE_ID, TYPE_DESCRIPTION_ID,
@@ -16,9 +17,8 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 import UserTypes from '../UserTypes';
 import Descriptions from '../Descriptions';
 
-// ns__added_start unit: appSpec, comp: App, loc: additonalImports
-import PropTypes from 'prop-types'; 
-// ns__added_end unit: appSpec, comp: App, loc: additonalImports
+// ns__added_start unit: appSpec, comp: App, loc: additionalImports
+// ns__added_end unit: appSpec, comp: App, loc: additionalImports
 
 
 // add styling here
@@ -214,6 +214,7 @@ App.propTypes = {
           children: PropTypes.array,
           id: PropTypes.string
      })
-
+    // ns__added_start unit: appSpec, comp: App, loc: addedPropTypes
+    // ns__added_end unit: appSpec, comp: App, loc: addedPropTypes
 }
 // ns__added_end unit: appSpec, comp: App, loc: propTypesDeclaration

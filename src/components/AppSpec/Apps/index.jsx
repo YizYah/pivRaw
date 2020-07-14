@@ -18,6 +18,7 @@ import { APP_SPEC_RELATIONSHIPS, SOURCE_APP_SPEC_QUERY } from '../../source-prop
 // ns__added_start unit: appSpec, comp: Apps, loc: addedImports
 import FirstTimeAppCreationForm from '../FirstTimeAppCreationForm';
 import { TYPE_DESCRIPTION_ID } from '../../../config';
+import {getDescriptionChild} from "../../../custom/getDescriptionChild";
 // ns__added_end unit: appSpec, comp: Apps, loc: addedImports
 
 // ns__added_start unit: appSpec, comp: Apps, loc: styling
@@ -89,41 +90,11 @@ class Apps extends Component {
           console.log(`apps=${JSON.stringify(apps, null, 2)}`);
 
           // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
-          const findDescriptionIdValue = (source, id) => {
-            for (let key in source) {
-              let item = source[key];
-              let length;
 
-              if (typeof item === "object") {
-                console.log(`item`, typeof item);
-                console.log(item.length);
-                length = item.length;
-              }
-
-              for (let i = 0; i < length; i++) {
-                if (item[i] && item[i].typeId === id) {
-                  console.log("inside if item", item[i]);
-                  return item[i].instances[0].value;
-                }
-              }
-
-              // Item not returned yet. Search its children by recursive call.
-              if (item.children) {
-                console.log(`item.children`, item.children);
-                let subresult = findDescriptionIdValue(item.children, id);
-
-                // If the item was found in the subchildren, return it.
-                if (subresult) return subresult;
-              }
-            }
-            // Nothing found yet? return null.
-            return null;
-          };
-
-          const descriptionValue = findDescriptionIdValue(
-            apps[0],
-            TYPE_DESCRIPTION_ID.toString()
-          );
+          /* NOTE: one app is assumed here. */
+          const appInfo = apps[0];
+          const descriptionInfo = getDescriptionChild(appInfo.children);
+          const descriptionValue = descriptionInfo.valueOf();
 
           // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
           const noApp = apps.length===0 ||
