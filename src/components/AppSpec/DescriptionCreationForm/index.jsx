@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
 import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID
  } from '../../../config';
 
-// np__added_start unit: appSpec, comp: Descriptions_Creation, loc: styling
+ // ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+import PropTypes from 'prop-types'; 
+// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+
+// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -16,7 +20,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #F5F5F5;
 `;
-// np__added_end unit: appSpec, comp: Descriptions_Creation, loc: styling
+// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
@@ -51,7 +55,7 @@ function DescriptionCreationForm({ parentId, createDescription, refetchQueries }
       refetchQueries
     });
 
-    const newDescriptionData = JSON.parse(createDescriptionResponse.data.Execute);
+    // const newDescriptionData = JSON.parse(createDescriptionResponse.data.Execute);
 
     
 
@@ -94,3 +98,13 @@ export default compose(
   graphql(EXECUTE, { name: 'createDescription' }),
   
 )(DescriptionCreationForm);
+
+
+// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
+DescriptionCreationForm.propTypes = {
+  parentId: PropTypes.string,
+  refetchQueries: PropTypes.array,
+  createDescription: PropTypes.func
+
+}
+// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration

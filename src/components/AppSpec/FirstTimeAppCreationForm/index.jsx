@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
 import { CREATE_APP_FOR_APP_SPEC_ACTION_ID
  } from '../../../config';
+
+
+// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+import PropTypes from 'prop-types'; 
+// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
 
 // change styling here
 const Form = styled.div`
@@ -56,7 +61,7 @@ function AppCreationForm({ customerId, createApp, refetchQueries }) {
       refetchQueries
     });
 
-    const newAppData = JSON.parse(createAppResponse.data.Execute);
+    
 
     
 
@@ -101,3 +106,12 @@ export default compose(
   
   
 )(AppCreationForm);
+
+
+// ns__added_start unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration
+AppCreationForm.propTypes = {
+  customerId: PropTypes.string,
+  refetchQueries: PropTypes.array,
+  createApp: PropTypes.func
+}
+// ns__added_end unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration

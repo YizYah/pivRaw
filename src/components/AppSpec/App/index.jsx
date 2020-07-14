@@ -16,6 +16,9 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 import UserTypes from '../UserTypes';
 import Descriptions from '../Descriptions';
 
+// ns__added_start unit: appSpec, comp: App, loc: additonalImports
+import PropTypes from 'prop-types'; 
+// ns__added_end unit: appSpec, comp: App, loc: additonalImports
 
 
 // add styling here
@@ -64,13 +67,10 @@ function App({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  console.log(`in App, app=${JSON.stringify(app, null, 2)}`);
-  
   const userTypeData = app.children && app.children.find(child => child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];
   const descriptionData = app.children && app.children.find(child => child.typeId === TYPE_DESCRIPTION_ID);
   const descriptions = descriptionData ? descriptionData.instances : [];
-
 
   if (!selected) {
     return (
@@ -200,3 +200,20 @@ export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(App);
+
+
+// ns__added_start unit: appSpec, comp: App, loc: propTypesDeclaration
+App.propTypes = {
+     app: PropTypes.object,
+     parentId: PropTypes.string,
+     selected: PropTypes.bool,
+     updateInstance: PropTypes.func,
+     deleteInstance: PropTypes.func,
+     refetchQueries: PropTypes.array,
+     app: PropTypes.shape({
+          children: PropTypes.array,
+          id: PropTypes.string
+     })
+
+}
+// ns__added_end unit: appSpec, comp: App, loc: propTypesDeclaration

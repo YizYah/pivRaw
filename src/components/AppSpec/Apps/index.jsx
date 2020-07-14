@@ -15,12 +15,12 @@ import App from "../App";
 import { SOURCE_APP_SPEC_ID } from '../../../config';
 import { APP_SPEC_RELATIONSHIPS, SOURCE_APP_SPEC_QUERY } from '../../source-props/appSpec';
 
-// np__added_start unit: appSpec, comp: Apps, loc: addedImports
+// ns__added_start unit: appSpec, comp: Apps, loc: addedImports
 import FirstTimeAppCreationForm from '../FirstTimeAppCreationForm';
 import { TYPE_DESCRIPTION_ID } from '../../../config';
-// np__added_end unit: appSpec, comp: Apps, loc: addedImports
+// ns__added_end unit: appSpec, comp: Apps, loc: addedImports
 
-// np__added_start unit: appSpec, comp: Apps, loc: styling
+// ns__added_start unit: appSpec, comp: Apps, loc: styling
 
 // add a prop called `show`
 const AppsStyleWrapper = styled.div`
@@ -29,11 +29,11 @@ const AppsStyleWrapper = styled.div`
   justify-content: space-evenly;
   // mystyling...
 `;
-// np__added_end unit: appSpec, comp: Apps, loc: styling
+// ns__added_end unit: appSpec, comp: Apps, loc: styling
 
 class Apps extends Component {
-// np__added_start unit: appSpec, comp: Apps, loc: beginning
-// np__added_end unit: appSpec, comp: Apps, loc: beginning
+// ns__added_start unit: appSpec, comp: Apps, loc: beginning
+// ns__added_end unit: appSpec, comp: Apps, loc: beginning
   state = {
     selectedAppId: null,
   };
@@ -125,19 +125,19 @@ class Apps extends Component {
             TYPE_DESCRIPTION_ID.toString()
           );
 
-          // np__added_start unit: appSpec, comp: Apps, loc: beforeReturn
+          // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
           const noApp = apps.length===0 ||
               !(apps[0].value && apps[0].value !== '') // &&
               // find in apps[0].children array an object o where o.typeId === TYPE_DESCRIPTION_ID
               // and where o.instances contains an object oi where oi.value && oi.value !== ''
           const show = !noApp;
-          // np__added_end unit: appSpec, comp: Apps, loc: beforeReturn
+          // ns__added_end unit: appSpec, comp: Apps, loc: beforeReturn
 
           return (
             <>
-              {/*// np__added_start unit: appSpec, comp: Apps, loc: creationForm*/}
+              {/*// ns__added_start unit: appSpec, comp: Apps, loc: creationForm*/}
               { noApp && <FirstTimeAppCreationForm  customerId={ customerId } refetchQueries={refetchQueries}/>}
-              {/*// np__added_end unit: appSpec, comp: Apps, loc: creationForm*/}
+              {/*// ns__added_end unit: appSpec, comp: Apps, loc: creationForm*/}
 
 
 
@@ -157,8 +157,8 @@ class Apps extends Component {
               ))}
               </AppsStyleWrapper>
 
-                {/* np__added_start unit: appSpec, comp: Apps, loc: renderEnding */}
-                {/* np__added_end unit: appSpec, comp: Apps, loc: renderEnding */}
+                {/* ns__added_start unit: appSpec, comp: Apps, loc: renderEnding */}
+                {/* ns__added_end unit: appSpec, comp: Apps, loc: renderEnding */}
             </>
           );
         }}

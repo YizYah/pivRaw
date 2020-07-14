@@ -5,21 +5,30 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+  UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
+  DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID, TYPE_INFO_TYPE_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
+
+import InfoTypes from '../InfoTypes';
+
+
+// ns__added_start unit: appSpec, comp: Screens, loc: additonalImports
+import PropTypes from 'prop-types'; 
+// ns__added_end unit: appSpec, comp: Screens, loc: additonalImports
+
+
 // add styling here
-const InfoTypeStyleWrapper = styled.div(({
+const ScreenStyleWrapper = styled.div(({
   selected,
   isDeleting,
 }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
+  border: ${selected ? '1px solid aquamarine': '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
@@ -39,12 +48,12 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
+    color: ${props => props.hoverColor || '#000000'};
   }
 `;
 
-function InfoType({
-  infoType,
+function Screen({
+  screen,
   parentId,
   selected,
   updateInstance,
@@ -52,36 +61,38 @@ function InfoType({
   refetchQueries,
   onSelect,
 }) {
-  const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
+  const [screenValue, updateScreenValue] = useState(screen.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
   
+  const infoTypeData = screen.children && screen.children.find(child => child.typeId === TYPE_INFO_TYPE_ID);
+  const infoTypes = infoTypeData ? infoTypeData.instances : [];
 
 
   if (!selected) {
     return (
-      <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
-        { infoTypeValue }
-      </InfoTypeStyleWrapper>
+      <ScreenStyleWrapper onClick={() => onSelect(screen.id)}>
+        { screenValue }
+      </ScreenStyleWrapper>
     );
   }
 
-  function handleInfoTypeValueChange(e) {
-    updateInfoTypeValue(e.target.value);
+  function handleScreenValueChange(e) {
+    updateScreenValue(e.target.value);
   }
 
-  async function handleInfoTypeValueSave() {
+  async function handleScreenValueSave() {
     updateIsSaving(true);
 
     await updateInstance({
       variables: {
-        actionId: UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+        actionId: UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
-          value: infoTypeValue,
-          instanceId: infoType.id,
+          value: screenValue,
+          instanceId: screen.id,
         }),
       },
       refetchQueries,
@@ -97,17 +108,17 @@ function InfoType({
 
   if (isEditMode) {
     return (
-      <InfoTypeStyleWrapper>
+      <ScreenStyleWrapper>
         <EditInstanceForm
-          id={ infoType.id }
-          label="InfoType Value:"
-          value={ infoTypeValue }
-          onChange={handleInfoTypeValueChange}
-          onSave={handleInfoTypeValueSave}
+          id={ screen.id }
+          label="Screen Value:"
+          value={ screenValue }
+          onChange={handleScreenValueChange}
+          onSave={handleScreenValueSave}
           onCancel={handleCancelEdit}
           disabled={isSaving}
         />
-      </InfoTypeStyleWrapper>
+      </ScreenStyleWrapper>
     );
   }
 
@@ -117,10 +128,10 @@ function InfoType({
     try {
       await deleteInstance({
         variables: {
-          actionId: DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+          actionId: DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: infoType.id,
+            instanceId: screen.id,
           }),
         },
         refetchQueries
@@ -136,23 +147,23 @@ function InfoType({
 
   if (isDeleteMode) {
     return (
-      <InfoTypeStyleWrapper
+      <ScreenStyleWrapper
         selected={selected}
         isDeleting={isDeleting}
       >
-        { infoTypeValue }
+        { screenValue }
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
           disabled={isDeleting}
         />
-      </InfoTypeStyleWrapper>
+      </ScreenStyleWrapper>
     );
   }
 
   return (
-    <InfoTypeStyleWrapper selected={selected}>
-      { infoTypeValue }
+    <ScreenStyleWrapper selected={selected}>
+      { screenValue }
       <Button
         type="button"
         onClick={() => updateIsEditMode(true)}
@@ -167,13 +178,42 @@ function InfoType({
       </Button>
 
       
+< InfoTypes
+              infoTypes = { infoTypes }
+              screenId = { screen.id }
+              label="InfoType?"
+              refetchQueries={refetchQueries}
+      />
 
 
-    </InfoTypeStyleWrapper>
+    </ScreenStyleWrapper>
   );
 }
 
 export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
-)(InfoType);
+)(Screen);
+
+
+// ns__added_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+Screen.propTypes = {
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  onSelect: PropTypes.func,
+  app: PropTypes.shape({
+       children: PropTypes.array,
+       id: PropTypes.string
+  }),
+  screen: PropTypes.shape({
+      value: PropTypes.string,
+      id: PropTypes.string,
+      children: PropTypes.object
+
+  })
+
+}
+// ns__added_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
