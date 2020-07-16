@@ -42,11 +42,16 @@ class Screens extends Component {
     }
   }
 
-  handleSelect = id => this.setState({ selectedScreenId: id });
+  handleSelect = id =>{
+    console.log(`id screens`, id)
+    
+     this.setState({ selectedScreenId: id })};
 
   render () {
     const { userTypeId, screens, refetchQueries, onUpdate } = this.props;
     const { selectedScreenId } = this.state;
+
+    console.log(`screens`, screens)
 
      // ns__added_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
      const validateScreens = screens.length

@@ -14,6 +14,9 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 // ns__added_start unit: appSpec, comp: Info_Type, loc: additonalImports
 import PropTypes from 'prop-types'; 
+import SubInfoTypes from '../SubInfoTypes';
+
+
 // ns__added_end unit: appSpec, comp: Info_Type, loc: additonalImports
 
 // add styling here
@@ -55,15 +58,15 @@ function InfoType({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__added_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
+  hasParentId,
+    // ns__added_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
-
-  
-
 
   if (!selected) {
     return (
@@ -153,7 +156,7 @@ function InfoType({
       </InfoTypeStyleWrapper>
     );
   }
-
+  
   return (
     <InfoTypeStyleWrapper selected={selected}>
       { infoTypeValue }
@@ -169,8 +172,21 @@ function InfoType({
       >
         &#128465;
       </Button>
+    
+    {/* ns__added_start unit: appSpec, comp: Info_Type, loc: additionalComponents */}
 
-      
+      <SubInfoTypes 
+            infoTypes={infoType}
+            infoTypeId={infoType.id}
+            refetchQueries={refetchQueries}
+            label="Sub Info Type"
+            hasParentId={hasParentId}
+            parentId={parentId}
+            
+      />
+
+    {/* ns__added_end unit: appSpec, comp: Info_Type, loc: additionalComponents */}
+
 
 
     </InfoTypeStyleWrapper>

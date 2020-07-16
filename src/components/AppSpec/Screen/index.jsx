@@ -164,6 +164,7 @@ function Screen({
   return (
     <ScreenStyleWrapper selected={selected}>
       { screenValue }
+      
       <Button
         type="button"
         onClick={() => updateIsEditMode(true)}
@@ -211,7 +212,7 @@ Screen.propTypes = {
   screen: PropTypes.shape({
       value: PropTypes.string,
       id: PropTypes.string,
-      children: PropTypes.object
+      children: PropTypes.array
 
   })
 

@@ -4,7 +4,9 @@ export const getDescriptionChild = (children) => {
     let returnedChild;
 
     children.map(child => {
-        if (child.TypeId === TYPE_DESCRIPTION_ID) {
+        
+        if (child.typeId === TYPE_DESCRIPTION_ID) {
+            
             returnedChild = child;
         }
 

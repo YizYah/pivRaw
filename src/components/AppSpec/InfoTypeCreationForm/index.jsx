@@ -135,6 +135,8 @@ function InfoTypeCreationForm({
     updateInfoTypeValue(e.target.value);
   }
 
+  console.log(`parentId inside infotypecreate`, parentId)
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -156,6 +158,7 @@ function InfoTypeCreationForm({
       refetchQueries,
     });
 
+    console.log(`createInfoTypeResponse`, createInfoTypeResponse)
 
     
     

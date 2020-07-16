@@ -41,6 +41,7 @@ class Apps extends Component {
 
   wrapperRef = createRef();
 
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
     }
@@ -87,18 +88,19 @@ class Apps extends Component {
           }
 
           const apps = data.unitData.map((el) => flattenData(el));
-          console.log(`apps=${JSON.stringify(apps, null, 2)}`);
+          
+          console.log(`apps`, apps)
 
           // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
 
           /* NOTE: one app is assumed here. */
           const appInfo = apps[0];
           const descriptionInfo = getDescriptionChild(appInfo.children);
-          const descriptionValue = descriptionInfo.valueOf();
+          const descriptionValue = descriptionInfo.instances[0].value;
 
           // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
           const noApp = apps.length===0 ||
-              !(apps[0].value && apps[0].value !== '') // &&
+              !(apps[0].value && apps[0].value !== '' || descriptionValue) // &&
               // find in apps[0].children array an object o where o.typeId === TYPE_DESCRIPTION_ID
               // and where o.instances contains an object oi where oi.value && oi.value !== ''
           const show = !noApp;
