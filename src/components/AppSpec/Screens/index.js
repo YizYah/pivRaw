@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import ScreenCreationForm from '../ScreenCreationForm';
 import Screen from '../Screen';
 
-// ns__added_start unit: appSpec, comp: Screens, loc: styling
+// ns__custom_start unit: appSpec, comp: Screens, loc: styling
 
 const ScreensStyleWrapper = styled.div``;
 
@@ -13,7 +13,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__added_end unit: appSpec, comp: Screens, loc: styling
+// ns__custom_end unit: appSpec, comp: Screens, loc: styling
 
 class Screens extends Component {
   state = {
@@ -53,21 +53,21 @@ class Screens extends Component {
 
     console.log(`screens`, screens)
 
-     // ns__added_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+     // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedDeclaration
      const validateScreens = screens.length
-     // ns__added_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+     // ns__custom_end unit: appSpec, comp: UserTypes, loc: addedDeclaration
 
-    {/* ns__added_start unit: appSpec, comp: Screens, loc: renderBeginning */}
-    {/* ns__added_end unit: appSpec, comp: Screens, loc: renderBeginning */}
+    {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning */}
+    {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning */}
 
     return (
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <ScreenCreationForm
           parentId={ userTypeId }
           refetchQueries={refetchQueries}
-          /* ns__added_start unit: appSpec, comp: Screens, loc: validateScreens */
+          /* // ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
           validateScreens={validateScreens}
-          /* ns__added_end unit: appSpec, comp: Screens, loc: validateScreens */
+          /* // ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
         />
 
         { screens.map(screen => (
@@ -81,8 +81,8 @@ class Screens extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* ns__added_start unit: appSpec, comp: Screens, loc: renderEnding */}
-  {/* ns__added_end unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderEnding */}
 
   </ScreensStyleWrapper>
   )

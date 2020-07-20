@@ -1,10 +1,17 @@
-import React, { Component, createRef } from "react";
-import styled from "styled-components";
-import { v4 } from "uuid";
+// ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeImports
+'use strict';
+// ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeImports
+import React, { Component, createRef } from 'react';
+import styled from 'styled-components';
+import { v4 } from 'uuid';
 
-import InfoTypeCreationForm from "../InfoTypeCreationForm";
-import InfoType from "../InfoType";
-import _ from "lodash";
+import InfoTypeCreationForm from '../InfoTypeCreationForm';
+import InfoType from '../InfoType';
+import _ from 'lodash';
+
+// ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedImports
+import getChildData from '../../../custom/getChildData'
+// ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: styling
 
@@ -24,11 +31,11 @@ class InfoTypes extends Component {
   wrapperRef = createRef();
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClick);
+    document.addEventListener('mousedown', this.handleClick);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClick);
+    document.removeEventListener('mousedown', this.handleClick);
   }
 
   handleClick = (e) => {
@@ -44,28 +51,18 @@ class InfoTypes extends Component {
   render() {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
+    
+  
 
-    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
+    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
+    
     let validateInfoTypes = infoTypes.length;
-
-    let temp_parent = infoTypes.map((v) => ({
-      ...v,
-      parentId: v.children[0].instances[0]
-        ? v.children[0].instances[0].id
-        : null,
-    }));
-
-
-    let temp_children = _.groupBy(temp_parent, "parentId");
-
-
+    const [parentData] = getChildData(infoTypes);
+    
+    
     
 
-    temp_parent = temp_parent.map((v) => ({
-      ...v,
-      _children: temp_children[v.id] || [],
-    }));
-    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
+    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
     {
       /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
     }
@@ -77,13 +74,14 @@ class InfoTypes extends Component {
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <InfoTypeCreationForm
           parentId={screenId}
+          label={'Info Type'}
           refetchQueries={refetchQueries}
           validateInfoTypes={validateInfoTypes}
-          /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
-          /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalProps */
+          /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
+          /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
         />
-
-        {temp_parent.map((infoType) => {
+        {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedLogic */}
+        {parentData.map((infoType) => {
           if (infoType.parentId) return;
 
           return (
@@ -95,13 +93,14 @@ class InfoTypes extends Component {
               parentId={screenId}
               refetchQueries={refetchQueries}
               onSelect={this.handleSelect}
-              parentTree={temp_parent}
-              /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
+              /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
               hasParentId={infoType.parentId}
-              /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
+              parentTree={parentData}
+              /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
             />
           );
         })}
+         {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedLogic */}  
         {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
         {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>

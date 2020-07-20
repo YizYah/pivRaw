@@ -1,9 +1,16 @@
+// ns__custom_start unit: appSpec, comp: Descriptions, loc: beforeImports
+'use strict';
+// ns__custom_end unit: appSpec, comp: Descriptions, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
 
 import DescriptionCreationForm from '../DescriptionCreationForm';
 import Description from '../Description';
+
+// ns__custom_start unit: appSpec, comp: Descriptions, loc: addedImports
+// ns__custom_end unit: appSpec, comp: Descriptions, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Descriptions, loc: styling
 

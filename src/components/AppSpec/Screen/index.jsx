@@ -6,29 +6,25 @@ import { graphql } from '@apollo/react-hoc';
 
 import {
   UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
-  DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID, TYPE_INFO_TYPE_ID,
+  DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
+  TYPE_INFO_TYPE_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-
 import InfoTypes from '../InfoTypes';
 
-
-// ns__added_start unit: appSpec, comp: Screens, loc: additonalImports
-import PropTypes from 'prop-types'; 
-// ns__added_end unit: appSpec, comp: Screens, loc: additonalImports
-
+// ns__custom_start unit: appSpec, comp: Screens, loc: addedImports
+import PropTypes from 'prop-types';
+// ns__custom_end unit: appSpec, comp: Screens, loc: addedImports
 
 // add styling here
-const ScreenStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const ScreenStyleWrapper = styled.div(
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
@@ -37,7 +33,8 @@ const ScreenStyleWrapper = styled.div(({
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
 
 const Button = styled.button`
   background: none;
@@ -48,7 +45,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -67,15 +64,15 @@ function Screen({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  
-  const infoTypeData = screen.children && screen.children.find(child => child.typeId === TYPE_INFO_TYPE_ID);
+  const infoTypeData =
+    screen.children &&
+    screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
   const infoTypes = infoTypeData ? infoTypeData.instances : [];
-
 
   if (!selected) {
     return (
       <ScreenStyleWrapper onClick={() => onSelect(screen.id)}>
-        { screenValue }
+        {screenValue}
       </ScreenStyleWrapper>
     );
   }
@@ -110,9 +107,9 @@ function Screen({
     return (
       <ScreenStyleWrapper>
         <EditInstanceForm
-          id={ screen.id }
-          label="Screen Value:"
-          value={ screenValue }
+          id={screen.id}
+          label='Screen Value:'
+          value={screenValue}
           onChange={handleScreenValueChange}
           onSave={handleScreenValueSave}
           onCancel={handleCancelEdit}
@@ -134,7 +131,7 @@ function Screen({
             instanceId: screen.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -147,11 +144,8 @@ function Screen({
 
   if (isDeleteMode) {
     return (
-      <ScreenStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { screenValue }
+      <ScreenStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {screenValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -163,30 +157,21 @@ function Screen({
 
   return (
     <ScreenStyleWrapper selected={selected}>
-      { screenValue }
-      
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      {screenValue}
+
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
-      
-< InfoTypes
-              infoTypes = { infoTypes }
-              screenId = { screen.id }
-              label="InfoType?"
-              refetchQueries={refetchQueries}
+      <InfoTypes
+        infoTypes={infoTypes}
+        screenId={screen.id}
+        label='InfoType?'
+        refetchQueries={refetchQueries}
       />
-
-
     </ScreenStyleWrapper>
   );
 }
@@ -196,8 +181,6 @@ export default compose(
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(Screen);
 
-
-// ns__added_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 Screen.propTypes = {
   parentId: PropTypes.string,
   selected: PropTypes.bool,
@@ -206,15 +189,14 @@ Screen.propTypes = {
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
   app: PropTypes.shape({
-       children: PropTypes.array,
-       id: PropTypes.string
+    children: PropTypes.array,
+    id: PropTypes.string,
   }),
   screen: PropTypes.shape({
-      value: PropTypes.string,
-      id: PropTypes.string,
-      children: PropTypes.array
-
-  })
-
-}
-// ns__added_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+    value: PropTypes.string,
+    id: PropTypes.string,
+    children: PropTypes.array,
+  }),
+  // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropTypes
+};

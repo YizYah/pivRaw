@@ -16,9 +16,9 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-// ns__custom_start unit: appSpec, comp: Screens, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Screens, loc: addedImports
 import SubInfoTypes from '../SubInfoTypes';
-// ns__custom_end unit: appSpec, comp: Screens, loc: additonalImports
+// ns__custom_end unit: appSpec, comp: Screens, loc: addedImports
 
 const SubInfoTypeWrapper = styled.div(
   ({ selected, isDeleting }) => `
@@ -167,6 +167,9 @@ const SubInfoType = ({
       <Button type='button' onClick={() => setIsDeleteMode(true)}>
         &#128465;
       </Button>
+
+
+      
     </SubInfoTypeWrapper>
   );
 };

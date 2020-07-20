@@ -3,17 +3,16 @@ import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
+import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-
-// ns__custom_start unit: appSpec, comp: Screens_Creation, loc: additionalImports
+// ns__custom_start unit: appSpec, comp: Screens_Creation, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
-import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { keyframes } from 'styled-components';
-// ns__custom_end unit: appSpec, comp: Screens_Creation, loc: additionalImports
+// ns__custom_end unit: appSpec, comp: Screens_Creation, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: styling
 // change styling here
@@ -120,9 +119,9 @@ function ScreenCreationForm({
   parentId,
   createScreen,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: validateScreens
+  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: addedProps
   validateScreens,
-  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: validateScreens
+  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: addedProps
 }) {
   const [screenValue, updateScreenValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -131,7 +130,7 @@ function ScreenCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = 'What\'s the name of this screen?';
+  const callOutText = "What's the name of this screen?";
   // ns__custom_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
 
   function handleChange(e) {
@@ -159,11 +158,6 @@ function ScreenCreationForm({
       refetchQueries,
     });
 
-    
-
-    
-    
-    
     updateScreenValue('');
     updateLoading(false);
   }
@@ -182,13 +176,13 @@ function ScreenCreationForm({
 
   return (
     <Form>
-       {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
-      <Label htmlFor="screen-value">
+      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      <Label htmlFor='screen-value'>
         Screen:
         <InputContainer>
           <Input
-            id="screen-value"
-            type="text"
+            id='screen-value'
+            type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}
             value={screenValue}
@@ -199,7 +193,7 @@ function ScreenCreationForm({
             <HelpOutlineIcon className={styles.helpIcon} />
           </IconButton>
         </InputContainer>
-        <Button type="submit" disabled={loading} onClick={handleSubmit}>
+        <Button type='submit' disabled={loading} onClick={handleSubmit}>
           {loading ? 'Creating Screen...' : 'Create Screen'}
         </Button>
       </Label>
@@ -209,7 +203,7 @@ function ScreenCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-       {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
     </Form>
   );
 }
@@ -218,13 +212,13 @@ export default compose(graphql(EXECUTE, { name: 'createScreen' }))(
   ScreenCreationForm
 );
 
-// ns__custom_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 ScreenCreationForm.propTypes = {
   parentId: PropTypes.string,
   selected: PropTypes.bool,
   createScreen: PropTypes.func,
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
-  validateScreens: PropTypes.number
-}
-// ns__custom_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+  validateScreens: PropTypes.number,
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
+};

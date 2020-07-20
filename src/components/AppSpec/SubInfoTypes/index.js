@@ -36,9 +36,9 @@ const SubInfoTypes = ({
         parentId={parentId}
         refetchQueries={refetchQueries}
         infoTypes={infoTypes}
-        /* // ns__custom_start unit: appSpec, comp: Screens, loc: additionalProps */
+        /* // ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
         validateSubInfoTypes={validateSubInfoTypes}
-        /* // ns__custom_end unit: appSpec, comp: Screens, loc: additionalProps */
+        /* // ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
       />
 
       {subInfoTypeData.map((infoType) => (

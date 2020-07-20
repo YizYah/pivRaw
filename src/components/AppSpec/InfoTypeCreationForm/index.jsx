@@ -4,14 +4,14 @@ import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
 // change styling here
@@ -116,9 +116,10 @@ function InfoTypeCreationForm({
   parentId,
   createInfoType,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: addedProps
   validateInfoTypes,
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+  label,
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -175,7 +176,7 @@ function InfoTypeCreationForm({
     <Form>
       {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
       <Label htmlFor='infoType-value'>
-        InfoType:
+        {label}
         <InputContainer>
           <Input
             id='infoType-value'
@@ -209,7 +210,6 @@ export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(
   InfoTypeCreationForm
 );
 
-// ns__custom_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 InfoTypeCreationForm.propTypes = {
   parentId: PropTypes.string,
   selected: PropTypes.bool,
@@ -225,5 +225,7 @@ InfoTypeCreationForm.propTypes = {
     value: PropTypes.string,
     id: PropTypes.string,
   }),
+
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
 };
-// ns__custom_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration

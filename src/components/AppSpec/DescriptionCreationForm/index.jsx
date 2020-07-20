@@ -6,9 +6,9 @@ import compose from '@shopify/react-compose';
 
 import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: addedImports
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: styling
 // change styling here
@@ -92,10 +92,10 @@ export default compose(graphql(EXECUTE, { name: 'createDescription' }))(
   DescriptionCreationForm
 );
 
-// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
 DescriptionCreationForm.propTypes = {
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
   createDescription: PropTypes.func,
+  // ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: addedPropTypes
 };
-// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration

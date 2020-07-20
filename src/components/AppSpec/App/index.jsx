@@ -17,8 +17,8 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 import UserTypes from '../UserTypes';
 import Descriptions from '../Descriptions';
 
-// ns__added_start unit: appSpec, comp: App, loc: additionalImports
-// ns__added_end unit: appSpec, comp: App, loc: additionalImports
+// ns__custom_start unit: appSpec, comp: App, loc: addedImports
+// ns__custom_end unit: appSpec, comp: App, loc: addedImports
 
 
 // add styling here
@@ -202,7 +202,7 @@ export default compose(
 )(App);
 
 
-// ns__added_start unit: appSpec, comp: App, loc: propTypesDeclaration
+
 App.propTypes = {
      app: PropTypes.object,
      parentId: PropTypes.string,
@@ -214,7 +214,6 @@ App.propTypes = {
           children: PropTypes.array,
           id: PropTypes.string
      })
-    // ns__added_start unit: appSpec, comp: App, loc: addedPropTypes
-    // ns__added_end unit: appSpec, comp: App, loc: addedPropTypes
+    // ns__custom_start unit: appSpec, comp: App, loc: addedPropTypes
+    // ns__custom_end unit: appSpec, comp: App, loc: addedPropTypes
 }
-// ns__added_end unit: appSpec, comp: App, loc: propTypesDeclaration

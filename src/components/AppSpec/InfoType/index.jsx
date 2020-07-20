@@ -12,11 +12,13 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-// ns__custom_start unit: appSpec, comp: Info_Type, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Info_Type, loc: addedImports
 import PropTypes from 'prop-types';
 import SubInfoTypes from '../SubInfoTypes';
+import InfoTypeCreationForm from '../InfoTypeCreationForm';
+import { v4 } from 'uuid';
 
-// ns__custom_end unit: appSpec, comp: Info_Type, loc: additonalImports
+// ns__custom_end unit: appSpec, comp: Info_Type, loc: addedImports
 
 // add styling here
 const InfoTypeStyleWrapper = styled.div(
@@ -153,6 +155,8 @@ function InfoType({
     );
   }
 
+  console.log(`infoType inside`, infoType._children);
+
   return (
     <InfoTypeStyleWrapper selected={selected}>
       {infoTypeValue}
@@ -163,7 +167,7 @@ function InfoType({
         &#128465;
       </Button>
 
-      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalComponents */}
+      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedComponents */}
 
       <SubInfoTypes
         infoTypes={infoType}
@@ -174,8 +178,9 @@ function InfoType({
         parentId={parentId}
         infoTypeTree={parentTree}
       />
+      
 
-      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: additionalComponents */}
+      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedComponents */}
     </InfoTypeStyleWrapper>
   );
 }
@@ -185,7 +190,6 @@ export default compose(
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(InfoType);
 
-// ns__custom_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 InfoType.propTypes = {
   app: PropTypes.object,
   parentId: PropTypes.string,
@@ -202,5 +206,6 @@ InfoType.propTypes = {
     value: PropTypes.string,
     id: PropTypes.string,
   }),
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
 };
-// ns__custom_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration

@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
+// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
@@ -15,7 +15,7 @@ import {
 } from '../../../config';
 import PropTypes from 'prop-types';
 
-// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
+// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
 // change styling here
@@ -124,9 +124,9 @@ const SubInfoTypeCreationForm = ({
   createSubInfoType,
   refetchQueries,
   saveInstance,
-  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: additionalProps
+  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: addedPRops
   validateSubInfoTypes,
-  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: additionalProps
+  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: addedPRops
 }) => {
   const [subInfoValue, setSubInfoValue] = useState('');
   const [loading, updateLoading] = useState(false);
