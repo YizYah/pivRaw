@@ -4,31 +4,34 @@ import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID
- } from '../../../config';
+import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
- // ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
-import PropTypes from 'prop-types'; 
-// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+import PropTypes from 'prop-types';
+// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
 
-// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
   padding: 1.5em;
   border: none;
   border-radius: 5px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 `;
-// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
 `;
 
-function DescriptionCreationForm({ parentId, createDescription, refetchQueries }) {
-  const [ descriptionValue, updateDescriptionValue ] = useState('');
-  const [ loading, updateLoading ] = useState(false);
+function DescriptionCreationForm({
+  parentId,
+  createDescription,
+  refetchQueries,
+}) {
+  const [descriptionValue, updateDescriptionValue] = useState('');
+  const [loading, updateLoading] = useState(false);
 
   function handleChange(e) {
     updateDescriptionValue(e.target.value);
@@ -52,13 +55,8 @@ function DescriptionCreationForm({ parentId, createDescription, refetchQueries }
         }),
         unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
-
-    // const newDescriptionData = JSON.parse(createDescriptionResponse.data.Execute);
-
-    
-
 
     updateDescriptionValue('');
     updateLoading(false);
@@ -72,39 +70,32 @@ function DescriptionCreationForm({ parentId, createDescription, refetchQueries }
 
   return (
     <Form>
-      <label htmlFor="description-value">
+      <label htmlFor='description-value'>
         Description:
         <input
-          id="description-value"
-          type="text"
+          id='description-value'
+          type='text'
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-          value={ descriptionValue }
+          value={descriptionValue}
           disabled={loading}
         />
       </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
-        {
-          loading
-            ? 'Creating Description...'
-            : 'Create Description'
-        }
+      <Button type='submit' disabled={loading} onClick={handleSubmit}>
+        {loading ? 'Creating Description...' : 'Create Description'}
       </Button>
     </Form>
   );
 }
 
-export default compose(
-  graphql(EXECUTE, { name: 'createDescription' }),
-  
-)(DescriptionCreationForm);
+export default compose(graphql(EXECUTE, { name: 'createDescription' }))(
+  DescriptionCreationForm
+);
 
-
-// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
+// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
 DescriptionCreationForm.propTypes = {
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
-  createDescription: PropTypes.func
-
-}
-// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
+  createDescription: PropTypes.func,
+};
+// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: propTypesDeclaration
