@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { EXECUTE } from "@nostack/no-stack";
-import compose from "@shopify/react-compose";
-import { graphql } from "@apollo/react-hoc";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { EXECUTE } from '@nostack/no-stack';
+import compose from '@shopify/react-compose';
+import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
   CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   TYPE_INFO_TYPE_ID,
-} from "../../../config";
+} from '../../../config';
 
-import EditInstanceForm from "../../EditInstanceForm";
-import DeleteInstanceMenu from "../../DeleteInstanceMenu";
+import EditInstanceForm from '../../EditInstanceForm';
+import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-// ns__added_start unit: appSpec, comp: Screens, loc: additonalImports
-import PropTypes from "prop-types";
-// ns__added_end unit: appSpec, comp: Screens, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Screens, loc: additonalImports
+import SubInfoTypes from '../SubInfoTypes';
+// ns__custom_end unit: appSpec, comp: Screens, loc: additonalImports
 
 const SubInfoTypeWrapper = styled.div(
   ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? "1px solid aquamarine" : "1px solid white"};
+  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
-  background-color: ${isDeleting && "tomato"};
-  cursor: ${selected ? "auto" : "pointer"};
+  background-color: ${isDeleting && 'tomato'};
+  cursor: ${selected ? 'auto' : 'pointer'};
 
   &:hover {
     border: 1px solid aquamarine;
@@ -44,7 +45,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) => props.hoverColor || "#000000"};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -110,7 +111,7 @@ const SubInfoType = ({
       <SubInfoTypeWrapper>
         <EditInstanceForm
           id={infoTypeId}
-          label={"SubInfoType Value:"}
+          label='SubInfoType Value:'
           value={infoTypeValue}
           onChange={handleSubInfoTypeValueChange}
           onSave={handleSubInfoTypeValueChange}
@@ -160,10 +161,10 @@ const SubInfoType = ({
   return (
     <SubInfoTypeWrapper selected={selected}>
       {infoTypeValue}
-      <Button type="button" onClick={() => setIsEditMode(true)}>
+      <Button type='button' onClick={() => setIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button type="button" onClick={() => setIsDeleteMode(true)}>
+      <Button type='button' onClick={() => setIsDeleteMode(true)}>
         &#128465;
       </Button>
     </SubInfoTypeWrapper>
@@ -171,6 +172,6 @@ const SubInfoType = ({
 };
 
 export default compose(
-  graphql(EXECUTE, { name: "updateInstance" }),
-  graphql(EXECUTE, { name: "deleteInstance" })
+  graphql(EXECUTE, { name: 'updateInstance' }),
+  graphql(EXECUTE, { name: 'deleteInstance' })
 )(SubInfoType);

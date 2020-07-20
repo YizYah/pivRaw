@@ -12,18 +12,15 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-// ns__added_start unit: appSpec, comp: Info_Type, loc: additonalImports
-import PropTypes from 'prop-types'; 
+// ns__custom_start unit: appSpec, comp: Info_Type, loc: additonalImports
+import PropTypes from 'prop-types';
 import SubInfoTypes from '../SubInfoTypes';
 
-
-// ns__added_end unit: appSpec, comp: Info_Type, loc: additonalImports
+// ns__custom_end unit: appSpec, comp: Info_Type, loc: additonalImports
 
 // add styling here
-const InfoTypeStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const InfoTypeStyleWrapper = styled.div(
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine' : '1px solid white'};
@@ -35,7 +32,8 @@ const InfoTypeStyleWrapper = styled.div(({
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
 
 const Button = styled.button`
   background: none;
@@ -58,9 +56,10 @@ function InfoType({
   deleteInstance,
   refetchQueries,
   onSelect,
-  // ns__added_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
   hasParentId,
-    // ns__added_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
+  parentTree,
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
   const [isEditMode, updateIsEditMode] = useState(false);
@@ -71,7 +70,7 @@ function InfoType({
   if (!selected) {
     return (
       <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
-        { infoTypeValue }
+        {infoTypeValue}
       </InfoTypeStyleWrapper>
     );
   }
@@ -106,9 +105,9 @@ function InfoType({
     return (
       <InfoTypeStyleWrapper>
         <EditInstanceForm
-          id={ infoType.id }
-          label="InfoType Value:"
-          value={ infoTypeValue }
+          id={infoType.id}
+          label='InfoType Value:'
+          value={infoTypeValue}
           onChange={handleInfoTypeValueChange}
           onSave={handleInfoTypeValueSave}
           onCancel={handleCancelEdit}
@@ -130,7 +129,7 @@ function InfoType({
             instanceId: infoType.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -143,11 +142,8 @@ function InfoType({
 
   if (isDeleteMode) {
     return (
-      <InfoTypeStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { infoTypeValue }
+      <InfoTypeStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {infoTypeValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -156,39 +152,30 @@ function InfoType({
       </InfoTypeStyleWrapper>
     );
   }
-  
+
   return (
     <InfoTypeStyleWrapper selected={selected}>
-      { infoTypeValue }
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      {infoTypeValue}
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
-    
-    {/* ns__added_start unit: appSpec, comp: Info_Type, loc: additionalComponents */}
 
-      <SubInfoTypes 
-            infoTypes={infoType}
-            infoTypeId={infoType.id}
-            refetchQueries={refetchQueries}
-            label="Sub Info Type"
-            hasParentId={hasParentId}
-            parentId={parentId}
-            
+      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalComponents */}
+
+      <SubInfoTypes
+        infoTypes={infoType}
+        infoTypeId={infoType.id}
+        refetchQueries={refetchQueries}
+        label='Sub Info Type'
+        hasParentId={hasParentId}
+        parentId={parentId}
+        infoTypeTree={parentTree}
       />
 
-    {/* ns__added_end unit: appSpec, comp: Info_Type, loc: additionalComponents */}
-
-
-
+      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: additionalComponents */}
     </InfoTypeStyleWrapper>
   );
 }
@@ -198,8 +185,7 @@ export default compose(
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(InfoType);
 
-
-// ns__added_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+// ns__custom_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 InfoType.propTypes = {
   app: PropTypes.object,
   parentId: PropTypes.string,
@@ -209,13 +195,12 @@ InfoType.propTypes = {
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
   app: PropTypes.shape({
-       children: PropTypes.array,
-       id: PropTypes.string
+    children: PropTypes.array,
+    id: PropTypes.string,
   }),
   infoType: PropTypes.shape({
-      value: PropTypes.string,
-      id: PropTypes.string
-  })
-
-}
-// ns__added_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+    value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+};
+// ns__custom_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration

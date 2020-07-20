@@ -1,9 +1,9 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef } from 'react';
 
-import styled from "styled-components";
-import { v4 } from "uuid";
-import SubInfoTypeCreationForm from "../SubInfoTypeCreationForm";
-import SubInfoType from "../SubInfoType";
+import styled from 'styled-components';
+import { v4 } from 'uuid';
+import SubInfoTypeCreationForm from '../SubInfoTypeCreationForm';
+import SubInfoType from '../SubInfoType';
 
 const SubInfoTypes = ({
   infoTypes,
@@ -18,8 +18,6 @@ const SubInfoTypes = ({
   const [subInfoTypeData, setInfoTypeData] = useState(infoTypes._children);
   const validateSubInfoTypes = subInfoTypeData.length;
 
-
-
   const handleClick = (e) => {
     const node = wrapperRef.current;
 
@@ -32,33 +30,30 @@ const SubInfoTypes = ({
     setSubInfoTypeID(id);
   };
 
-
   return (
     <div>
-      <SubInfoTypeCreationForm 
-        parentId={ parentId }
+      <SubInfoTypeCreationForm
+        parentId={parentId}
         refetchQueries={refetchQueries}
         infoTypes={infoTypes}
-         /* ns__added_start unit: appSpec, comp: Screens, loc: validateScreens */
-         validateSubInfoTypes={validateSubInfoTypes}
-         /* ns__added_end unit: appSpec, comp: Screens, loc: validateScreens */
+        /* // ns__added_start unit: appSpec, comp: Screens, loc: validateScreens */
+        validateSubInfoTypes={validateSubInfoTypes}
+        /* // ns__added_end unit: appSpec, comp: Screens, loc: validateScreens */
       />
 
-      {subInfoTypeData.map(infoType => (
-           <SubInfoType
-           key={v4()}
-           infoType={infoType}
-           infoTypeId={infoType.id}
-           selected={infoType.id === subInfoTypeID}
-           refetchQueries={refetchQueries}
-           label={label}
-           hasParentId={hasParentId}
-           onSelect={handleSelect}
-           parentId={parentId}
-         />
-      )) }
-
-    
+      {subInfoTypeData.map((infoType) => (
+        <SubInfoType
+          key={v4()}
+          infoType={infoType}
+          infoTypeId={infoType.id}
+          selected={infoType.id === subInfoTypeID}
+          refetchQueries={refetchQueries}
+          label={label}
+          hasParentId={hasParentId}
+          onSelect={handleSelect}
+          parentId={parentId}
+        />
+      ))}
     </div>
   );
 };

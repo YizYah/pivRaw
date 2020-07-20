@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-
-// ns__added_start unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-import PropTypes from 'prop-types'; 
-// ns__added_end unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
+import PropTypes from 'prop-types';
+// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: additionalImports
 
-// ns__added_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -28,7 +27,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   flex-direction: row;
-`; 
+`;
 const Input = styled.input`
   :focus,
   textarea:focus,
@@ -107,7 +106,7 @@ const useStyles = makeStyles({
     fontSize: '1rem',
   },
 });
-// ns__added_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
@@ -117,25 +116,23 @@ function InfoTypeCreationForm({
   parentId,
   createInfoType,
   refetchQueries,
-  // ns__added_start unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
   validateInfoTypes,
-  // ns__added_end unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: validateInfoTypes
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__added_start unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-  const callOutText = 'What\'s the name of the type info?';
-  // ns__added_end unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
+  const callOutText = "What's the name of the type info?";
+  // ns__custom_end unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
 
   function handleChange(e) {
     updateInfoTypeValue(e.target.value);
   }
-
-  console.log(`parentId inside infotypecreate`, parentId)
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -158,11 +155,6 @@ function InfoTypeCreationForm({
       refetchQueries,
     });
 
-    console.log(`createInfoTypeResponse`, createInfoTypeResponse)
-
-    
-    
-    
     updateInfoTypeValue('');
     updateLoading(false);
   }
@@ -173,42 +165,42 @@ function InfoTypeCreationForm({
     }
   }
 
-  // ns__added_start unit: appSpec, comp: Screens_creation, loc: callOutFunction
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOutFunction
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__added_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
 
   return (
     <Form>
-      {/* // ns__added_start unit: appSpec, comp: Screens_creation, loc: callOut */}
-      <Label htmlFor="infoType-value">
+      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      <Label htmlFor='infoType-value'>
         InfoType:
         <InputContainer>
           <Input
-            id="infoType-value"
-            type="text"
+            id='infoType-value'
+            type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}
             value={infoTypeValue}
             disabled={loading}
           />
-           <IconButton className={styles.button} onClick={showCallout}>
+          <IconButton className={styles.button} onClick={showCallout}>
             <HelpOutlineIcon className={styles.helpIcon} />
           </IconButton>
         </InputContainer>
-        <Button type="submit" disabled={loading} onClick={handleSubmit}>
+        <Button type='submit' disabled={loading} onClick={handleSubmit}>
           {loading ? 'Creating InfoType...' : 'Create InfoType'}
         </Button>
       </Label>
-      
+
       {showCalloutBox ? (
         <CalloutBox>
           {callOutText}{' '}
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__added_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
     </Form>
   );
 }
@@ -217,8 +209,7 @@ export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(
   InfoTypeCreationForm
 );
 
-
-// ns__added_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+// ns__custom_start unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
 InfoTypeCreationForm.propTypes = {
   parentId: PropTypes.string,
   selected: PropTypes.bool,
@@ -227,13 +218,12 @@ InfoTypeCreationForm.propTypes = {
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
   app: PropTypes.shape({
-       children: PropTypes.array,
-       id: PropTypes.string
+    children: PropTypes.array,
+    id: PropTypes.string,
   }),
   infoType: PropTypes.shape({
-      value: PropTypes.string,
-      id: PropTypes.string
-  })
-
-}
-// ns__added_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration
+    value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+};
+// ns__custom_end unit: appSpec, comp: Info_Type, loc: propTypesDeclaration

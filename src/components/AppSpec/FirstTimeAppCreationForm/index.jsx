@@ -4,13 +4,11 @@ import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE_APP_FOR_APP_SPEC_ACTION_ID
- } from '../../../config';
+import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-
-// ns__added_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
-import PropTypes from 'prop-types'; 
-// ns__added_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
+import PropTypes from 'prop-types';
+// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: additonalImports
 
 // change styling here
 const Form = styled.div`
@@ -18,7 +16,7 @@ const Form = styled.div`
   padding: 1.5em;
   border: none;
   border-radius: 5px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 `;
 
 const Button = styled.button`
@@ -26,8 +24,8 @@ const Button = styled.button`
 `;
 
 function AppCreationForm({ customerId, createApp, refetchQueries }) {
-  const [ appValue, updateAppValue ] = useState('');
-  const [ loading, updateLoading ] = useState(false);
+  const [appValue, updateAppValue] = useState('');
+  const [loading, updateLoading] = useState(false);
 
   function handleChange(e) {
     updateAppValue(e.target.value);
@@ -42,13 +40,6 @@ function AppCreationForm({ customerId, createApp, refetchQueries }) {
 
     updateLoading(true);
 
-
-
-
-
-
-
-
     const createAppResponse = await createApp({
       variables: {
         actionId: CREATE_APP_FOR_APP_SPEC_ACTION_ID,
@@ -58,13 +49,8 @@ function AppCreationForm({ customerId, createApp, refetchQueries }) {
         }),
         unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
-
-    
-
-    
-
 
     updateAppValue('');
     updateLoading(false);
@@ -78,40 +64,32 @@ function AppCreationForm({ customerId, createApp, refetchQueries }) {
 
   return (
     <Form>
-      <label htmlFor="app-value">
+      <label htmlFor='app-value'>
         App:
         <input
-          id="app-value"
-          type="text"
+          id='app-value'
+          type='text'
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-          value={ appValue }
+          value={appValue}
           disabled={loading}
         />
       </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
-        {
-          loading
-            ? 'Creating App...'
-            : 'Create App'
-        }
+      <Button type='submit' disabled={loading} onClick={handleSubmit}>
+        {loading ? 'Creating App...' : 'Create App'}
       </Button>
     </Form>
   );
 }
 
-export default compose(
-  graphql(EXECUTE, { name: 'createApp' }),
-  
-  
-  
-)(AppCreationForm);
+export default compose(graphql(EXECUTE, { name: 'createApp' }))(
+  AppCreationForm
+);
 
-
-// ns__added_start unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration
+// ns__custom_start unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration
 AppCreationForm.propTypes = {
   customerId: PropTypes.string,
   refetchQueries: PropTypes.array,
-  createApp: PropTypes.func
-}
-// ns__added_end unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration
+  createApp: PropTypes.func,
+};
+// ns__custom_end unit: appSpec, comp: Apps_Creation, loc: propTypesDeclaration

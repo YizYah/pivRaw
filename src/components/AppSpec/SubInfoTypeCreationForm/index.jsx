@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { graphql } from "@apollo/react-hoc";
-import styled, { keyframes } from "styled-components";
-import { EXECUTE } from "@nostack/no-stack";
-import compose from "@shopify/react-compose";
+import React, { useState } from 'react';
+import { graphql } from '@apollo/react-hoc';
+import styled, { keyframes } from 'styled-components';
+import { EXECUTE } from '@nostack/no-stack';
+import compose from '@shopify/react-compose';
 
-// ns__added_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import CloseIcon from "@material-ui/icons/Close";
-import { makeStyles } from "@material-ui/core";
-import IconButton from "@material-ui/core/Button";
+// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@material-ui/core';
+import IconButton from '@material-ui/core/Button';
 import {
   CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
-} from "../../../config";
-import PropTypes from "prop-types";
+} from '../../../config';
+import PropTypes from 'prop-types';
 
-// ns__added_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
+// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: additionalImports
 
-// ns__added_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -98,17 +98,17 @@ const useStyles = makeStyles({
     minWidth: 0,
   },
   customWidth: {
-    maxWidth: "500",
-    minWidth: "300",
-    backgroundColor: "blue",
+    maxWidth: '500',
+    minWidth: '300',
+    backgroundColor: 'blue',
   },
   helpIcon: {
-    fontSize: "1.5rem",
-    color: "#f9d162",
+    fontSize: '1.5rem',
+    color: '#f9d162',
   },
   closeIcon: {
-    color: "white",
-    fontSize: "1rem",
+    color: 'white',
+    fontSize: '1rem',
   },
 });
 
@@ -116,7 +116,7 @@ const Button = styled.button`
   margin-left: 1em;
 `;
 
-// ns__added_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
 
 const SubInfoTypeCreationForm = ({
   infoTypes,
@@ -124,20 +124,20 @@ const SubInfoTypeCreationForm = ({
   createSubInfoType,
   refetchQueries,
   saveInstance,
-  // ns__added_start unit: appSpec, comp: Screens_Creation, loc: additionalProps
+  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: additionalProps
   validateSubInfoTypes,
-  // ns__added_end unit: appSpec, comp: Screens_Creation, loc: additionalProps
+  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: additionalProps
 }) => {
-  const [subInfoValue, setSubInfoValue] = useState("");
+  const [subInfoValue, setSubInfoValue] = useState('');
   const [loading, updateLoading] = useState(false);
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateSubInfoTypes === 0;
   const callOutText = "What's the name of this Sub Info Type?";
 
-  // ns__added_start unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
 
-  // ns__added_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
   function handleChange(e) {
     setSubInfoValue(e.target.value);
   }
@@ -153,7 +153,8 @@ const SubInfoTypeCreationForm = ({
 
     try {
       // const newInfoTypeData = JSON.parse(createSubInfoResponse.data.Execute);
-
+      setSubInfoValue('');
+      updateLoading(false);
       const createInfoTypeResponse = await createSubInfoType({
         variables: {
           actionId: CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
@@ -173,15 +174,12 @@ const SubInfoTypeCreationForm = ({
           actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
           executionParameters: JSON.stringify({
             childInstanceId: infoTypes.id,
-            parentInstanceId: newInfoTypeData.instanceId
+            parentInstanceId: newInfoTypeData.instanceId,
           }),
           unrestricted: false,
         },
         refetchQueries,
       });
-
-      setSubInfoValue("");
-      updateLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -193,21 +191,21 @@ const SubInfoTypeCreationForm = ({
     }
   }
 
-  // ns__added_start unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__added_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
 
   return (
     <Form>
-      {/* ns__added_start unit: appSpec, comp: Screens_creation, loc: callOut */}
-      <Label htmlFor="screen-value">
+      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      <Label htmlFor='screen-value'>
         Sub Info Type:
         <InputContainer>
           <Input
-            id="screen-value"
-            type="text"
+            id='screen-value'
+            type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}
             value={subInfoValue}
@@ -218,22 +216,22 @@ const SubInfoTypeCreationForm = ({
             <HelpOutlineIcon className={styles.helpIcon} />
           </IconButton>
         </InputContainer>
-        <Button type="submit" disabled={loading} onClick={handleSubmit}>
-          {loading ? "Creating Sub Info Type..." : "Create Sub Info Type"}
+        <Button type='submit' disabled={loading} onClick={handleSubmit}>
+          {loading ? 'Creating Sub Info Type...' : 'Create Sub Info Type'}
         </Button>
       </Label>
       {showCalloutBox ? (
         <CalloutBox>
-          {callOutText}{" "}
+          {callOutText}{' '}
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* ns__added_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
     </Form>
   );
 };
 
 export default compose(
-  graphql(EXECUTE, { name: "createSubInfoType" }),
-  graphql(EXECUTE, { name: "saveInstance" })
+  graphql(EXECUTE, { name: 'createSubInfoType' }),
+  graphql(EXECUTE, { name: 'saveInstance' })
 )(SubInfoTypeCreationForm);

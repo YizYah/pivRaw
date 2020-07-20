@@ -8,10 +8,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import client from './client';
+import { Provider as UnitDataProvider } from './custom/UnitDataContext';
 
 ReactDOM.render(
   <NoStackProvider client={client} platformId={PLATFORM_ID}>
-    <App />
+    <UnitDataProvider>
+      <App />
+    </UnitDataProvider>
   </NoStackProvider>,
   document.getElementById('root')
 );

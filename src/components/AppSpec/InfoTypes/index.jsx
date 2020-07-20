@@ -6,7 +6,7 @@ import InfoTypeCreationForm from "../InfoTypeCreationForm";
 import InfoType from "../InfoType";
 import _ from "lodash";
 
-// ns__added_start unit: appSpec, comp: InfoTypes, loc: styling
+// ns__custom_start unit: appSpec, comp: InfoTypes, loc: styling
 
 const InfoTypesStyleWrapper = styled.div``;
 
@@ -14,7 +14,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__added_end unit: appSpec, comp: InfoTypes, loc: styling
+// ns__custom_end unit: appSpec, comp: InfoTypes, loc: styling
 
 class InfoTypes extends Component {
   state = {
@@ -45,7 +45,7 @@ class InfoTypes extends Component {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
 
-    /* ns__added_start unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
+    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
     let validateInfoTypes = infoTypes.length;
 
     let temp_parent = infoTypes.map((v) => ({
@@ -55,20 +55,22 @@ class InfoTypes extends Component {
         : null,
     }));
 
+
     let temp_children = _.groupBy(temp_parent, "parentId");
+
+
     
 
     temp_parent = temp_parent.map((v) => ({
       ...v,
       _children: temp_children[v.id] || [],
     }));
-    /* ns__added_end unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
-
+    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalDeclaration */
     {
-      /* ns__added_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+      /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
     }
     {
-      /* ns__added_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+      /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
     }
 
     return (
@@ -77,8 +79,8 @@ class InfoTypes extends Component {
           parentId={screenId}
           refetchQueries={refetchQueries}
           validateInfoTypes={validateInfoTypes}
-          /* ns__added_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
-          /* ns__added_end unit: appSpec, comp: InfoTypes, loc: additionalProps */
+          /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
+          /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalProps */
         />
 
         {temp_parent.map((infoType) => {
@@ -93,14 +95,15 @@ class InfoTypes extends Component {
               parentId={screenId}
               refetchQueries={refetchQueries}
               onSelect={this.handleSelect}
-              /* ns__added_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
+              parentTree={temp_parent}
+              /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
               hasParentId={infoType.parentId}
-              /* ns__added_end unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
+              /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: additionalPropsDeclaration */
             />
           );
         })}
-        {/* ns__added_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
-        {/* ns__added_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+        {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+        {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>
     );
   }
