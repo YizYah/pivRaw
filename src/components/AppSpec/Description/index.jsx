@@ -12,10 +12,11 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
+// ns__custom_start unit: appSpec, comp: Description, loc: addedImports
+// ns__custom_end unit: appSpec, comp: Description, loc: addedImports
 
 
-
-
+// ns__custom_start unit: appSpec, comp: Description, loc: styling
 // add styling here
 const DescriptionStyleWrapper = styled.div(({
   selected,
@@ -33,6 +34,7 @@ const DescriptionStyleWrapper = styled.div(({
     border: 1px solid aquamarine;
   }
 `);
+// ns__custom_end unit: appSpec, comp: Description, loc: styling
 
 const Button = styled.button`
   background: none;

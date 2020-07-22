@@ -4,16 +4,16 @@ import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -106,7 +106,7 @@ const useStyles = makeStyles({
     fontSize: '1rem',
   },
 });
-// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;

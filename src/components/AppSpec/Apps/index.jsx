@@ -47,13 +47,18 @@ class Apps extends Component {
   wrapperRef = createRef();
 
   componentDidMount() {
+    // ns__custom_start unit: appSpec, comp: Apps, loc: didMount
     const { setCurrentStage } = this.context;
 
     setCurrentStage(1);
+    // ns__custom_end unit: appSpec, comp: Apps, loc: didMount
     document.addEventListener('mousedown', this.handleClick);
   }
 
   componentWillUnmount() {
+    // ns__custom_start unit: appSpec, comp: Apps, loc: willUnmount
+    // ns__custom_end unit: appSpec, comp: Apps, loc: willUnmount
+
     document.removeEventListener('mousedown', this.handleClick);
   }
 
@@ -70,10 +75,13 @@ class Apps extends Component {
   render() {
     const { customerId } = this.props;
     const { selectedAppId } = this.state;
-    const { currentStage } = this.context.state;
     const parameters = {
       currentCustomer: customerId,
     };
+
+    {/* ns__custom_start unit: appSpec, comp: Apps, loc: renderBeginning */}
+    const { currentStage } = this.context.state;
+    {/* ns__custom_end unit: appSpec, comp: Apps, loc: renderBeginning */}
 
     return (
       <Unit
@@ -91,14 +99,13 @@ class Apps extends Component {
           }
 
           const apps = data.unitData.map((el) => flattenData(el));
+
+          // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
           {
             console.log(`this.props ${currentStage}`, this.context);
           }
 
           console.log(`apps`, apps);
-
-          // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
-
           /* NOTE: one app is assumed here. */
           const appInfo = apps[0];
           const descriptionInfo = getDescriptionChild(appInfo.children);
@@ -142,8 +149,8 @@ class Apps extends Component {
                   ))}
               </AppsStyleWrapper>
 
-              {/*// ns__custom_start unit: appSpec, comp: Apps, loc: renderEnding */}
-              {/*// ns__custom_end unit: appSpec, comp: Apps, loc: renderEnding */}
+              {/* ns__custom_start unit: appSpec, comp: Apps, loc: renderEnding */}
+              {/* ns__custom_end unit: appSpec, comp: Apps, loc: renderEnding */}
             </>
           );
         }}

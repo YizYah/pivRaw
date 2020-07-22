@@ -5,16 +5,16 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-// ns__custom_start unit: appSpec, comp: Screens_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { keyframes } from 'styled-components';
-// ns__custom_end unit: appSpec, comp: Screens_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: Screens_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -109,7 +109,7 @@ const useStyles = makeStyles({
   },
 });
 
-// ns__custom_end unit: appSpec, comp: Screens_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
@@ -119,9 +119,9 @@ function ScreenCreationForm({
   parentId,
   createScreen,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: Screens_Creation, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedProps
   validateScreens,
-  // ns__custom_end unit: appSpec, comp: Screens_Creation, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedProps
 }) {
   const [screenValue, updateScreenValue] = useState('');
   const [loading, updateLoading] = useState(false);
