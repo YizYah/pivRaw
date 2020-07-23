@@ -14,7 +14,7 @@ import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 
-// ns__custom_start unit: appSpec, comp: Info_Type, loc: addedImports
+// ns__custom_start unit: appSpec, comp: InfoType, loc: addedImports
 import PropTypes from 'prop-types';
 import SubInfoTypes from '../../../custom/SubInfoTypes';
 import InfoTypeCreationForm from '../InfoTypeCreationForm';
@@ -22,7 +22,7 @@ import { v4 } from 'uuid';
 import { useContext } from 'react';
 import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 
-// ns__custom_end unit: appSpec, comp: Info_Type, loc: addedImports
+// ns__custom_end unit: appSpec, comp: InfoType, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoType, loc: styling
 // add styling here
@@ -64,21 +64,23 @@ function InfoType({
   deleteInstance,
   refetchQueries,
   onSelect,
-  // ns__custom_start unit: appSpec, comp: InfoType, loc: additionalProps
+  // ns__custom_start unit: appSpec, comp: InfoType, loc: addedProps
   hasParentId,
   childState,
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
+  // ns__custom_end unit: appSpec, comp: InfoType, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: appSpec, comp: InfoType, loc: beginning
+  // ns__custom_end unit: appSpec, comp: InfoType, loc: beginning
 
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: beforeReturn
+  // ns__custom_start unit: appSpec, comp: InfoType, loc: beforeReturn
   // const {state} = useContext(UnitDataContext)
   // console.log(`childState infoType`, state)
-  // ns__custom_end unit: appSpec, comp: Info_Type, loc: beforeReturn
+  // ns__custom_end unit: appSpec, comp: InfoType, loc: beforeReturn
 
   if (!selected) {
     return (
@@ -176,7 +178,7 @@ function InfoType({
         &#128465;
       </Button>
 
-      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: renderEnding */}
+      {/* ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
 
       <SubInfoTypes
         subInfoTypes={infoType._children}
@@ -188,7 +190,7 @@ function InfoType({
         childState={childState}
       />
 
-      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
 }
@@ -214,6 +216,6 @@ InfoType.propTypes = {
     value: PropTypes.string,
     id: PropTypes.string,
   }),
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: InfoType, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: InfoType, loc: addedPropTypes
 };

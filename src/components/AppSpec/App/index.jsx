@@ -49,7 +49,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -67,6 +67,9 @@ function App({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: appSpec, comp: App, loc: beginning
+  // ns__custom_end unit: appSpec, comp: App, loc: beginning
+
   const userTypeData = app.children && app.children.find(child => child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];
   const descriptionData = app.children && app.children.find(child => child.typeId === TYPE_DESCRIPTION_ID);
@@ -111,7 +114,7 @@ function App({
       <AppStyleWrapper>
         <EditInstanceForm
           id={ app.id }
-          label="App Value:"
+          label='App Value:'
           value={ appValue }
           onChange={handleAppValueChange}
           onSave={handleAppValueSave}
@@ -134,7 +137,7 @@ function App({
             instanceId: app.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -165,13 +168,13 @@ function App({
     <AppStyleWrapper selected={selected}>
       { appValue }
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsEditMode(true)}
       >
         &#9998;
       </Button>
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsDeleteMode(true)}
       >
         &#128465;
@@ -181,13 +184,13 @@ function App({
 < UserTypes
               userTypes = { userTypes }
               appId = { app.id }
-              label="UserType?"
+              label='UserType?'
               refetchQueries={refetchQueries}
       />
 < Descriptions
               descriptions = { descriptions }
               appId = { app.id }
-              label="Description?"
+              label='Description?'
               refetchQueries={refetchQueries}
       />
 
@@ -211,7 +214,7 @@ App.propTypes = {
     app: PropTypes.shape({
                              children: PropTypes.array,
                              id: PropTypes.string
-                         })
+                         }),
     // ns__custom_start unit: appSpec, comp: App, loc: addedPropTypes
     // ns__custom_end unit: appSpec, comp: App, loc: addedPropTypes
-}
+};

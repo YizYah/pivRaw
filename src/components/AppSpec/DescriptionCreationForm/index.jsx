@@ -29,9 +29,13 @@ function DescriptionCreationForm({
   parentId,
   createDescription,
   refetchQueries,
+  // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedProps
 }) {
   const [descriptionValue, updateDescriptionValue] = useState('');
   const [loading, updateLoading] = useState(false);
+  // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: beginning
+  // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: beginning
 
   function handleChange(e) {
     updateDescriptionValue(e.target.value);

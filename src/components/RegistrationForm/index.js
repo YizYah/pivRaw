@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
   .label('password')
   .matches(/(?=.*\d)/, 'Must have at least one numerical character')
   .matches(
-    /(?=.*[#?!@$%^&*-.,:;'"><[\]{}()_|\\/~])/,
+    /(?=.*[#?!@$%^&*-.,:;''><[\]{}()_|\\/~])/,
     'Must have at least one special character.',
   )
   .min(8, 'Must be at least 8 characters.')
@@ -106,31 +106,31 @@ const RegistrationForm = ({
       >
         {({isSubmitting, isValid, dirty, isValidating}) => (
           <Form>
-            <RegistrationField fieldLabel="Username:" type="text" name="name" />
+            <RegistrationField fieldLabel='Username:' type='text' name='name' />
             <RegistrationField
-              fieldLabel="First Name:"
-              type="text"
-              name="firstName"
+              fieldLabel='First Name:'
+              type='text'
+              name='firstName'
             />
             <RegistrationField
-              fieldLabel="Last Name:"
-              type="text"
-              name="lastName"
+              fieldLabel='Last Name:'
+              type='text'
+              name='lastName'
             />
-            <RegistrationField fieldLabel="Email:" type="email" name="email" />
+            <RegistrationField fieldLabel='Email:' type='email' name='email' />
             <RegistrationField
-              fieldLabel="Password:"
-              type="password"
-              name="password"
+              fieldLabel='Password:'
+              type='password'
+              name='password'
             />
             <RegistrationField
-              fieldLabel="Confirm Password:"
-              type="password"
-              name="passwordConfirmation"
+              fieldLabel='Confirm Password:'
+              type='password'
+              name='passwordConfirmation'
             />
             <Row>
               <button
-                type="submit"
+                type='submit'
                 disabled={isSubmitting || !isValid || isValidating || !dirty}
               >
                 Sign Up!

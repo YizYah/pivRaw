@@ -116,20 +116,20 @@ function InfoTypeCreationForm({
   parentId,
   createInfoType,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
   validateInfoTypes,
   label,
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
+  // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-  const callOutText = "What's the name of the type info?";
-  // ns__custom_end unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
+  const callOutText = 'What's the name of the type info?';
+  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
     updateInfoTypeValue(e.target.value);
@@ -166,15 +166,15 @@ function InfoTypeCreationForm({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: beforeReturn
+  // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
+  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: callOut */}
       <Label htmlFor='infoType-value'>
         {label}
         <InputContainer>
@@ -201,7 +201,7 @@ function InfoTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: callOut */}
     </Form>
   );
 }
@@ -226,6 +226,6 @@ InfoTypeCreationForm.propTypes = {
     id: PropTypes.string,
   }),
 
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedPropTypes
 };

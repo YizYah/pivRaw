@@ -23,6 +23,9 @@ const Button = styled.button`
 // ns__custom_end unit: appSpec, comp: Descriptions, loc: styling
 
 class Descriptions extends Component {
+  // ns__custom_start unit: appSpec, comp: Descriptions, loc: beginning
+  // ns__custom_end unit: appSpec, comp: Descriptions, loc: beginning
+
   state = {
     selectedDescriptionId: null,
   };
@@ -51,9 +54,8 @@ class Descriptions extends Component {
     const { appId, descriptions, refetchQueries, onUpdate } = this.props;
     const { selectedDescriptionId } = this.state;
 
-    /* // // ns__custom_start unit: appSpec, comp: Descriptions, loc: renderBeginning */
-
-    /* // ns__custom_end unit: appSpec, comp: Descriptions, loc: renderBeginning */
+    {/* ns__custom_start unit: appSpec, comp: Descriptions, loc: renderBeginning */}
+    {/* ns__custom_end unit: appSpec, comp: Descriptions, loc: renderBeginning */}
 
     return (
       <DescriptionsStyleWrapper
@@ -76,8 +78,8 @@ class Descriptions extends Component {
             onSelect={this.handleSelect}
           />
         ))}
-        {/* // ns__custom_start unit: appSpec, comp: Descriptions, loc: renderEnding */}
-        {/* // ns__custom_end unit: appSpec, comp: Descriptions, loc: renderEnding */}
+        {/* ns__custom_start unit: appSpec, comp: Descriptions, loc: renderEnding */}
+        {/* ns__custom_end unit: appSpec, comp: Descriptions, loc: renderEnding */}
       </DescriptionsStyleWrapper>
     );
   }

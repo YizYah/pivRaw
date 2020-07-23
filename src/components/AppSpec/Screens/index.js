@@ -53,9 +53,9 @@ class Screens extends Component {
 
     console.log(`screens`, screens)
 
-     // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedDeclaration
+     // ns__custom_start unit: appSpec, comp: UserTypes, loc: beginning
      const validateScreens = screens.length
-     // ns__custom_end unit: appSpec, comp: UserTypes, loc: addedDeclaration
+     // ns__custom_end unit: appSpec, comp: UserTypes, loc: beginning
 
     {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning */}
     {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning */}
@@ -65,9 +65,9 @@ class Screens extends Component {
         <ScreenCreationForm
           parentId={ userTypeId }
           refetchQueries={refetchQueries}
-          /* // ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
+          /* ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
           validateScreens={validateScreens}
-          /* // ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
+          /* ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
         />
 
         { screens.map(screen => (
