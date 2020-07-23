@@ -101,11 +101,6 @@ class Apps extends Component {
           const apps = data.unitData.map((el) => flattenData(el));
 
           // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
-          {
-            console.log(`this.props ${currentStage}`, this.context);
-          }
-
-          console.log(`apps`, apps);
           /* NOTE: one app is assumed here. */
           const appInfo = apps[0];
           const descriptionInfo = getDescriptionChild(appInfo.children);

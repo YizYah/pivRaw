@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/Button';
 import {
   CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
-} from '../../../config';
+} from '../../config';
 import PropTypes from 'prop-types';
 
 // ns__custom_end unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: addedImports
@@ -119,14 +119,14 @@ const Button = styled.button`
 // ns__custom_end unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: styling
 
 const SubInfoTypeCreationForm = ({
-  infoTypes,
+  childId,
   parentId,
   createSubInfoType,
   refetchQueries,
   saveInstance,
-  // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedPRops
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
   validateSubInfoTypes,
-  // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedPRops
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
 }) => {
   const [subInfoValue, setSubInfoValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -135,9 +135,9 @@ const SubInfoTypeCreationForm = ({
   const showCalloutBox = callout || validateSubInfoTypes === 0;
   const callOutText = "What's the name of this Sub Info Type?";
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedDeclaration
 
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedDeclaration
   function handleChange(e) {
     setSubInfoValue(e.target.value);
   }
@@ -168,12 +168,14 @@ const SubInfoTypeCreationForm = ({
       });
 
       const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
+      
+      console.log(`createInfoTypeResponse`, createInfoTypeResponse)
 
       const createChildInfoTypeResponse = await saveInstance({
         variables: {
           actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
           executionParameters: JSON.stringify({
-            childInstanceId: infoTypes.id,
+            childInstanceId: childId,
             parentInstanceId: newInfoTypeData.instanceId,
           }),
           unrestricted: false,
@@ -191,15 +193,15 @@ const SubInfoTypeCreationForm = ({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
       <Label htmlFor='screen-value'>
         Sub Info Type:
         <InputContainer>
@@ -226,7 +228,7 @@ const SubInfoTypeCreationForm = ({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
     </Form>
   );
 };

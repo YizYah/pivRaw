@@ -10,7 +10,9 @@ import InfoType from '../InfoType';
 import _ from 'lodash';
 
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedImports
-import getChildData from '../../../custom/getChildData'
+import getChildData from '../../../custom/getChildData';
+import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
+
 // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: styling
@@ -24,14 +26,40 @@ const Button = styled.button`
 // ns__custom_end unit: appSpec, comp: InfoTypes, loc: styling
 
 class InfoTypes extends Component {
+  // ns__custom_start unit: appSpec, comp: Apps, loc: beginning
+  static contextType = UnitDataContext;
+  // ns__custom_end unit: appSpec, comp: Apps, loc: beginning
   state = {
     selectedInfoTypeId: null,
+    // ns__custom_start unit: appSpec, comp: Apps, loc: addedState
+    childState: [],
+    parentState: [],
+    // ns__custom_end unit: appSpec, comp: Apps, loc: addedState
   };
 
   wrapperRef = createRef();
 
+  componentWillMount() {}
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: Apps, loc: beforeComponentMounts
+    const { childState, parentState } = this.state;
+    const { infoTypes } = this.props;
+    const { setChildState, state, setCurrentStage } = this.context;
+    
+
+    if (!childState.length || !parentState.length) {
+      let [parentData, childData] = getChildData(infoTypes);
+      
+      
+      this.setState({
+        childState: childData,
+        parentState: parentData,
+      },);
+    }
+
+    // ns__custom_end unit: appSpec, comp: Apps, loc: beforeComponentMounts
   }
 
   componentWillUnmount() {
@@ -49,26 +77,33 @@ class InfoTypes extends Component {
   handleSelect = (id) => this.setState({ selectedInfoTypeId: id });
 
   render() {
-    const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
-    const { selectedInfoTypeId } = this.state;
-    
-  
+    const {
+      screenId,
+      infoTypes,
+      refetchQueries,
+      onUpdate,
+      children,
+    } = this.props;
+    const {
+      selectedInfoTypeId,
+      // ns__custom_start unit: appSpec, comp: Apps, loc: addedState
+      childState,
+      parentState,
+      // ns__custom_end unit: appSpec, comp: Apps, loc: addedState
+    } = this.state;
 
     /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
-    
+
     let validateInfoTypes = infoTypes.length;
-    const [parentData] = getChildData(infoTypes);
-    
-    
-    
 
     /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
-    {
-      /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
-    }
-    {
-      /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
-    }
+    const {state } = this.context;
+    console.log(`infotype state context`, state)
+    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    
+    
+    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+  
 
     return (
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
@@ -81,7 +116,7 @@ class InfoTypes extends Component {
           /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
         />
         {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedLogic */}
-        {parentData.map((infoType) => {
+        {parentState.map((infoType) => {
           if (infoType.parentId) return;
 
           return (
@@ -95,12 +130,12 @@ class InfoTypes extends Component {
               onSelect={this.handleSelect}
               /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
               hasParentId={infoType.parentId}
-              parentTree={parentData}
+              childState={childState}
               /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
             />
           );
         })}
-         {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedLogic */}  
+        {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedLogic */}
         {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
         {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>

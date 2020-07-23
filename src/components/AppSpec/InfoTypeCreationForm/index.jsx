@@ -124,12 +124,12 @@ function InfoTypeCreationForm({
   const [infoTypeValue, updateInfoTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
   const callOutText = "What's the name of the type info?";
-  // ns__custom_end unit: appSpec, comp: InfoTypes_creation, loc: additionalDeclaration
+  // ns__custom_end unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
 
   function handleChange(e) {
     updateInfoTypeValue(e.target.value);
@@ -166,11 +166,11 @@ function InfoTypeCreationForm({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOutFunction
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
 
   return (
     <Form>

@@ -130,12 +130,12 @@ function UserTypeCreationForm({
   const [userTypeValue, updateUserTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: addedDeclaration
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateUserTypes === 0;
   const callOutText = 'What\'s the type of user for this App?';
-  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: additionalDeclaration
+  // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: addedDeclaration
 
   function handleChange(e) {
     updateUserTypeValue(e.target.value);
@@ -176,11 +176,11 @@ function UserTypeCreationForm({
       handleSubmit(e);
     }
   }
-  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: callOutFunction*/
+  // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: beforeReturn*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: beforeReturn*/
 
   return (
     <Form>
