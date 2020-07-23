@@ -5,16 +5,16 @@ import { withNoStack, EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
 
-// ns__custom_start unit: appSpec, comp: UserType_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import { CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-// ns__custom_end unit: appSpec, comp: UserType_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -113,7 +113,7 @@ const useStyles = makeStyles({
   },
 });
 
-// ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
@@ -123,9 +123,9 @@ function UserTypeCreationForm({
   parentId,
   createUserType,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
   validateUserTypes,
-  // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
 }) {
   const [userTypeValue, updateUserTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -184,7 +184,7 @@ function UserTypeCreationForm({
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: callOut */}
+      {/* // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
       <Label htmlFor="userType-value">
         UserType:
         <InputContainer>
@@ -212,7 +212,7 @@ function UserTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-    {/* // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: callOut */}
+    {/* // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
     </Form>
   );
 }

@@ -1,3 +1,6 @@
+// ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beforeImports
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
@@ -7,6 +10,10 @@ import compose from '@shopify/react-compose';
 import { CREATE_APP_FOR_APP_SPEC_ACTION_ID
  } from '../../../config';
 
+// ns__custom_start unit: appSpec, comp: AppCreationForm, loc: addedImports
+// ns__custom_end unit: appSpec, comp: AppCreationForm, loc: addedImports
+
+// ns__custom_start unit: appSpec, comp: AppCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -15,6 +22,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #F5F5F5;
 `;
+// ns__custom_end unit: appSpec, comp: AppCreationForm, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;

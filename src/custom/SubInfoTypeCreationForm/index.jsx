@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
@@ -15,9 +15,9 @@ import {
 } from '../../config';
 import PropTypes from 'prop-types';
 
-// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -116,7 +116,7 @@ const Button = styled.button`
   margin-left: 1em;
 `;
 
-// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: styling
 
 const SubInfoTypeCreationForm = ({
   childId,

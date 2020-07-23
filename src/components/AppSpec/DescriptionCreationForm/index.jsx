@@ -6,11 +6,11 @@ import compose from '@shopify/react-compose';
 
 import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: styling
+// ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -19,7 +19,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #f5f5f5;
 `;
-// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
@@ -96,6 +96,6 @@ DescriptionCreationForm.propTypes = {
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
   createDescription: PropTypes.func,
-  // ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedPropTypes
 };

@@ -6,9 +6,9 @@ import compose from '@shopify/react-compose';
 
 import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
-// ns__custom_start unit: appSpec, comp: Descriptions_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: Descriptions_Creation, loc: addedImports
+// ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 
 // change styling here
 const Form = styled.div`
@@ -90,6 +90,6 @@ AppCreationForm.propTypes = {
   customerId: PropTypes.string,
   refetchQueries: PropTypes.array,
   createApp: PropTypes.func,
-  // ns__custom_start unit: appSpec, comp: Apps_Creation, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Apps_Creation, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: addedPropTypes
 };

@@ -20,7 +20,7 @@ import Descriptions from '../Descriptions';
 // ns__custom_start unit: appSpec, comp: App, loc: addedImports
 // ns__custom_end unit: appSpec, comp: App, loc: addedImports
 
-
+// ns__custom_start unit: appSpec, comp: App, loc: styling
 // add styling here
 const AppStyleWrapper = styled.div(({
   selected,
@@ -38,6 +38,7 @@ const AppStyleWrapper = styled.div(({
     border: 1px solid aquamarine;
   }
 `);
+// ns__custom_end unit: appSpec, comp: App, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -66,7 +67,6 @@ function App({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
-
   const userTypeData = app.children && app.children.find(child => child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];
   const descriptionData = app.children && app.children.find(child => child.typeId === TYPE_DESCRIPTION_ID);
@@ -201,19 +201,17 @@ export default compose(
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(App);
 
-
-
 App.propTypes = {
-     app: PropTypes.object,
-     parentId: PropTypes.string,
-     selected: PropTypes.bool,
-     updateInstance: PropTypes.func,
-     deleteInstance: PropTypes.func,
-     refetchQueries: PropTypes.array,
-     app: PropTypes.shape({
-          children: PropTypes.array,
-          id: PropTypes.string
-     })
+    app: PropTypes.object,
+    parentId: PropTypes.string,
+    selected: PropTypes.bool,
+    updateInstance: PropTypes.func,
+    deleteInstance: PropTypes.func,
+    refetchQueries: PropTypes.array,
+    app: PropTypes.shape({
+                             children: PropTypes.array,
+                             id: PropTypes.string
+                         })
     // ns__custom_start unit: appSpec, comp: App, loc: addedPropTypes
     // ns__custom_end unit: appSpec, comp: App, loc: addedPropTypes
 }

@@ -4,6 +4,7 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
@@ -11,6 +12,7 @@ import {
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
+
 
 // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedImports
 import PropTypes from 'prop-types';
@@ -22,6 +24,7 @@ import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 
 // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedImports
 
+// ns__custom_start unit: appSpec, comp: InfoType, loc: styling
 // add styling here
 const InfoTypeStyleWrapper = styled.div(
   ({ selected, isDeleting }) => `
@@ -38,6 +41,7 @@ const InfoTypeStyleWrapper = styled.div(
   }
 `
 );
+// ns__custom_end unit: appSpec, comp: InfoType, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -60,7 +64,7 @@ function InfoType({
   deleteInstance,
   refetchQueries,
   onSelect,
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
+  // ns__custom_start unit: appSpec, comp: InfoType, loc: additionalProps
   hasParentId,
   childState,
   // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
