@@ -11,14 +11,14 @@ import {
   ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
   CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   TYPE_INFO_TYPE_ID,
-} from '../../../config';
+} from '../../config';
 
-import EditInstanceForm from '../../EditInstanceForm';
-import DeleteInstanceMenu from '../../DeleteInstanceMenu';
+import EditInstanceForm from '../../components/EditInstanceForm';
+import DeleteInstanceMenu from '../../components/DeleteInstanceMenu';
 
-// ns__custom_start unit: appSpec, comp: Screens, loc: addedImports
-import SubInfoTypes from '../SubInfoTypes';
-// ns__custom_end unit: appSpec, comp: Screens, loc: addedImports
+// ns__custom_start unit: appSpec, comp: SubInfoChildType, loc: addedImports
+import SubInfoChildTypes from '../SubInfoChildTypes';
+// ns__custom_end unit: appSpec, comp: SubInfoChildType, loc: addedImports
 
 const SubInfoTypeWrapper = styled.div(
   ({ selected, isDeleting }) => `
@@ -60,6 +60,7 @@ const SubInfoType = ({
   deleteInstance,
   refetchQueries,
   onSelect,
+  childState
 }) => {
   const [infoTypeValue, setSubInfoTypeValue] = useState(infoType.value);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -158,16 +159,16 @@ const SubInfoType = ({
     );
   }
 
-  return (
+    return (
     <SubInfoTypeWrapper selected={selected}>
       {infoTypeValue}
+      
       <Button type='button' onClick={() => setIsEditMode(true)}>
         &#9998;
       </Button>
       <Button type='button' onClick={() => setIsDeleteMode(true)}>
         &#128465;
       </Button>
-
 
       
     </SubInfoTypeWrapper>

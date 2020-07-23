@@ -53,6 +53,17 @@ export const SOURCE_APP_SPEC_QUERY = gql`
                                     }
                                 }
 
+                                children {
+                                    typeId
+                                    instances {
+                                        
+                                        instance {
+                                            id
+                                            value
+                                        }
+                                    }
+                                }
+
                             }
                         }
                     }

@@ -6,6 +6,8 @@ const unitDataReducer = (state, action) => {
       return { unitData: action.payload };
     case 'setStage':
       return { currentStage: action.payload };
+    case 'setChildState':
+      return { ...state, childState: action.payload };
     default:
       return state;
   }
@@ -19,11 +21,16 @@ const setCurrentStage = (dispatch) => (stage) => {
   dispatch({ type: 'setStage', payload: stage });
 };
 
+const setChildState = (dispatch) => (state) => {
+  dispatch({ type: 'setChildState', payload: state });
+};
+
 export const { Context, Provider } = createDataContext(
   unitDataReducer,
-  { getUnitData, setCurrentStage },
+  { getUnitData, setCurrentStage, setChildState },
   {
     unitData: [],
     currentStage: 0,
+    childState: [],
   }
 );

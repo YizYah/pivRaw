@@ -14,9 +14,11 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedImports
 import PropTypes from 'prop-types';
-import SubInfoTypes from '../SubInfoTypes';
+import SubInfoTypes from '../../../custom/SubInfoTypes';
 import InfoTypeCreationForm from '../InfoTypeCreationForm';
 import { v4 } from 'uuid';
+import { useContext } from 'react';
+import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 
 // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedImports
 
@@ -60,7 +62,7 @@ function InfoType({
   onSelect,
   // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
   hasParentId,
-  parentTree,
+  childState,
   // ns__custom_start unit: appSpec, comp: Info_Type, loc: additionalPropsImport
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
@@ -68,6 +70,11 @@ function InfoType({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+
+  // ns__custom_start unit: appSpec, comp: Info_Type, loc: beforeReturn
+  // const {state} = useContext(UnitDataContext)
+  // console.log(`childState infoType`, state)
+  // ns__custom_end unit: appSpec, comp: Info_Type, loc: beforeReturn
 
   if (!selected) {
     return (
@@ -155,8 +162,6 @@ function InfoType({
     );
   }
 
-  console.log(`infoType inside`, infoType._children);
-
   return (
     <InfoTypeStyleWrapper selected={selected}>
       {infoTypeValue}
@@ -167,20 +172,19 @@ function InfoType({
         &#128465;
       </Button>
 
-      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedComponents */}
+      {/* // ns__custom_start unit: appSpec, comp: Info_Type, loc: renderEnding */}
 
       <SubInfoTypes
-        infoTypes={infoType}
+        subInfoTypes={infoType._children}
         infoTypeId={infoType.id}
         refetchQueries={refetchQueries}
         label='Sub Info Type'
         hasParentId={hasParentId}
         parentId={parentId}
-        infoTypeTree={parentTree}
+        childState={childState}
       />
-      
 
-      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedComponents */}
+      {/* // ns__custom_end unit: appSpec, comp: Info_Type, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
 }

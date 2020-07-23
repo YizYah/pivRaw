@@ -6,16 +6,17 @@ import SubInfoTypeCreationForm from '../SubInfoTypeCreationForm';
 import SubInfoType from '../SubInfoType';
 
 const SubInfoTypes = ({
-  infoTypes,
+  subInfoTypes,
   infoTypeId,
   refetchQueries,
   label,
   hasParentId,
   parentId,
+  childState
 }) => {
   const [subInfoTypeID, setSubInfoTypeID] = useState(null);
   const wrapperRef = createRef();
-  const [subInfoTypeData, setInfoTypeData] = useState(infoTypes._children);
+  const [subInfoTypeData, setInfoTypeData] = useState(subInfoTypes);
   const validateSubInfoTypes = subInfoTypeData.length;
 
   const handleClick = (e) => {
@@ -35,13 +36,14 @@ const SubInfoTypes = ({
       <SubInfoTypeCreationForm
         parentId={parentId}
         refetchQueries={refetchQueries}
-        infoTypes={infoTypes}
-        /* // ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
+        /* // ns__custom_start unit: appSpec, comp: SubInfo_Types, loc: addedProps */
         validateSubInfoTypes={validateSubInfoTypes}
-        /* // ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
+        childId={infoTypeId}
+        /* // ns__custom_end unit: appSpec, comp: SubInfo_Types, loc: addedProps */
       />
 
-      {subInfoTypeData.map((infoType) => (
+      {subInfoTypeData && subInfoTypeData.map((infoType) => (
+
         <SubInfoType
           key={v4()}
           infoType={infoType}
@@ -52,6 +54,7 @@ const SubInfoTypes = ({
           hasParentId={hasParentId}
           onSelect={handleSelect}
           parentId={parentId}
+          childState={childState}
         />
       ))}
     </div>

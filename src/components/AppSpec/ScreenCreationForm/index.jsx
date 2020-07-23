@@ -126,12 +126,12 @@ function ScreenCreationForm({
   const [screenValue, updateScreenValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: addedDeclaration
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
   const callOutText = "What's the name of this screen?";
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: additionalDeclaration
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: addedDeclaration
 
   function handleChange(e) {
     updateScreenValue(e.target.value);
@@ -168,11 +168,11 @@ function ScreenCreationForm({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOutFunction*/
+  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
 
   return (
     <Form>

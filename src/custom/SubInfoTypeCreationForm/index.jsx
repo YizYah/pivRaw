@@ -4,16 +4,20 @@ import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
+// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
-import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+import {
+  CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+  ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
+} from '../../config';
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: addedImports
 
-// ns__custom_start unit: appSpec, comp: InfoTypes_Creation, loc: styling
+// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedImports
+
+// ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -28,6 +32,7 @@ const Label = styled.label`
   align-items: center;
   flex-direction: row;
 `;
+
 const Input = styled.input`
   :focus,
   textarea:focus,
@@ -79,7 +84,7 @@ const CalloutBox = styled.div`
     border-right: 2px solid #f9d162;
     border-left: 0px solid #f9d162;
     border-bottom: 2px solid #f9d162;
-    left: 62%;
+    left: 63%;
     
     content: '';
     transform: rotate(45deg);
@@ -106,58 +111,80 @@ const useStyles = makeStyles({
     fontSize: '1rem',
   },
 });
-// ns__custom_end unit: appSpec, comp: InfoTypes_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;
 `;
 
-function InfoTypeCreationForm({
-  parentId,
-  createInfoType,
-  refetchQueries,
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: addedProps
-  validateInfoTypes,
-  label,
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: addedProps
-}) {
-  const [infoTypeValue, updateInfoTypeValue] = useState('');
-  const [loading, updateLoading] = useState(false);
+// ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: styling
 
-  // ns__custom_start unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
+const SubInfoTypeCreationForm = ({
+  childId,
+  parentId,
+  createSubInfoType,
+  refetchQueries,
+  saveInstance,
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
+  validateSubInfoTypes,
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
+}) => {
+  const [subInfoValue, setSubInfoValue] = useState('');
+  const [loading, updateLoading] = useState(false);
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
-  const showCalloutBox = callout || validateInfoTypes === 0;
-  const callOutText = "What's the name of the type info?";
-  // ns__custom_end unit: appSpec, comp: InfoTypes_creation, loc: addedDeclaration
+  const showCalloutBox = callout || validateSubInfoTypes === 0;
+  const callOutText = "What's the name of this Sub Info Type?";
 
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedDeclaration
+
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedDeclaration
   function handleChange(e) {
-    updateInfoTypeValue(e.target.value);
+    setSubInfoValue(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!infoTypeValue) {
+    if (!subInfoValue) {
       return;
     }
 
     updateLoading(true);
 
-    const createInfoTypeResponse = await createInfoType({
-      variables: {
-        actionId: CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-        executionParameters: JSON.stringify({
-          parentInstanceId: parentId,
-          value: infoTypeValue,
-        }),
-        unrestricted: false,
-      },
-      refetchQueries,
-    });
+    try {
+      // const newInfoTypeData = JSON.parse(createSubInfoResponse.data.Execute);
+      setSubInfoValue('');
+      updateLoading(false);
+      const createInfoTypeResponse = await createSubInfoType({
+        variables: {
+          actionId: CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+          executionParameters: JSON.stringify({
+            parentInstanceId: parentId,
+            value: subInfoValue,
+          }),
+          unrestricted: false,
+        },
+        refetchQueries,
+      });
 
-    updateInfoTypeValue('');
-    updateLoading(false);
+      const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
+      
+      console.log(`createInfoTypeResponse`, createInfoTypeResponse)
+
+      const createChildInfoTypeResponse = await saveInstance({
+        variables: {
+          actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
+          executionParameters: JSON.stringify({
+            childInstanceId: childId,
+            parentInstanceId: newInfoTypeData.instanceId,
+          }),
+          unrestricted: false,
+        },
+        refetchQueries,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function handleKeyPress(e) {
@@ -166,66 +193,47 @@ function InfoTypeCreationForm({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: beforeReturn
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
-      <Label htmlFor='infoType-value'>
-        {label}
+      {/* // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
+      <Label htmlFor='screen-value'>
+        Sub Info Type:
         <InputContainer>
           <Input
-            id='infoType-value'
+            id='screen-value'
             type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}
-            value={infoTypeValue}
+            value={subInfoValue}
             disabled={loading}
           />
+
           <IconButton className={styles.button} onClick={showCallout}>
             <HelpOutlineIcon className={styles.helpIcon} />
           </IconButton>
         </InputContainer>
         <Button type='submit' disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating InfoType...' : 'Create InfoType'}
+          {loading ? 'Creating Sub Info Type...' : 'Create Sub Info Type'}
         </Button>
       </Label>
-
       {showCalloutBox ? (
         <CalloutBox>
           {callOutText}{' '}
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
     </Form>
   );
-}
-
-export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(
-  InfoTypeCreationForm
-);
-
-InfoTypeCreationForm.propTypes = {
-  parentId: PropTypes.string,
-  selected: PropTypes.bool,
-  validateInfoTypes: PropTypes.number,
-  createInfoType: PropTypes.func,
-  refetchQueries: PropTypes.array,
-  onSelect: PropTypes.func,
-  app: PropTypes.shape({
-    children: PropTypes.array,
-    id: PropTypes.string,
-  }),
-  infoType: PropTypes.shape({
-    value: PropTypes.string,
-    id: PropTypes.string,
-  }),
-
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
 };
+
+export default compose(
+  graphql(EXECUTE, { name: 'createSubInfoType' }),
+  graphql(EXECUTE, { name: 'saveInstance' })
+)(SubInfoTypeCreationForm);
