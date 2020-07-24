@@ -126,12 +126,12 @@ function ScreenCreationForm({
   const [screenValue, updateScreenValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: addedDeclaration
+  // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: beginning
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = "What's the name of this screen?";
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: addedDeclaration
+  const callOutText = 'What's the name of this screen?';
+  // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beginning
 
   function handleChange(e) {
     updateScreenValue(e.target.value);
@@ -168,15 +168,15 @@ function ScreenCreationForm({
     }
   }
 
-  // ns__custom_start unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
+  // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Screens_creation, loc: beforeReturn*/
+  // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beforeReturn
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: callOut */}
       <Label htmlFor='screen-value'>
         Screen:
         <InputContainer>
@@ -203,7 +203,7 @@ function ScreenCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__custom_end unit: appSpec, comp: Screens_creation, loc: callOut */}
+      {/* ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: callOut */}
     </Form>
   );
 }
@@ -219,6 +219,6 @@ ScreenCreationForm.propTypes = {
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
   validateScreens: PropTypes.number,
-  // ns__custom_start unit: appSpec, comp: Info_Type, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Info_Type, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
 };

@@ -26,15 +26,15 @@ const Button = styled.button`
 // ns__custom_end unit: appSpec, comp: InfoTypes, loc: styling
 
 class InfoTypes extends Component {
-  // ns__custom_start unit: appSpec, comp: Apps, loc: beginning
+  // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beginning
   static contextType = UnitDataContext;
-  // ns__custom_end unit: appSpec, comp: Apps, loc: beginning
+  // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beginning
   state = {
     selectedInfoTypeId: null,
-    // ns__custom_start unit: appSpec, comp: Apps, loc: addedState
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
     childState: [],
     parentState: [],
-    // ns__custom_end unit: appSpec, comp: Apps, loc: addedState
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
   };
 
   wrapperRef = createRef();
@@ -43,7 +43,7 @@ class InfoTypes extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
-    // ns__custom_start unit: appSpec, comp: Apps, loc: beforeComponentMounts
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeComponentMounts
     const { childState, parentState } = this.state;
     const { infoTypes } = this.props;
     const { setChildState, state, setCurrentStage } = this.context;
@@ -59,7 +59,7 @@ class InfoTypes extends Component {
       },);
     }
 
-    // ns__custom_end unit: appSpec, comp: Apps, loc: beforeComponentMounts
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeComponentMounts
   }
 
   componentWillUnmount() {
@@ -86,23 +86,17 @@ class InfoTypes extends Component {
     } = this.props;
     const {
       selectedInfoTypeId,
-      // ns__custom_start unit: appSpec, comp: Apps, loc: addedState
+      // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
       childState,
       parentState,
-      // ns__custom_end unit: appSpec, comp: Apps, loc: addedState
+      // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
     } = this.state;
 
-    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
-
-    let validateInfoTypes = infoTypes.length;
-
-    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedDeclaration */
     const {state } = this.context;
     console.log(`infotype state context`, state)
-    /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
-    
-    
-    /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    let validateInfoTypes = infoTypes.length;
+    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
   
 
     return (
@@ -112,10 +106,10 @@ class InfoTypes extends Component {
           label={'Info Type'}
           refetchQueries={refetchQueries}
           validateInfoTypes={validateInfoTypes}
-          /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
-          /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
+          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
+          /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
         />
-        {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedLogic */}
+        {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedLogic */}
         {parentState.map((infoType) => {
           if (infoType.parentId) return;
 
@@ -128,16 +122,16 @@ class InfoTypes extends Component {
               parentId={screenId}
               refetchQueries={refetchQueries}
               onSelect={this.handleSelect}
-              /* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
+              /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedProps */
               hasParentId={infoType.parentId}
               childState={childState}
-              /* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
+              /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedProps */
             />
           );
         })}
-        {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedLogic */}
-        {/* // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
-        {/* // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+        {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedLogic */}
+        {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+        {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>
     );
   }

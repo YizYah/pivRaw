@@ -44,7 +44,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -107,7 +107,7 @@ function UserType({
       <UserTypeStyleWrapper>
         <EditInstanceForm
           id={ userType.id }
-          label="UserType Value:"
+          label='UserType Value:'
           value={ userTypeValue }
           onChange={handleUserTypeValueChange}
           onSave={handleUserTypeValueSave}
@@ -161,13 +161,13 @@ function UserType({
     <UserTypeStyleWrapper selected={selected}>
       { userTypeValue }
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsEditMode(true)}
       >
         &#9998;
       </Button>
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsDeleteMode(true)}
       >
         &#128465;
@@ -177,7 +177,7 @@ function UserType({
 < Screens
               screens = { screens }
               userTypeId = { userType.id }
-              label="Screen?"
+              label='Screen?'
               refetchQueries={refetchQueries}
       />
 

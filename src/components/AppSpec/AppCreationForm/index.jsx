@@ -28,9 +28,18 @@ const Button = styled.button`
   margin-left: 1em;
 `;
 
-function AppCreationForm({ customerId, createApp, refetchQueries }) {
+function AppCreationForm({
+                           customerId,
+                           createApp,
+                           refetchQueries
+// ns__custom_start unit: appSpec, comp: AppCreationForm, loc: addedProps
+// ns__custom_end unit: appSpec, comp: AppCreationForm, loc: addedProps
+
+                         }) {
   const [ appValue, updateAppValue ] = useState('');
   const [ loading, updateLoading ] = useState(false);
+  // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beginning
+  // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beginning
 
   function handleChange(e) {
     updateAppValue(e.target.value);
@@ -81,18 +90,18 @@ function AppCreationForm({ customerId, createApp, refetchQueries }) {
 
   return (
     <Form>
-      <label htmlFor="app-value">
+      <label htmlFor='app-value'>
         App:
         <input
-          id="app-value"
-          type="text"
+          id='app-value'
+          type='text'
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           value={ appValue }
           disabled={loading}
         />
       </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
+      <Button type='submit'  disabled={loading}  onClick={handleSubmit}>
         {
           loading
             ? 'Creating App...'

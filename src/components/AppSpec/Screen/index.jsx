@@ -15,10 +15,11 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 import InfoTypes from '../InfoTypes';
 
-// ns__custom_start unit: appSpec, comp: Screens, loc: addedImports
+// ns__custom_start unit: appSpec, comp: Screen, loc: addedImports
 import PropTypes from 'prop-types';
-// ns__custom_end unit: appSpec, comp: Screens, loc: addedImports
+// ns__custom_end unit: appSpec, comp: Screen, loc: addedImports
 
+// ns__custom_start unit: appSpec, comp: Screen, loc: styling
 // add styling here
 const ScreenStyleWrapper = styled.div(
   ({ selected, isDeleting }) => `
@@ -35,6 +36,7 @@ const ScreenStyleWrapper = styled.div(
   }
 `
 );
+// ns__custom_end unit: appSpec, comp: Screen, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -57,6 +59,8 @@ function Screen({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__custom_start unit: appSpec, comp: Screen, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: Screen, loc: addedProps
 }) {
   const [screenValue, updateScreenValue] = useState(screen.value);
   const [isEditMode, updateIsEditMode] = useState(false);
@@ -69,10 +73,17 @@ function Screen({
     screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
   const infoTypes = infoTypeData ? infoTypeData.instances : [];
 
+  // ns__custom_start unit: appSpec, comp: Screen, loc: beforeReturn
+  // ns__custom_end unit: appSpec, comp: Screen, loc: beforeReturn
+
   if (!selected) {
     return (
       <ScreenStyleWrapper onClick={() => onSelect(screen.id)}>
         {screenValue}
+
+        {/* ns__custom_start unit: appSpec, comp: Screen, loc: renderEnding */}
+        {/* ns__custom_end unit: appSpec, comp: Screen, loc: renderEnding */}
+
       </ScreenStyleWrapper>
     );
   }
@@ -197,6 +208,6 @@ Screen.propTypes = {
     id: PropTypes.string,
     children: PropTypes.array,
   }),
-  // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropTypes
-  // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropTypes
+  // ns__custom_start unit: appSpec, comp: Screen, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Screen, loc: addedPropTypes
 };

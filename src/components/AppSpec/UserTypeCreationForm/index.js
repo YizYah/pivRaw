@@ -130,12 +130,12 @@ function UserTypeCreationForm({
   const [userTypeValue, updateUserTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
 
-  // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: addedDeclaration
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: beginning
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateUserTypes === 0;
   const callOutText = 'What\'s the type of user for this App?';
-  // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: addedDeclaration
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beginning
 
   function handleChange(e) {
     updateUserTypeValue(e.target.value);
@@ -176,21 +176,21 @@ function UserTypeCreationForm({
       handleSubmit(e);
     }
   }
-  // ns__custom_start unit: appSpec, comp: UserTypes_Creation, loc: beforeReturn*/
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: UserTypes_Creation, loc: beforeReturn*/
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
-      <Label htmlFor="userType-value">
+      {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
+      <Label htmlFor='userType-value'>
         UserType:
         <InputContainer>
           <Input
-            id="userType-value"
-            type="text"
+            id='userType-value'
+            type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}
             value={userTypeValue}
@@ -202,7 +202,7 @@ function UserTypeCreationForm({
           </IconButton>
         </InputContainer>
      
-        <Button type="submit" disabled={loading} onClick={handleSubmit}>
+        <Button type='submit' disabled={loading} onClick={handleSubmit}>
           {loading ? 'Creating UserType...' : 'Create UserType'}
         </Button>
       </Label>
@@ -212,7 +212,7 @@ function UserTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-    {/* // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
+    {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
     </Form>
   );
 }

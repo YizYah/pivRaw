@@ -4,6 +4,7 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
   DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
@@ -45,7 +46,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -57,15 +58,19 @@ function Description({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__custom_start unit: appSpec, comp: Description, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: Description, loc: addedProps
 }) {
   const [descriptionValue, updateDescriptionValue] = useState(description.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+>   // ns__custom_start unit: appSpec, comp: Description, loc: beginning
+> // ns__custom_end unit: appSpec, comp: Description, loc: beginning
 
-  
-
+  // ns__custom_start unit: appSpec, comp: Description, loc: beforeReturn
+  // ns__custom_end unit: appSpec, comp: Description, loc: beforeReturn
 
   if (!selected) {
     return (
@@ -106,7 +111,7 @@ function Description({
       <DescriptionStyleWrapper>
         <EditInstanceForm
           id={ description.id }
-          label="Description Value:"
+          label='Description Value:'
           value={ descriptionValue }
           onChange={handleDescriptionValueChange}
           onSave={handleDescriptionValueSave}
@@ -129,7 +134,7 @@ function Description({
             instanceId: description.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -160,20 +165,20 @@ function Description({
     <DescriptionStyleWrapper selected={selected}>
       { descriptionValue }
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsEditMode(true)}
       >
         &#9998;
       </Button>
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsDeleteMode(true)}
       >
         &#128465;
       </Button>
 
-      
-
+      {/* ns__custom_start unit: appSpec, comp: Description, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: Description, loc: renderEnding */}
 
     </DescriptionStyleWrapper>
   );
@@ -183,3 +188,23 @@ export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(Description);
+
+Description.propTypes = {
+    description: PropTypes.object,
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  onSelect: PropTypes.func,
+  app: PropTypes.shape({
+                                 children: PropTypes.array,
+    id: PropTypes.string
+  }),
+  description: PropTypes.shape({
+                                         value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+  // ns__custom_start unit: appSpec, comp: Description, loc: addedPropTypes
+    // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
+};
