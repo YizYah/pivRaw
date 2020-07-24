@@ -128,7 +128,7 @@ function InfoTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-  const callOutText = `What's the name of the type info?`;
+const callOutText = `What's the name of the type info?`;
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -174,7 +174,7 @@ function InfoTypeCreationForm({
 
   return (
     <Form>
-      {/* ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: callOut */}
+      {/* ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
       <Label htmlFor='infoType-value'>
         {label}
         <InputContainer>
@@ -201,7 +201,7 @@ function InfoTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: callOut */}
+      {/* ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
     </Form>
   );
 }

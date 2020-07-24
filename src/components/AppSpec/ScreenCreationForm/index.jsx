@@ -176,7 +176,7 @@ function ScreenCreationForm({
 
   return (
     <Form>
-      {/* ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: callOut */}
+      {/* ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: insideReturn */}
       <Label htmlFor='screen-value'>
         Screen:
         <InputContainer>
@@ -203,7 +203,7 @@ function ScreenCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: callOut */}
+      {/* ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: insideReturn */}
     </Form>
   );
 }

@@ -184,7 +184,7 @@ function UserTypeCreationForm({
 
   return (
     <Form>
-      {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
+      {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
       <Label htmlFor='userType-value'>
         UserType:
         <InputContainer>
@@ -212,7 +212,7 @@ function UserTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-    {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: callOut */}
+    {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
     </Form>
   );
 }
