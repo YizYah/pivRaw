@@ -130,7 +130,7 @@ function ScreenCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = 'What's the name of this screen?';
+  const callOutText = `What's the name of this screen?`;
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beginning
 
   function handleChange(e) {

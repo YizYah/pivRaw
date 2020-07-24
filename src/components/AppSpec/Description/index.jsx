@@ -16,16 +16,13 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 // ns__custom_start unit: appSpec, comp: Description, loc: addedImports
 // ns__custom_end unit: appSpec, comp: Description, loc: addedImports
 
-
 // ns__custom_start unit: appSpec, comp: Description, loc: styling
 // add styling here
-const DescriptionStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const DescriptionStyleWrapper = styled.div(
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
@@ -34,7 +31,8 @@ const DescriptionStyleWrapper = styled.div(({
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
 // ns__custom_end unit: appSpec, comp: Description, loc: styling
 
 const Button = styled.button`
@@ -61,13 +59,15 @@ function Description({
   // ns__custom_start unit: appSpec, comp: Description, loc: addedProps
   // ns__custom_end unit: appSpec, comp: Description, loc: addedProps
 }) {
-  const [descriptionValue, updateDescriptionValue] = useState(description.value);
+  const [descriptionValue, updateDescriptionValue] = useState(
+    description.value
+  );
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
->   // ns__custom_start unit: appSpec, comp: Description, loc: beginning
-> // ns__custom_end unit: appSpec, comp: Description, loc: beginning
+  // ns__custom_start unit: appSpec, comp: Description, loc: beginning
+  // ns__custom_end unit: appSpec, comp: Description, loc: beginning
 
   // ns__custom_start unit: appSpec, comp: Description, loc: beforeReturn
   // ns__custom_end unit: appSpec, comp: Description, loc: beforeReturn
@@ -75,7 +75,7 @@ function Description({
   if (!selected) {
     return (
       <DescriptionStyleWrapper onClick={() => onSelect(description.id)}>
-        { descriptionValue }
+        {descriptionValue}
       </DescriptionStyleWrapper>
     );
   }
@@ -110,9 +110,9 @@ function Description({
     return (
       <DescriptionStyleWrapper>
         <EditInstanceForm
-          id={ description.id }
+          id={description.id}
           label='Description Value:'
-          value={ descriptionValue }
+          value={descriptionValue}
           onChange={handleDescriptionValueChange}
           onSave={handleDescriptionValueSave}
           onCancel={handleCancelEdit}
@@ -147,11 +147,8 @@ function Description({
 
   if (isDeleteMode) {
     return (
-      <DescriptionStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { descriptionValue }
+      <DescriptionStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {descriptionValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -163,23 +160,16 @@ function Description({
 
   return (
     <DescriptionStyleWrapper selected={selected}>
-      { descriptionValue }
-      <Button
-        type='button'
-        onClick={() => updateIsEditMode(true)}
-      >
+      {descriptionValue}
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type='button'
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
       {/* ns__custom_start unit: appSpec, comp: Description, loc: renderEnding */}
       {/* ns__custom_end unit: appSpec, comp: Description, loc: renderEnding */}
-
     </DescriptionStyleWrapper>
   );
 }
@@ -190,7 +180,7 @@ export default compose(
 )(Description);
 
 Description.propTypes = {
-    description: PropTypes.object,
+  description: PropTypes.object,
   parentId: PropTypes.string,
   selected: PropTypes.bool,
   updateInstance: PropTypes.func,
@@ -198,13 +188,13 @@ Description.propTypes = {
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
   app: PropTypes.shape({
-                                 children: PropTypes.array,
-    id: PropTypes.string
+    children: PropTypes.array,
+    id: PropTypes.string,
   }),
   description: PropTypes.shape({
-                                         value: PropTypes.string,
+    value: PropTypes.string,
     id: PropTypes.string,
   }),
   // ns__custom_start unit: appSpec, comp: Description, loc: addedPropTypes
-    // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
 };
