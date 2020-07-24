@@ -4,7 +4,6 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
-import PropTypes from 'prop-types';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
