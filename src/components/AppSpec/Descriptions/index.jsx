@@ -28,6 +28,8 @@ class Descriptions extends Component {
 
   state = {
     selectedDescriptionId: null,
+    // ns__custom_start unit: appSpec, comp: Descriptions, loc: addedState
+    // ns__custom_end unit: appSpec, comp: Descriptions, loc: addedState
   };
 
   wrapperRef = createRef();
@@ -54,8 +56,8 @@ class Descriptions extends Component {
     const { appId, descriptions, refetchQueries, onUpdate } = this.props;
     const { selectedDescriptionId } = this.state;
 
-    {/* ns__custom_start unit: appSpec, comp: Descriptions, loc: renderBeginning */}
-    {/* ns__custom_end unit: appSpec, comp: Descriptions, loc: renderBeginning */}
+    // ns__custom_start unit: appSpec, comp: Descriptions, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: Descriptions, loc: renderBeginning
 
     return (
       <DescriptionsStyleWrapper

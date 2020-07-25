@@ -172,9 +172,9 @@ const callOutText = `What's the name of the type info?`;
   };
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
 
+  // ns__replaced_section_start return
   return (
     <Form>
-      {/* ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
       <Label htmlFor='infoType-value'>
         {label}
         <InputContainer>
@@ -201,9 +201,9 @@ const callOutText = `What's the name of the type info?`;
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
     </Form>
   );
+  // ns__replaced_section_end return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(
