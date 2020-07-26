@@ -57,8 +57,8 @@ class Screens extends Component {
      const validateScreens = screens.length
      // ns__custom_end unit: appSpec, comp: UserTypes, loc: beginning
 
-    {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning */}
-    {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning */}
+    // ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning
 
     return (
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>

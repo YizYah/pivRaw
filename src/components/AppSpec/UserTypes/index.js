@@ -53,8 +53,8 @@ class UserTypes extends Component {
     const validateUserTypes = userTypes.length
     // ns__custom_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
 
-    {/* ns__custom_start unit: appSpec, comp: UserTypes, loc: renderBeginning */}
-    {/* ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning */}
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning
 
     return (
       <UserTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>

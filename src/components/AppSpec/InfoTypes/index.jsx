@@ -39,8 +39,6 @@ class InfoTypes extends Component {
 
   wrapperRef = createRef();
 
-  componentWillMount() {}
-
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
     // ns__custom_start unit: appSpec, comp: InfoTypes, loc: componentDidMount
@@ -64,6 +62,8 @@ class InfoTypes extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: componentWillUnmount
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: componentWillUnmount
   }
 
   handleClick = (e) => {
@@ -77,36 +77,25 @@ class InfoTypes extends Component {
   handleSelect = (id) => this.setState({ selectedInfoTypeId: id });
 
   render() {
-    const {
-      screenId,
-      infoTypes,
-      refetchQueries,
-      onUpdate,
-      children,
-    } = this.props;
-    const {
-      selectedInfoTypeId,
-      // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
-      childState,
-      parentState,
-      // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
-    } = this.state;
+    const {screenId, infoTypes, refetchQueries, onUpdate} = this.props;
+    const {selectedInfoTypeId} = this.state;
 
-    const {state } = this.context;
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning
+    const {state} = this.context;
     console.log(`infotype state context`, state)
-    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    const {childState, parentState} = this.state;
+    const {children} = this.props;
     let validateInfoTypes = infoTypes.length;
-    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
-  
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning
 
     return (
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <InfoTypeCreationForm
           parentId={screenId}
-          label={'Info Type'}
           refetchQueries={refetchQueries}
-          validateInfoTypes={validateInfoTypes}
           // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+          label={'Info Type'}
+          validateInfoTypes={validateInfoTypes}
           // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
         />
         {parentState.map((infoType) => {

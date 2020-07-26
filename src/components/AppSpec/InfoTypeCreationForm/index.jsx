@@ -1,3 +1,4 @@
+// ns__file unit: appSpec, comp: InfoTypeCreationForm
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled, { keyframes } from 'styled-components';
@@ -9,8 +10,8 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
-import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 import PropTypes from 'prop-types';
+import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: styling
@@ -128,7 +129,7 @@ function InfoTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-const callOutText = `What's the name of the type info?`;
+const callOutText = 'What\'s the name of the type info?';
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -172,7 +173,7 @@ const callOutText = `What's the name of the type info?`;
   };
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
 
-  // ns__replaced_section_start return
+  // ns__start_replacement return
   return (
     <Form>
       <Label htmlFor='infoType-value'>
@@ -203,7 +204,7 @@ const callOutText = `What's the name of the type info?`;
       ) : null}
     </Form>
   );
-  // ns__replaced_section_end return
+  // ns__end_replacement return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(

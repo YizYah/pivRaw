@@ -36,10 +36,14 @@ class Descriptions extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: Descriptions, loc: componentDidMount
+    // ns__custom_end unit: appSpec, comp: Descriptions, loc: componentDidMount
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: Descriptions, loc: componentWillUnmount
+    // ns__custom_end unit: appSpec, comp: Descriptions, loc: componentWillUnmount
   }
 
   handleClick = (e) => {
@@ -67,6 +71,8 @@ class Descriptions extends Component {
         <DescriptionCreationForm
           parentId={appId}
           refetchQueries={refetchQueries}
+          // ns__custom_start unit: appSpec, comp: Descriptions, loc: addedPropsForCreationForm
+          // ns__custom_end unit: appSpec, comp: Descriptions, loc: addedPropsForCreationForm
         />
 
         {descriptions.map((description) => (
@@ -78,6 +84,8 @@ class Descriptions extends Component {
             parentId={appId}
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
+            // ns__custom_start unit: appSpec, comp: Descriptions, loc: addedPropsForChildren
+            // ns__custom_end unit: appSpec, comp: Descriptions, loc: addedPropsForChildren
           />
         ))}
         {/* ns__custom_start unit: appSpec, comp: Descriptions, loc: renderEnding */}

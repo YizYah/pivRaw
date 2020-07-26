@@ -47,17 +47,17 @@ class Apps extends Component {
   wrapperRef = createRef();
 
   componentDidMount() {
-    // ns__custom_start unit: appSpec, comp: Apps, loc: didMount
+    // ns__custom_start unit: appSpec, comp: Apps, loc: componentDidMount
     const { setCurrentStage } = this.context;
 
     setCurrentStage(1);
-    // ns__custom_end unit: appSpec, comp: Apps, loc: didMount
+    // ns__custom_end unit: appSpec, comp: Apps, loc: componentDidMount
     document.addEventListener('mousedown', this.handleClick);
   }
 
   componentWillUnmount() {
-    // ns__custom_start unit: appSpec, comp: Apps, loc: willUnmount
-    // ns__custom_end unit: appSpec, comp: Apps, loc: willUnmount
+    // ns__custom_start unit: appSpec, comp: Apps, loc: componentWillUnmount
+    // ns__custom_end unit: appSpec, comp: Apps, loc: componentWillUnmount
 
     document.removeEventListener('mousedown', this.handleClick);
   }
@@ -79,9 +79,9 @@ class Apps extends Component {
       currentCustomer: customerId,
     };
 
-    {/* ns__custom_start unit: appSpec, comp: Apps, loc: renderBeginning */}
+    // ns__custom_start unit: appSpec, comp: Apps, loc: renderBeginning
     const { currentStage } = this.context.state;
-    {/* ns__custom_end unit: appSpec, comp: Apps, loc: renderBeginning */}
+    // ns__custom_end unit: appSpec, comp: Apps, loc: renderBeginning
 
     return (
       <Unit
@@ -117,14 +117,14 @@ class Apps extends Component {
 
           return (
             <>
-              {/*// ns__custom_start unit: appSpec, comp: Apps, loc: creationForm*/}
               {noApp && (
                 <FirstTimeAppCreationForm
                   customerId={customerId}
                   refetchQueries={refetchQueries}
+                  // ns__custom_start unit: appSpec, comp: Apps, loc: addedPropsForCreationForm
+                  // ns__custom_end unit: appSpec, comp: Apps, loc: addedPropsForCreationForm
                 />
               )}
-              {/*// ns__custom_end unit: appSpec, comp: Apps, loc: creationForm*/}
 
               <AppsStyleWrapper
                 ref={this.wrapperRef}
@@ -140,6 +140,8 @@ class Apps extends Component {
                       selected={app.id === selectedAppId}
                       refetchQueries={refetchQueries}
                       onSelect={this.handleSelect}
+                      // ns__custom_start unit: appSpec, comp: Apps, loc: addedPropsForChildren
+                      // ns__custom_end unit: appSpec, comp: Apps, loc: addedPropsForChildren
                     />
                   ))}
               </AppsStyleWrapper>
