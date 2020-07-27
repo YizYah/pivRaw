@@ -1,3 +1,5 @@
+// ns__file unit: appSpec, comp: Descriptions
+
 // ns__custom_start unit: appSpec, comp: Descriptions, loc: beforeImports
 'use strict';
 // ns__custom_end unit: appSpec, comp: Descriptions, loc: beforeImports

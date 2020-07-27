@@ -1,6 +1,9 @@
+// ns__file unit: appSpec, comp: InfoTypes
+
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeImports
 'use strict';
 // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';

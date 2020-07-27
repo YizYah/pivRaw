@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+// ns__file unit: appSpec, comp: InfoType
+
+// ns__custom_start unit: appSpec, comp: InfoType, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: InfoType, loc: beforeImports
+
+import React, { useState , useContext } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
@@ -14,11 +21,9 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 
 // ns__custom_start unit: appSpec, comp: InfoType, loc: addedImports
-import PropTypes from 'prop-types';
 import SubInfoTypes from '../../../custom/SubInfoTypes';
 import InfoTypeCreationForm from '../InfoTypeCreationForm';
-import { v4 } from 'uuid';
-import { useContext } from 'react';
+
 import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 
 // ns__custom_end unit: appSpec, comp: InfoType, loc: addedImports

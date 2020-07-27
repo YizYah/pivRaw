@@ -1,13 +1,17 @@
+// ns__file unit: appSpec, comp: DescriptionCreationForm
+
+// ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: beforeImports
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
+import PropTypes from 'prop-types';
 import { CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
 // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
-import PropTypes from 'prop-types';
 // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: styling
@@ -74,6 +78,8 @@ function DescriptionCreationForm({
 
   // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: beforeReturn
   // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: beforeReturn
+
+  // ns__start_section return
   return (
     <Form>
       <label htmlFor='description-value'>
@@ -92,6 +98,7 @@ function DescriptionCreationForm({
       </Button>
     </Form>
   );
+  // ns__end_section return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createDescription' }))(

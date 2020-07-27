@@ -1,3 +1,5 @@
+// ns__file unit: appSpec, comp: AppCreationForm
+
 // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beforeImports
 // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beforeImports
 
@@ -90,6 +92,8 @@ function AppCreationForm({
 
   // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beforeReturn
   // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beforeReturn
+
+  // ns__start_section return
   return (
     <Form>
       <label htmlFor='app-value'>
@@ -112,6 +116,7 @@ function AppCreationForm({
       </Button>
     </Form>
   );
+  // ns__end_section return
 }
 
 export default compose(

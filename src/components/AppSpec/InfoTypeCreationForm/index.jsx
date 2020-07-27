@@ -1,4 +1,7 @@
 // ns__file unit: appSpec, comp: InfoTypeCreationForm
+
+// ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled, { keyframes } from 'styled-components';

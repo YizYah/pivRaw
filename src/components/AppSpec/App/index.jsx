@@ -1,3 +1,8 @@
+// ns__file unit: appSpec, comp: App
+
+// ns__custom_start unit: appSpec, comp: App, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: App, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
