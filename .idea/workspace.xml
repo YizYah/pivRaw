@@ -22,21 +22,8 @@
     <list default="true" id="6a6de38a-02ed-44e9-8da3-6705c1bfef42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../multitaskcustom/src/components/List/Item/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../multitaskcustom/src/components/List/Item/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../multitaskcustom/src/components/List/ItemCreationForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../multitaskcustom/src/components/List/ItemCreationForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pivotateraw.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pivotateraw.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/App/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/App/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/AppCreationForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/AppCreationForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/Apps/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/Apps/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/Description/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/Description/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/DescriptionCreationForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/DescriptionCreationForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/Descriptions/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/Descriptions/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/InfoType/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/InfoType/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AppSpec/InfoTypeCreationForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/InfoTypeCreationForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/InfoTypes/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/InfoTypes/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/Screen/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/Screen/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppSpec/ScreenCreationForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppSpec/ScreenCreationForm/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../multitaskcustom" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../certs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -81,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595745138777</updated>
-      <workItem from="1595745139997" duration="31780000" />
+      <workItem from="1595745139997" duration="46265000" />
     </task>
     <servers />
   </component>
@@ -100,10 +87,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1595849873610">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1595948718500">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1595849873610" />
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1595948718500" />
     <state x="687" y="263" width="736" height="580" key="find.popup" timestamp="1595850367709">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
