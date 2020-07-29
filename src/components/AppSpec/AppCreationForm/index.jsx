@@ -1,4 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: AppCreationForm
+
 // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beforeImports
+
+
+
 // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beforeImports
 
 import React, { useState } from 'react';
@@ -31,7 +41,7 @@ const Button = styled.button`
 function AppCreationForm({
                            customerId,
                            createApp,
-                           refetchQueries
+                           refetchQueries,
 // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: addedProps
 // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: addedProps
 
@@ -88,6 +98,10 @@ function AppCreationForm({
     }
   }
 
+  // ns__custom_start unit: appSpec, comp: AppCreationForm, loc: beforeReturn
+  // ns__custom_end unit: appSpec, comp: AppCreationForm, loc: beforeReturn
+
+  // ns__start_section return
   return (
     <Form>
       <label htmlFor='app-value'>
@@ -110,6 +124,7 @@ function AppCreationForm({
       </Button>
     </Form>
   );
+  // ns__end_section return
 }
 
 export default compose(

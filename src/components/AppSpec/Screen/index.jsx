@@ -1,9 +1,20 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: Screen
+
+// ns__custom_start unit: appSpec, comp: Screen, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: Screen, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
   DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
@@ -16,7 +27,6 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 import InfoTypes from '../InfoTypes';
 
 // ns__custom_start unit: appSpec, comp: Screen, loc: addedImports
-import PropTypes from 'prop-types';
 // ns__custom_end unit: appSpec, comp: Screen, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Screen, loc: styling
@@ -67,6 +77,8 @@ function Screen({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: appSpec, comp: Screen, loc: beginning
+  // ns__custom_end unit: appSpec, comp: Screen, loc: beginning
 
   const infoTypeData =
     screen.children &&
@@ -80,9 +92,6 @@ function Screen({
     return (
       <ScreenStyleWrapper onClick={() => onSelect(screen.id)}>
         {screenValue}
-
-        {/* ns__custom_start unit: appSpec, comp: Screen, loc: renderEnding */}
-        {/* ns__custom_end unit: appSpec, comp: Screen, loc: renderEnding */}
 
       </ScreenStyleWrapper>
     );
@@ -183,6 +192,10 @@ function Screen({
         label='InfoType?'
         refetchQueries={refetchQueries}
       />
+
+      {/* ns__custom_start unit: appSpec, comp: Screen, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: Screen, loc: renderEnding */}
+
     </ScreenStyleWrapper>
   );
 }

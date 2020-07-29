@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: Screens
+
+// ns__custom_start unit: appSpec, comp: Screens, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: Screens, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
@@ -57,8 +67,8 @@ class Screens extends Component {
      const validateScreens = screens.length
      // ns__custom_end unit: appSpec, comp: UserTypes, loc: beginning
 
-    {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning */}
-    {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning */}
+    // ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning
 
     return (
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>

@@ -1,6 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: InfoTypes
+
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeImports
 'use strict';
 // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
@@ -60,6 +68,8 @@ class InfoTypes extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: componentWillUnmount
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: componentWillUnmount
   }
 
   handleClick = (e) => {
@@ -88,8 +98,9 @@ class InfoTypes extends Component {
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <InfoTypeCreationForm
           parentId={screenId}
-          label={'Info Type'}
           refetchQueries={refetchQueries}
+          // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+          label={'Info Type'}
           validateInfoTypes={validateInfoTypes}
           /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
           /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */

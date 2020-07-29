@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Dropbox/data/.idea/data.iml" filepath="$USER_HOME$/Dropbox/data/.idea/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../multitaskcustom/.idea/multitaskcustom.iml" filepath="$PROJECT_DIR$/../multitaskcustom/.idea/multitaskcustom.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pivotateraw.iml" filepath="$PROJECT_DIR$/.idea/pivotateraw.iml" />
     </modules>
   </component>
