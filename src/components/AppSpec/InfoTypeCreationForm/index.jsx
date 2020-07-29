@@ -25,7 +25,7 @@ import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
- I
+ 
 
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 

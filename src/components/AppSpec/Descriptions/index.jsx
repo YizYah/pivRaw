@@ -53,7 +53,7 @@ class Descriptions extends Component {
     // ns__custom_end unit: appSpec, comp: Descriptions, loc: componentWillUnmount
   }
 
-  handleClick = (e) ={
+  handleClick = (e) =>{
     const node = this.wrapperRef.current;
 
     if (node && node !== e.target && !node.contains(e.target)) {
@@ -61,7 +61,7 @@ class Descriptions extends Component {
     }
   };
 
-  handleSelect = (id) =this.setState({ selectedDescriptionId: id });
+  handleSelect = (id) =>this.setState({ selectedDescriptionId: id });
 
   render() {
     const { appId, descriptions, refetchQueries, onUpdate } = this.props;
@@ -82,7 +82,7 @@ class Descriptions extends Component {
           // ns__custom_end unit: appSpec, comp: Descriptions, loc: addedPropsForCreationForm
         />
 
-        {descriptions.map((description) =(
+        {descriptions.map((description) =>(
           <Description
             key={v4()}
             description={description}

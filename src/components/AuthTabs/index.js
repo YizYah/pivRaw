@@ -20,7 +20,7 @@ const MenuContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const Button = styled.button(({ selected }) =`
+const Button = styled.button(({ selected }) =>`
   font-size: 1.25em;
   background-color: #ffffff;
   opacity: ${selected ? 1.0 : 0.5};
@@ -35,28 +35,28 @@ const Button = styled.button(({ selected }) =`
   }
 `);
 
-const AuthTabs = ({ menuTitles, children }) ={
+const AuthTabs = ({ menuTitles, children }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <div>
       <MenuContainer>
-        {menuTitles.map((title, index) =(
-          <Button 
+        {menuTitles.map((title, index) => (
+          <Button
             selected={index === selectedTab}
-            onClick={e ={
+            onClick={e => {
               e.preventDefault();
 
               setSelectedTab(index);
             }
-          }>
+            }>
             {title}
           </Button>
         ))}
       </MenuContainer>
       <div>
-        {React.Children.map(children, (child, index) ={
-          if (index !== selectedTab) {
+        {React.Children.map(children, (child, index) => {
+          if(index !== selectedTab) {
             return null;
           }
 

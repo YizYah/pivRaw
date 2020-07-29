@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../config';
 
 // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 import PropTypes from 'prop-types';
