@@ -124,9 +124,9 @@ const SubInfoTypeCreationForm = ({
   createSubInfoType,
   refetchQueries,
   saveInstance,
-  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
+  // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPropsForCreationForm
   validateSubInfoTypes,
-  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPRops
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: addedPropsForCreationForm
 }) => {
   const [subInfoValue, setSubInfoValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -169,8 +169,6 @@ const SubInfoTypeCreationForm = ({
 
       const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
       
-      console.log(`createInfoTypeResponse`, createInfoTypeResponse)
-
       const createChildInfoTypeResponse = await saveInstance({
         variables: {
           actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
@@ -206,7 +204,6 @@ const SubInfoTypeCreationForm = ({
         Sub Info Type:
         <InputContainer>
           <Input
-            id='screen-value'
             type='text'
             onChange={handleChange}
             onKeyPress={handleKeyPress}

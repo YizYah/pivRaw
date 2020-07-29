@@ -124,9 +124,9 @@ const SubInfoTypeCreationForm = ({
   createSubInfoType,
   refetchQueries,
   saveInstance,
-  // ns__custom_start unit: appSpec, comp: SubChild_creation, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: SubChild_creation, loc: addedPropsForCreationForm
   validateSubInfoTypes,
-  // ns__custom_end unit: appSpec, comp: SubChild_creation, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: SubChild_creation, loc: addedPropsForCreationForm
 }) => {
   const [subInfoValue, setSubInfoValue] = useState('');
   const [loading, updateLoading] = useState(false);

@@ -61,9 +61,9 @@ class UserTypes extends Component {
         <UserTypeCreationForm
           parentId={ appId }
           refetchQueries={refetchQueries}
-          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedProps 
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
           validateUserTypes={validateUserTypes}
-          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedProps 
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
         />
 
         { userTypes.map(userType => (

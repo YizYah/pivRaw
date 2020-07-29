@@ -29,19 +29,21 @@ const SubInfoChildTypes = ({
   const handleSelect = (id) => {
     setSubInfoTypeID(id);
   };
+
   return (
     <div>
       <SubInfoTypeCreationForm
         parentId={parentId}
         refetchQueries={refetchQueries}
-        /* // ns__custom_start unit: appSpec, comp: SubInfoChildTypes, loc: addedProps */
+        /* // ns__custom_start unit: appSpec, comp: SubInfoChildTypes, loc: addedPropsForCreationForm */
         validateSubInfoTypes={validateCount}
         childId={subInfoId}
 
-        /* // ns__custom_end unit: appSpec, comp: SubInfoChildTypes, loc: addedProps */
+        /* // ns__custom_end unit: appSpec, comp: SubInfoChildTypes, loc: addedPropsForCreationForm */
       />
 
       {subInfoTypeData.map((infoType) => {
+        
         if (subInfoId === infoType.parentId) {
           if (validateCount === 0) setvalidateCount(validateCount + 1);
           return (

@@ -115,7 +115,7 @@ const SubInfoType = ({
           label='SubInfoType Value:'
           value={infoTypeValue}
           onChange={handleSubInfoTypeValueChange}
-          onSave={handleSubInfoTypeValueChange}
+          onSave={handleSubInfoInfoTypeValueSave}
           onCancel={handleCancelEdit}
           disabled={isSaving}
         />
