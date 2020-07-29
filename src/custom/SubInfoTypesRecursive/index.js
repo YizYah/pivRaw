@@ -265,7 +265,7 @@ const Child = ({
   useEffect(() => {
     setChildState(_children);
   }, [isEditMode, isChildEditMode, currentId]);
-  console.log(`updateInstance`, updateInstance)
+  
   async function handleInfoTypeValueSave() {
     setIsSaving(true);
 
