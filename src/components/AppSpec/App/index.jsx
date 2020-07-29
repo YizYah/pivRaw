@@ -1,8 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+
 // ns__file unit: appSpec, comp: App
 
 // ns__custom_start unit: appSpec, comp: App, loc: beforeImports
+'use strict';
 // ns__custom_end unit: appSpec, comp: App, loc: beforeImports
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
@@ -30,7 +36,7 @@ import Descriptions from '../Descriptions';
 const AppStyleWrapper = styled.div(({
   selected,
   isDeleting,
-}) => `
+}) =`
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine': '1px solid white'};
@@ -54,7 +60,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
+    color: ${(props) =props.hoverColor || '#000000'};
   }
 `;
 
@@ -75,14 +81,14 @@ function App({
   // ns__custom_start unit: appSpec, comp: App, loc: beginning
   // ns__custom_end unit: appSpec, comp: App, loc: beginning
 
-  const userTypeData = app.children && app.children.find(child => child.typeId === TYPE_USER_TYPE_ID);
+  const userTypeData = app.children && app.children.find(child =child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];
-  const descriptionData = app.children && app.children.find(child => child.typeId === TYPE_DESCRIPTION_ID);
+  const descriptionData = app.children && app.children.find(child =child.typeId === TYPE_DESCRIPTION_ID);
   const descriptions = descriptionData ? descriptionData.instances : [];
 
   if (!selected) {
     return (
-      <AppStyleWrapper onClick={() => onSelect(app.id)}>
+      <AppStyleWrapper onClick={() =onSelect(app.id)}>
         { appValue }
       </AppStyleWrapper>
     );
@@ -174,13 +180,13 @@ function App({
       { appValue }
       <Button
         type='button'
-        onClick={() => updateIsEditMode(true)}
+        onClick={() =updateIsEditMode(true)}
       >
         &#9998;
       </Button>
       <Button
         type='button'
-        onClick={() => updateIsDeleteMode(true)}
+        onClick={() =updateIsDeleteMode(true)}
       >
         &#128465;
       </Button>

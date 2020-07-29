@@ -1,6 +1,12 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
 // ns__file unit: appSpec, comp: InfoType
 
 // ns__custom_start unit: appSpec, comp: InfoType, loc: beforeImports
+'use strict';
 // ns__custom_end unit: appSpec, comp: InfoType, loc: beforeImports
 
 import React, { useState , useContext } from 'react';
@@ -31,7 +37,7 @@ import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 // ns__custom_start unit: appSpec, comp: InfoType, loc: styling
 // add styling here
 const InfoTypeStyleWrapper = styled.div(
-  ({ selected, isDeleting }) => `
+  ({ selected, isDeleting }) =`
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine' : '1px solid white'};
@@ -56,7 +62,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
+    color: ${(props) =props.hoverColor || '#000000'};
   }
 `;
 
@@ -88,7 +94,7 @@ function InfoType({
 
   if (!selected) {
     return (
-      <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
+      <InfoTypeStyleWrapper onClick={() =onSelect(infoType.id)}>
         {infoTypeValue}
       </InfoTypeStyleWrapper>
     );
@@ -175,10 +181,10 @@ function InfoType({
   return (
     <InfoTypeStyleWrapper selected={selected}>
       {infoTypeValue}
-      <Button type='button' onClick={() => updateIsEditMode(true)}>
+      <Button type='button' onClick={() =updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
+      <Button type='button' onClick={() =updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 

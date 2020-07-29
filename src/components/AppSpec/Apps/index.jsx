@@ -1,6 +1,12 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
 // ns__file unit: appSpec, comp: Apps
 
 // ns__custom_start unit: appSpec, comp: Apps, loc: beforeImports
+'use strict';
 // ns__custom_end unit: appSpec, comp: Apps, loc: beforeImports
 
 import React, { Component, createRef } from 'react';
@@ -10,7 +16,7 @@ import { v4 } from 'uuid';
 
 import { flattenData } from '../../../flattenData';
 
-// ns__remove_component import AppCreationForm from '../AppCreationForm';
+// ns__remove_import AppCreationForm from '../AppCreationForm';
 import App from '../App';
 
 import { SOURCE_APP_SPEC_ID } from '../../../config';
@@ -63,7 +69,7 @@ class Apps extends Component {
     document.removeEventListener('mousedown', this.handleClick);
   }
 
-  handleClick = (e) => {
+  handleClick = (e) ={
     const node = this.wrapperRef.current;
 
     if (node && node !== e.target && !node.contains(e.target)) {
@@ -71,7 +77,7 @@ class Apps extends Component {
     }
   };
 
-  handleSelect = (id) => this.setState({ selectedAppId: id });
+  handleSelect = (id) =this.setState({ selectedAppId: id });
 
   render() {
     const { customerId } = this.props;
@@ -91,7 +97,7 @@ class Apps extends Component {
         query={SOURCE_APP_SPEC_QUERY}
         parameters={parameters}
       >
-        {({ loading, error, data, refetchQueries }) => {
+        {({ loading, error, data, refetchQueries }) ={
           if (loading) return 'Loading...';
 
           if (error) {
@@ -99,7 +105,7 @@ class Apps extends Component {
             return `Error: ${error.graphQLErrors}`;
           }
 
-          const apps = data.unitData.map((el) => flattenData(el));
+          const apps = data.unitData.map((el) =flattenData(el));
 
           // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
           /* NOTE: one app is assumed here. */
@@ -133,7 +139,7 @@ class Apps extends Component {
                 show
               >
                 {apps &&
-                  apps.map((app) => (
+                  apps.map((app) =(
                     <App
                       key={v4()}
                       parentId={customerId}

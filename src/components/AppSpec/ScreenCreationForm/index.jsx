@@ -1,7 +1,12 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
 // ns__file unit: appSpec, comp: ScreenCreationForm
 
 // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: beforeImports
-// ns__custom_end unit: appSpec, comp: Screens, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beforeImports
 
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
@@ -179,7 +184,7 @@ function ScreenCreationForm({
   };
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beforeReturn
 
-  // ns__replaced_section_start return
+  // ns__start_replacement return
   return (
       <Form>
         <Label htmlFor='screen-value'>
@@ -210,7 +215,7 @@ function ScreenCreationForm({
         ) : null}
       </Form>
   );
-  // ns__replaced_section_end return
+  // ns__end_replacement return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createScreen' }))(

@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: AuthTabs
+
+// ns__custom_start unit: general, comp: AuthTabs, loc: beforeImports
+// ns__custom_end unit: general, comp: AuthTabs, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +20,7 @@ const MenuContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const Button = styled.button(({ selected }) => `
+const Button = styled.button(({ selected }) =`
   font-size: 1.25em;
   background-color: #ffffff;
   opacity: ${selected ? 1.0 : 0.5};
@@ -25,16 +35,16 @@ const Button = styled.button(({ selected }) => `
   }
 `);
 
-const AuthTabs = ({ menuTitles, children }) => {
+const AuthTabs = ({ menuTitles, children }) ={
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <div>
       <MenuContainer>
-        {menuTitles.map((title, index) => (
+        {menuTitles.map((title, index) =(
           <Button 
             selected={index === selectedTab}
-            onClick={e => {
+            onClick={e ={
               e.preventDefault();
 
               setSelectedTab(index);
@@ -45,7 +55,7 @@ const AuthTabs = ({ menuTitles, children }) => {
         ))}
       </MenuContainer>
       <div>
-        {React.Children.map(children, (child, index) => {
+        {React.Children.map(children, (child, index) ={
           if (index !== selectedTab) {
             return null;
           }

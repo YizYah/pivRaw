@@ -1,6 +1,12 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
 // ns__file unit: appSpec, comp: Description
 
 // ns__custom_start unit: appSpec, comp: Description, loc: beforeImports
+'use strict';
 // ns__custom_end unit: appSpec, comp: Description, loc: beforeImports
 
 import React, { useState } from 'react';
@@ -24,7 +30,7 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 // ns__custom_start unit: appSpec, comp: Description, loc: styling
 // add styling here
 const DescriptionStyleWrapper = styled.div(
-  ({ selected, isDeleting }) => `
+  ({ selected, isDeleting }) =`
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine' : '1px solid white'};
@@ -49,7 +55,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
+    color: ${(props) =props.hoverColor || '#000000'};
   }
 `;
 
@@ -79,7 +85,7 @@ function Description({
 
   if (!selected) {
     return (
-      <DescriptionStyleWrapper onClick={() => onSelect(description.id)}>
+      <DescriptionStyleWrapper onClick={() =onSelect(description.id)}>
         {descriptionValue}
       </DescriptionStyleWrapper>
     );
@@ -166,10 +172,10 @@ function Description({
   return (
     <DescriptionStyleWrapper selected={selected}>
       {descriptionValue}
-      <Button type='button' onClick={() => updateIsEditMode(true)}>
+      <Button type='button' onClick={() =updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
+      <Button type='button' onClick={() =updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
