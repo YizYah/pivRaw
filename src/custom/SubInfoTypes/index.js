@@ -36,10 +36,10 @@ const SubInfoTypes = ({
       <SubInfoTypeCreationForm
         parentId={parentId}
         refetchQueries={refetchQueries}
-        /* // ns__custom_start unit: appSpec, comp: SubInfo_Types, loc: addedProps */
+        /* // ns__custom_start unit: appSpec, comp: SubInfo_Types, loc: addedPropsForCreationForm */
         validateSubInfoTypes={validateSubInfoTypes}
         childId={infoTypeId}
-        /* // ns__custom_end unit: appSpec, comp: SubInfo_Types, loc: addedProps */
+        /* // ns__custom_end unit: appSpec, comp: SubInfo_Types, loc: addedPropsForCreationForm */
       />
 
       {subInfoTypeData && subInfoTypeData.map((infoType) => (

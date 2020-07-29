@@ -9,14 +9,13 @@
 'use strict';
 // ns__custom_end unit: appSpec, comp: InfoType, loc: beforeImports
 
-import React, { useState , useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import PropTypes from 'prop-types';
-import { v4 } from 'uuid';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
@@ -25,12 +24,14 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-
 // ns__custom_start unit: appSpec, comp: InfoType, loc: addedImports
 import SubInfoTypes from '../../../custom/SubInfoTypes';
 import InfoTypeCreationForm from '../InfoTypeCreationForm';
-
+import { v4 } from 'uuid';
+import { useContext, useEffect } from 'react';
 import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
+import getChildData from '../../../custom/getChildData';
+import SubInfoComponent from '../../../custom/SubInfoTypesRecursive';
 
 // ns__custom_end unit: appSpec, comp: InfoType, loc: addedImports
 
@@ -84,12 +85,19 @@ function InfoType({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+
   // ns__custom_start unit: appSpec, comp: InfoType, loc: beginning
+  const [parentState, setParentState] = useState([]);
+  const [selectSubInfoId, setSubInfoId] = useState(null);
+
+  useEffect(() => {
+    const [parentData] = getChildData(childState);
+    setParentState(parentData);
+  }, [infoType]);
+  const handleSelect = (id) => setSubInfoId(id);
   // ns__custom_end unit: appSpec, comp: InfoType, loc: beginning
 
   // ns__custom_start unit: appSpec, comp: InfoType, loc: beforeReturn
-  // const {state} = useContext(UnitDataContext)
-  // console.log(`childState infoType`, state)
   // ns__custom_end unit: appSpec, comp: InfoType, loc: beforeReturn
 
   if (!selected) {
@@ -188,9 +196,18 @@ function InfoType({
         &#128465;
       </Button>
 
-      {/* ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
+      {/* // ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
 
-      <SubInfoTypes
+      <SubInfoComponent
+        infoType={parentState}
+        instanceId={infoType.id}
+        parentId={parentId}
+        refetchQueries={refetchQueries}
+        onSelect={handleSelect}
+        selectSubInfoId={selectSubInfoId}
+      />
+
+      {/* <SubInfoTypes
         subInfoTypes={infoType._children}
         infoTypeId={infoType.id}
         refetchQueries={refetchQueries}
@@ -198,9 +215,9 @@ function InfoType({
         hasParentId={hasParentId}
         parentId={parentId}
         childState={childState}
-      />
+      /> */}
 
-      {/* ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
+      {/* // ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
 }

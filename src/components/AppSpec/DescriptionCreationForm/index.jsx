@@ -41,8 +41,8 @@ function DescriptionCreationForm({
   parentId,
   createDescription,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedProps
-  // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedPropsForCreationForm
+  // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedPropsForCreationForm
 }) {
   const [descriptionValue, updateDescriptionValue] = useState('');
   const [loading, updateLoading] = useState(false);

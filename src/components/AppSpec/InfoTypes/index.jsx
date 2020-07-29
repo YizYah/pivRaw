@@ -53,16 +53,14 @@ class InfoTypes extends Component {
     const { childState, parentState } = this.state;
     const { infoTypes } = this.props;
     const { setChildState, state, setCurrentStage } = this.context;
-    
 
     if (!childState.length || !parentState.length) {
       let [parentData, childData] = getChildData(infoTypes);
-      
-      
+
       this.setState({
         childState: childData,
         parentState: parentData,
-      },);
+      });
     }
 
     // ns__custom_end unit: appSpec, comp: InfoTypes, loc: componentDidMount
@@ -85,16 +83,16 @@ class InfoTypes extends Component {
   handleSelect = (id) => this.setState({ selectedInfoTypeId: id });
 
   render() {
-    const {screenId, infoTypes, refetchQueries, onUpdate} = this.props;
-    const {selectedInfoTypeId} = this.state;
+    const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
+    const { selectedInfoTypeId } = this.state;
 
-    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning
-    const {state} = this.context;
-    console.log(`infotype state context`, state)
-    const {childState, parentState} = this.state;
-    const {children} = this.props;
+    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
     let validateInfoTypes = infoTypes.length;
-    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning
+    const { state } = this.context;
+    const { childState, parentState } = this.state;
+    const [data] = getChildData(parentState);
+    console.log(`data`, data)
+    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
 
     return (
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
@@ -104,11 +102,13 @@ class InfoTypes extends Component {
           // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
           label={'Info Type'}
           validateInfoTypes={validateInfoTypes}
-          // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+          /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
         />
+        {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedValidation */}
         {parentState.map((infoType) => {
           if (infoType.parentId) return;
-
+        {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */}
           return (
             <InfoType
               key={v4()}
@@ -118,13 +118,14 @@ class InfoTypes extends Component {
               parentId={screenId}
               refetchQueries={refetchQueries}
               onSelect={this.handleSelect}
-              // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren
+              /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
               hasParentId={infoType.parentId}
               childState={childState}
-              // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren
+              /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
             />
           );
         })}
+      
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
         {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>

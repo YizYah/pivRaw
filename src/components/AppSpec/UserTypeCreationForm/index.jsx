@@ -133,9 +133,9 @@ function UserTypeCreationForm({
   parentId,
   createUserType,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedPropsForCreationForm
   validateUserTypes,
-  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedPropsForCreationForm
 }) {
   const [userTypeValue, updateUserTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
