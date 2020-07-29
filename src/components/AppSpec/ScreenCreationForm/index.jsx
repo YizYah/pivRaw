@@ -1,9 +1,18 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: ScreenCreationForm
+
+// ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beforeImports
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
-import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
 // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
@@ -11,7 +20,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import { keyframes } from 'styled-components';
+import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+
 // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: styling
@@ -130,7 +140,7 @@ function ScreenCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = `What's the name of this screen?`;
+  const callOutText = 'What\'s the name of this screen?';
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -174,38 +184,38 @@ function ScreenCreationForm({
   };
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beforeReturn
 
+  // ns__start_replacement return
   return (
-    <Form>
-      {/* ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: insideReturn */}
-      <Label htmlFor='screen-value'>
-        Screen:
-        <InputContainer>
-          <Input
-            id='screen-value'
-            type='text'
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            value={screenValue}
-            disabled={loading}
-          />
+      <Form>
+        <Label htmlFor='screen-value'>
+          Screen:
+          <InputContainer>
+            <Input
+                id='screen-value'
+                type='text'
+                onChange={handleChange}
+                onKeyPress={handleKeyPress}
+                value={screenValue}
+                disabled={loading}
+            />
 
-          <IconButton className={styles.button} onClick={showCallout}>
-            <HelpOutlineIcon className={styles.helpIcon} />
-          </IconButton>
-        </InputContainer>
-        <Button type='submit' disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating Screen...' : 'Create Screen'}
-        </Button>
-      </Label>
-      {showCalloutBox ? (
-        <CalloutBox>
-          {callOutText}{' '}
-          <CloseIcon className={styles.closeIcon} onClick={showCallout} />
-        </CalloutBox>
-      ) : null}
-      {/* ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: insideReturn */}
-    </Form>
+            <IconButton className={styles.button} onClick={showCallout}>
+              <HelpOutlineIcon className={styles.helpIcon} />
+            </IconButton>
+          </InputContainer>
+          <Button type='submit' disabled={loading} onClick={handleSubmit}>
+            {loading ? 'Creating Screen...' : 'Create Screen'}
+          </Button>
+        </Label>
+        {showCalloutBox ? (
+            <CalloutBox>
+              {callOutText}{' '}
+              <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+            </CalloutBox>
+        ) : null}
+      </Form>
   );
+  // ns__end_replacement return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createScreen' }))(

@@ -1,10 +1,16 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+import { CREATE_APP_FOR_APP_SPEC_ACTION_ID } from '../../config';
 
 // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedImports
 import PropTypes from 'prop-types';

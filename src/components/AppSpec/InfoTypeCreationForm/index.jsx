@@ -1,3 +1,16 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: InfoTypeCreationForm
+
+// ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
+
+
+
+// ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled, { keyframes } from 'styled-components';
@@ -9,8 +22,11 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
-import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 import PropTypes from 'prop-types';
+import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+
+ 
+
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: styling
@@ -128,7 +144,7 @@ function InfoTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-const callOutText = `What's the name of the type info?`;
+const callOutText = 'What\'s the name of the type info?';
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -172,9 +188,9 @@ const callOutText = `What's the name of the type info?`;
   };
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
 
+  // ns__start_replacement return
   return (
     <Form>
-      {/* ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
       <Label htmlFor='infoType-value'>
         {label}
         <InputContainer>
@@ -201,9 +217,9 @@ const callOutText = `What's the name of the type info?`;
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: insideReturn */}
     </Form>
   );
+  // ns__end_replacement return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createInfoType' }))(

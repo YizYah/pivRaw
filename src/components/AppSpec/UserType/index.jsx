@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: UserType
+
+// ns__custom_start unit: appSpec, comp: UserType, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: UserType, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
