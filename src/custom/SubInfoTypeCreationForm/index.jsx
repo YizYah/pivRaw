@@ -65,7 +65,7 @@ const fadeInDown = keyframes`
 const CalloutBox = styled.div`
   padding: 1rem;
   animation: ${fadeInDown} 1.5s;
-  background-color: #f9d162;
+  background-color: #F3E196;
   width: inherit;
   border-radius: 10px;  
   position: relative;
@@ -75,15 +75,15 @@ const CalloutBox = styled.div`
   
 
   :after{
-    background-color: #f9d162;
+    background-color: #F3E196;
     position: absolute;
     width: 30px;
     height: 10px;
-    border-top: 0px solid #f9d162;
-    border-right: 2px solid #f9d162;
-    border-left: 0px solid #f9d162;
-    border-bottom: 2px solid #f9d162;
-    left: 63%;
+    border-top: 0px solid #F3E196;
+    border-right: 2px solid #F3E196;
+    border-left: 0px solid #F3E196;
+    border-bottom: 2px solid #F3E196;
+    left: 81%;
     
     content: '';
     transform: rotate(45deg);
@@ -103,7 +103,7 @@ const useStyles = makeStyles({
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162',
+    color: '#FDCC00',
   },
   closeIcon: {
     color: 'white',

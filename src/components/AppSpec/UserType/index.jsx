@@ -68,7 +68,6 @@ const TitleWrapper = styled.p`
   border-radius: 10px;
   text-align: initial;
   text-transfor: capitalize;
-  font-weight: bold;
   margin-top: 8px;
 `
 

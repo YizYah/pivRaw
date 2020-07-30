@@ -72,7 +72,6 @@ const TitleWrapper = styled.p`
   border-radius: 10px;
   text-align: initial;
   text-transfor: capitalize;
-  font-weight: bold;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -219,7 +218,7 @@ function InfoType({
       </Button>
 
       {/* // ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
-
+      {console.log(`parentState`,parentState)}
       <SubInfoComponent
         infoType={parentState}
         instanceId={infoType.id}

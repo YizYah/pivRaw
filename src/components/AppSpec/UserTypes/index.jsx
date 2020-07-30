@@ -14,6 +14,7 @@ import { v4 } from 'uuid';
 
 import UserTypeCreationForm from '../UserTypeCreationForm';
 import UserType from '../UserType';
+import ScreenCreationForm from '../ScreenCreationForm';
 
 // ns__custom_start unit: appSpec, comp: UserTypes, loc: styling
 
@@ -32,6 +33,7 @@ UserTypesStyleWrapper.defaultProps = {
 class UserTypes extends Component {
   state = {
     selectedUserTypeId: null,
+    userTypeCreationCount: 0
   };
 
   wrapperRef = createRef();
@@ -58,14 +60,20 @@ class UserTypes extends Component {
 
   handleSelect = id => this.setState({ selectedUserTypeId: id });
 
+  // ns__custom_start unit: appSpec, comp: UserTypes, loc: beforeRender
+  onChangeHelper = value => {
+    this.setState({userTypeCreationCount: value.length})}
+  // ns__custom_end unit: appSpec, comp: UserTypes, loc: beforeRender
+
   render () {
     const { appId, userTypes, refetchQueries, onUpdate } = this.props;
     const { selectedUserTypeId } = this.state;
 
 
-    // ns__custom_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: beforeReturn
     const validateUserTypes = userTypes.length
-    // ns__custom_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+    const {userTypeCreationCount} = this.state;
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: beforeReturn
 
     // ns__custom_start unit: appSpec, comp: UserTypes, loc: renderBeginning
     // ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning
@@ -102,8 +110,10 @@ class UserTypes extends Component {
           refetchQueries={refetchQueries}
           // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
           validateUserTypes={validateUserTypes}
+          onChange={this.onChangeHelper}
           // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
         />
+   {userTypeCreationCount > 2 ? <ScreenCreationForm disabled={true} validateScreens={0}/> : null}   
   </>
   )
   }

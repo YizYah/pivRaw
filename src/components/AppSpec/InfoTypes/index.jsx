@@ -43,6 +43,7 @@ class InfoTypes extends Component {
     // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
     childState: [],
     parentState: [],
+    subInfoTypeValueCount: 0
     // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
   };
 
@@ -83,6 +84,11 @@ class InfoTypes extends Component {
 
   handleSelect = (id) => this.setState({ selectedInfoTypeId: id });
 
+   /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeRender */
+   onChangeHelper = value => {
+    this.setState({subInfoTypeValueCount: value.length})}
+    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeRender */
+
   render() {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
@@ -93,6 +99,7 @@ class InfoTypes extends Component {
     const { childState, parentState } = this.state;
     const [data] = getChildData(parentState);
     
+    console.log(`parentState`, parentState)
 
     return (
       <>
@@ -114,6 +121,7 @@ class InfoTypes extends Component {
               /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
               hasParentId={infoType.parentId}
               childState={childState}
+              onChange={this.onChangeHelper}
               /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
             />
           );

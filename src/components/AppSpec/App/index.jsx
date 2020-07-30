@@ -206,12 +206,12 @@ function App({
         label='UserType?'
         refetchQueries={refetchQueries}
       />
-      <Descriptions
+      {/* <Descriptions
         descriptions={descriptions}
         appId={app.id}
         label='Description?'
         refetchQueries={refetchQueries}
-      />
+      /> */}
     </AppStyleWrapper>
   );
 }

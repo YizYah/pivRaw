@@ -28,7 +28,7 @@ import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
-  margin:  0 0 0 7%;
+  margin:  0 0 0 11%;
   border: none;
   border-radius: 5px;
 `;
@@ -72,7 +72,7 @@ const fadeInDown = keyframes`
 const CalloutBox = styled.div`
   padding: 1rem;
   animation: ${fadeInDown} 1.5s;
-  background-color: #f9d162;
+  background-color: #F3E196;
   width: inherit;
   border-radius: 10px;  
   position: relative;
@@ -82,15 +82,15 @@ const CalloutBox = styled.div`
   
 
   :after{
-    background-color: #f9d162;
+    background-color: #F3E196;
     position: absolute;
     width: 30px;
     height: 10px;
-    border-top: 0px solid #f9d162;
-    border-right: 2px solid #f9d162;
-    border-left: 0px solid #f9d162;
-    border-bottom: 2px solid #f9d162;
-    left: 62%;
+    border-top: 0px solid #F3E196;
+    border-right: 2px solid #F3E196;
+    border-left: 0px solid #F3E196;
+    border-bottom: 2px solid #F3E196;
+    left: 91%;
     
     content: '';
     transform: rotate(45deg);
@@ -110,7 +110,7 @@ const useStyles = makeStyles({
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162',
+    color: '#FDCC00',
   },
   closeIcon: {
     color: 'white',
@@ -133,6 +133,7 @@ function InfoTypeCreationForm({
   // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
   validateInfoTypes,
   label,
+  disabled
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState('');
@@ -199,7 +200,7 @@ function InfoTypeCreationForm({
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           value={infoTypeValue}
-          disabled={loading}
+          disabled={disabled || loading}
           variant='outlined'
           InputProps={{
             endAdornment: (

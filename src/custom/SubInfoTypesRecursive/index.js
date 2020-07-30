@@ -54,7 +54,6 @@ const TitleWrapper = styled.p`
   border-radius: 10px;
   text-align: initial;
   text-transfor: capitalize;
-  font-weight: bold;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -190,7 +189,7 @@ const SubInfoComponent = ({
   if (!infoType) return null;
 
   
-
+  console.log(`infoType`, infoType)
   return (<>
     <InfoTypesStyleWrapper ref={wrapperRef} key={v4()}>
      
@@ -277,7 +276,7 @@ const Child = ({
   isEditMode,
   deleteInstance
 }) => {
-  const [currentId, setChildCurrentId] = useState('');
+  const [currentId, setChildCurrentId] = useState(null);
   const [showChild, setshowChild] = useState(!show);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
@@ -288,6 +287,9 @@ const Child = ({
 
   useEffect(() => {
     setChildState(_children);
+    if(!currentId) {
+      setChildCurrentId(instanceId)
+    }
   }, [isEditMode, isChildEditMode, currentId]);
   
   async function handleInfoTypeValueSave() {
@@ -373,7 +375,7 @@ const Child = ({
 
   return (
     <>
-     
+     {console.log(`currentId`,currentId)}
       {childState.map((instance) => {
         return (
           <React.Fragment key={v4()}>
@@ -387,6 +389,7 @@ const Child = ({
                   key={v4()}
                 >
                   {instance.value}
+                  {instance.id}
                 </span>
 
                 <Button
