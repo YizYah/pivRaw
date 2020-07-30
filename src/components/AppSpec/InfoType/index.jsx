@@ -32,6 +32,7 @@ import { useContext, useEffect } from 'react';
 import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 import getChildData from '../../../custom/getChildData';
 import SubInfoComponent from '../../../custom/SubInfoTypesRecursive';
+import { InputLabel, makeStyles } from '@material-ui/core';
 
 // ns__custom_end unit: appSpec, comp: InfoType, loc: addedImports
 
@@ -41,18 +42,16 @@ const InfoTypeStyleWrapper = styled.div(
   ({ selected, isDeleting }) =>`
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
+  
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 1px 1px 5px #888888;
   background-color: ${isDeleting && 'tomato'};
   cursor: ${selected ? 'auto' : 'pointer'};
 
-  &:hover {
-    border: 1px solid aquamarine;
-  }
+  
 `
 );
-// ns__custom_end unit: appSpec, comp: InfoType, loc: styling
+
 
 const Button = styled.button`
   background: none;
@@ -66,6 +65,25 @@ const Button = styled.button`
     color: ${(props) =>props.hoverColor || '#000000'};
   }
 `;
+
+const TitleWrapper = styled.p`
+  background: #D2ECEF;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: initial;
+  text-transfor: capitalize;
+  font-weight: bold;
+`;
+
+const useStyles = makeStyles(theme => ({
+  titleLabel: {
+      fontSize: '.8rem',
+      textAlign: 'initial',
+
+  }
+}))
+
+// ns__custom_end unit: appSpec, comp: InfoType, loc: styling
 
 function InfoType({
   infoType,
@@ -95,6 +113,7 @@ function InfoType({
     setParentState(parentData);
   }, [infoType]);
   const handleSelect = (id) => setSubInfoId(id);
+  const styles = useStyles();
   // ns__custom_end unit: appSpec, comp: InfoType, loc: beginning
 
   // ns__custom_start unit: appSpec, comp: InfoType, loc: beforeReturn
@@ -188,7 +207,10 @@ function InfoType({
 
   return (
     <InfoTypeStyleWrapper selected={selected}>
-      {infoTypeValue}
+       {/* // ns__custom_start unit: appSpec, comp: InfoType, loc: insideReturn */}
+       <InputLabel className={styles.titleLabel}>Info Type</InputLabel>
+      <TitleWrapper>{infoTypeValue}</TitleWrapper>
+       {/* // ns__custom_end unit: appSpec, comp: InfoType, loc: insideReturn */}
       <Button type='button' onClick={() =>updateIsEditMode(true)}>
         &#9998;
       </Button>

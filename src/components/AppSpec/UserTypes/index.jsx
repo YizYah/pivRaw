@@ -23,6 +23,10 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
+
+UserTypesStyleWrapper.defaultProps = {
+  "data-id": "userTypes__wrapper"
+}
 // ns__custom_end unit: appSpec, comp: UserTypes, loc: styling
 
 class UserTypes extends Component {
@@ -67,14 +71,15 @@ class UserTypes extends Component {
     // ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning
 
     return (
+      <>
       <UserTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-        <UserTypeCreationForm
+        {/* <UserTypeCreationForm
           parentId={ appId }
           refetchQueries={refetchQueries}
           // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
           validateUserTypes={validateUserTypes}
           // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
-        />
+        /> */}
 
         { userTypes.map(userType => (
           <UserType
@@ -88,9 +93,18 @@ class UserTypes extends Component {
           />
         )) }
   {/* ns__custom_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
+ 
   {/* ns__custom_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
 
   </UserTypesStyleWrapper>
+  <UserTypeCreationForm
+          parentId={ appId }
+          refetchQueries={refetchQueries}
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
+          validateUserTypes={validateUserTypes}
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
+        />
+  </>
   )
   }
 }

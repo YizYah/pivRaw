@@ -25,8 +25,13 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 import Screens from '../Screens';
 
+// ns__custom_start unit: appSpec, comp: UserType, loc: addedImports
+import { InputLabel, makeStyles } from '@material-ui/core';
+
+// ns__custom_end unit: appSpec, comp: UserType, loc: addedImports
 
 
+// ns__custom_start unit: appSpec, comp: UserType, loc: styling
 // add styling here
 const UserTypeStyleWrapper = styled.div(({
   selected,
@@ -34,15 +39,14 @@ const UserTypeStyleWrapper = styled.div(({
 }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: 1px solid #7E7E7E;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
   cursor: ${selected ? 'auto' : 'pointer'};
-
-  &:hover {
-    border: 1px solid aquamarine;
-  }
+  position: relative;
+  width: inherit; 
+  
 `);
 
 const Button = styled.button`
@@ -57,6 +61,39 @@ const Button = styled.button`
     color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
+
+const TitleWrapper = styled.p`
+  background: #D2ECEF;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: initial;
+  text-transfor: capitalize;
+  font-weight: bold;
+  margin-top: 8px;
+`
+
+const useStyles = makeStyles(theme => ({
+  titleLabel: {
+      fontSize: '.8rem',
+      textAlign: 'initial',
+
+  }
+}))
+
+UserTypeStyleWrapper.defaultProps = {
+  "data-id": "userType__wrapper"
+}
+
+Button.defaultProps = {
+  "data-id": "userType__button"
+}
+
+TitleWrapper.defaultProps = {
+  "data-id": "userType__titleWrapper"
+}
+
+
+// ns__custom_end unit: appSpec, comp: UserType, loc: styling
 
 function UserType({
   userType,
@@ -76,6 +113,10 @@ function UserType({
   
   const screenData = userType.children && userType.children.find(child => child.typeId === TYPE_SCREEN_ID);
   const screens = screenData ? screenData.instances : [];
+
+  // ns__custom_start unit: appSpec, comp: UserType, loc: beginning
+  const styles = useStyles();
+  // ns__custom_end unit: appSpec, comp: UserType, loc: beginning
 
 
   if (!selected) {
@@ -169,7 +210,10 @@ function UserType({
 
   return (
     <UserTypeStyleWrapper selected={selected}>
-      { userTypeValue }
+      {/* // ns__custom_end unit: appSpec, comp: UserType, loc: insideReturn */}
+      <InputLabel className={styles.titleLabel}>User Type</InputLabel>
+      <TitleWrapper>{ userTypeValue }</TitleWrapper>
+      {/* // ns__custom_end unit: appSpec, comp: UserType, loc: insideReturn */}
       <Button
         type='button'
         onClick={() => updateIsEditMode(true)}

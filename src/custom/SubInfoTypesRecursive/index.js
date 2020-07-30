@@ -14,22 +14,22 @@ import {
   DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
 } from '../../config';
 
+import { InputLabel, makeStyles } from '@material-ui/core';
+
 const SubInfoTypeWrapper = styled.div(
   ({ selected, isDeleting }) => `
     margin: 2em 1em;
     padding: 1.5em;
-    border: ${selected ? '1px solid aquamarine' : '1px solid white'};
+    
     border-radius: 10px;
-    box-shadow: 5px 5px 10px #888888;
+    box-shadow: 1px 1px 5px #888888;
     background-color: ${isDeleting && 'tomato'};
     cursor: ${selected ? 'auto' : 'pointer'};
   
-    &:hover {
-      border: 1px solid aquamarine;
-    }
+   
   `
 );
-// ns__custom_end unit: appSpec, comp: InfoType, loc: styling
+
 
 const Button = styled.button`
   background: none;
@@ -44,7 +44,27 @@ const Button = styled.button`
   }
 `;
 
-const InfoTypesStyleWrapper = styled.div``;
+const InfoTypesStyleWrapper = styled.div`
+  margin: 0 0 0 7%;
+  `;
+
+const TitleWrapper = styled.p`
+  background: #D2ECEF;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: initial;
+  text-transfor: capitalize;
+  font-weight: bold;
+`;
+
+const useStyles = makeStyles(theme => ({
+  titleLabel: {
+      fontSize: '.8rem',
+      textAlign: 'initial',
+
+  }
+}))
+// ns__custom_end unit: appSpec, comp: SubInfoType, loc: styling
 
 const SubInfoComponent = ({
   infoType,
@@ -65,6 +85,8 @@ const SubInfoComponent = ({
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   let wrapperRef = createRef();
+
+  const styles = useStyles();
 
   useEffect(() => {
     if (!currentId) {
@@ -169,18 +191,13 @@ const SubInfoComponent = ({
 
   
 
-  return (
+  return (<>
     <InfoTypesStyleWrapper ref={wrapperRef} key={v4()}>
-      <SubInfoTypeCreationForm
-        key={v4()}
-        parentId={parentId}
-        childId={currentId}
-        refetchQueries={refetchQueries}
-      />
+     
       {infoType.map((instance) => {
         if (instanceId === instance.parentId) {
           return (
-            <SubInfoTypeWrapper key={v4()}>
+            <InfoTypesStyleWrapper key={v4()}>
               <span
                 onClick={() => {
                   checkID(instance.id, instance._children);
@@ -188,7 +205,8 @@ const SubInfoComponent = ({
                 }}
                 onChange={() => handleSubInfoTypeValueChange}
               >
-                {instance.value}
+               <InputLabel className={styles.titleLabel}>Sub Info Type</InputLabel>
+               <TitleWrapper> {instance.value}</TitleWrapper>
               </span>
               <Button
                 type='button'
@@ -231,12 +249,18 @@ const SubInfoComponent = ({
                 deleteInstance={deleteInstance}
                 />
               ) : null}
-            </SubInfoTypeWrapper>
+            </InfoTypesStyleWrapper>
           );
         }
       })}
     </InfoTypesStyleWrapper>
-  );
+    <SubInfoTypeCreationForm
+        key={v4()}
+        parentId={parentId}
+        childId={currentId}
+        refetchQueries={refetchQueries}
+      />
+  </>);
 };
 
 
@@ -349,11 +373,7 @@ const Child = ({
 
   return (
     <>
-      {!last ? <SubInfoTypeCreationForm
-        parentId={parentId}
-        childId={currentId}
-        refetchQueries={refetchQueries}
-      /> : null}
+     
       {childState.map((instance) => {
         return (
           <React.Fragment key={v4()}>
@@ -404,6 +424,11 @@ const Child = ({
           </React.Fragment>
         );
       })}
+       {!last ? <SubInfoTypeCreationForm
+        parentId={parentId}
+        childId={currentId}
+        refetchQueries={refetchQueries}
+      /> : null}
     </>
   );
 };

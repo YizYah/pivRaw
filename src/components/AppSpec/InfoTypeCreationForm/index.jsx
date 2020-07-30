@@ -7,8 +7,6 @@
 
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
 
-
-
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
 
 import React, { useState } from 'react';
@@ -20,29 +18,26 @@ import compose from '@shopify/react-compose';
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField, InputAdornment } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-
- 
 
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 // change styling here
 const Form = styled.div`
-  margin: 2em;
-  padding: 1.5em;
+  margin:  0 0 0 7%;
   border: none;
   border-radius: 5px;
-  background-color: #f5f5f5;
 `;
 
 const Label = styled.label`
   display: flex;
   align-items: center;
   flex-direction: row;
+  width: 100%;
 `;
 const Input = styled.input`
   :focus,
@@ -121,6 +116,9 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '1rem',
   },
+  textField: {
+    width: '100%'
+  }
 });
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 
@@ -144,7 +142,7 @@ function InfoTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-const callOutText = 'What\'s the name of the type info?';
+  const callOutText = "What's the name of the type info?";
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -177,38 +175,43 @@ const callOutText = 'What\'s the name of the type info?';
   }
 
   function handleKeyPress(e) {
-    if (e.charCode === 13) {
+    // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
+    // if (e.charCode === 13) {
+    //   handleSubmit(e);
+    // }
+    if (e.key === 'Enter') {
       handleSubmit(e);
     }
+    // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
   }
 
   // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
-
-  // ns__start_replacement return
   return (
     <Form>
       <Label htmlFor='infoType-value'>
-        {label}
-        <InputContainer>
-          <Input
-            id='infoType-value'
-            type='text'
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            value={infoTypeValue}
-            disabled={loading}
-          />
-          <IconButton className={styles.button} onClick={showCallout}>
-            <HelpOutlineIcon className={styles.helpIcon} />
-          </IconButton>
-        </InputContainer>
-        <Button type='submit' disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating InfoType...' : 'Create InfoType'}
-        </Button>
+        <TextField
+          className={styles.textField}
+          label='Info Type'
+          value={label}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+          value={infoTypeValue}
+          disabled={loading}
+          variant='outlined'
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <HelpOutlineIcon
+                  className={styles.helpIcon}
+                  onClick={showCallout}
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
       </Label>
 
       {showCalloutBox ? (
@@ -219,6 +222,56 @@ const callOutText = 'What\'s the name of the type info?';
       ) : null}
     </Form>
   );
+  // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeReturn
+
+  // ns__start_replacement return
+  // return (
+  //   <Form>
+  //     <Label htmlFor='infoType-value'>
+  //       {label}
+  //       <TextField
+  //          className={styles.textField}
+  //          label="Info Type"
+  //          value={label}
+  //          onChange={handleChange}
+  //          onKeyPress={handleKeyPress}
+  //          value={label}
+  //          disabled={loading}
+  //          variant="outlined"
+  //          InputProps={{
+  //            endAdornment: (
+  //              <InputAdornment position="end">
+  //                   <HelpOutlineIcon className={styles.helpIcon} onClick={showCallout}/>
+  //              </InputAdornment>
+  //            )
+  //          }}
+  //       />
+  //       <InputContainer>
+  //         <Input
+  //           id='infoType-value'
+  //           type='text'
+  //           onChange={handleChange}
+  //           onKeyPress={handleKeyPress}
+  //           value={infoTypeValue}
+  //           disabled={loading}
+  //         />
+  //         <IconButton className={styles.button} onClick={showCallout}>
+  //           <HelpOutlineIcon className={styles.helpIcon} />
+  //         </IconButton>
+  //       </InputContainer>
+  //       <Button type='submit' disabled={loading} onClick={handleSubmit}>
+  //         {loading ? 'Creating InfoType...' : 'Create InfoType'}
+  //       </Button>
+  //     </Label>
+
+  //     {showCalloutBox ? (
+  //       <CalloutBox>
+  //         {callOutText}{' '}
+  //         <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+  //       </CalloutBox>
+  //     ) : null}
+  //   </Form>
+  // );
   // ns__end_replacement return
 }
 

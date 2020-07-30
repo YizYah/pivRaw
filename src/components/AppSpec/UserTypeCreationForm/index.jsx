@@ -18,7 +18,7 @@ import compose from '@shopify/react-compose';
 // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField, InputAdornment } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import { CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
@@ -28,10 +28,10 @@ import { CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 // change styling here
 const Form = styled.div`
   margin: 2em;
-  padding: 1.5em;
+  
   border: none;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -42,6 +42,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   flex-direction: row;
+  width: 100%
 `;
 
 const Input = styled.input`
@@ -61,6 +62,8 @@ const Input = styled.input`
 const InputContainer = styled.div`
   background-color: white;
   border-radius: 10px;
+  
+
 `;
 
 const fadeInDown = keyframes`
@@ -121,6 +124,9 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '1.2rem',
   },
+  textField: {
+    width: '100%'
+  }
 });
 
 // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: styling
@@ -182,39 +188,41 @@ function UserTypeCreationForm({
   }
 
   function handleKeyPress(e) {
-    if (e.charCode === 13) {
+    // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
+    // if (e.charCode === 13) {
+    //   handleSubmit(e);
+    // }
+    if (e.key === 'Enter') {
       handleSubmit(e);
     }
+    // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
   }
   // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
-
   return (
     <Form>
       {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
       <Label htmlFor='userType-value'>
-        UserType:
-        <InputContainer>
-          <Input
-            id='userType-value'
-            type='text'
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            value={userTypeValue}
-            disabled={loading}
-          />
-
-          <IconButton className={styles.button} onClick={showCallout}>
-            <HelpOutlineIcon className={styles.helpIcon} />
-          </IconButton>
-        </InputContainer>
-     
-        <Button type='submit' disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating UserType...' : 'Create UserType'}
-        </Button>
+        <TextField 
+           className={styles.textField}
+           label="User Type"
+           value={userTypeValue}
+           onChange={handleChange}
+           onKeyPress={handleKeyPress}
+           value={userTypeValue}
+           disabled={loading}
+           variant="outlined"
+           InputProps={{
+             endAdornment: (
+               <InputAdornment position="end">
+                    <HelpOutlineIcon className={styles.helpIcon} onClick={showCallout}/>
+               </InputAdornment>
+             )
+           }}
+        />
+       
       </Label>
       {showCalloutBox ? (
         <CalloutBox>
@@ -225,6 +233,43 @@ function UserTypeCreationForm({
     {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
     </Form>
   );
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
+
+  // return (
+  //   <Form>
+  //     {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
+  //     <Label htmlFor='userType-value'>
+  //       
+  //       UserType:
+  //       <InputContainer>
+  //         <Input
+  //           id='userType-value'
+  //           type='text'
+  //           onChange={handleChange}
+  //           onKeyPress={handleKeyPress}
+  //           value={userTypeValue}
+  //           disabled={loading}
+            
+  //         />
+
+  //         <IconButton className={styles.button} onClick={showCallout}>
+  //           <HelpOutlineIcon className={styles.helpIcon} />
+  //         </IconButton>
+  //       </InputContainer>
+     
+  //       <Button type='submit' disabled={loading} onClick={handleSubmit}>
+  //         {loading ? 'Creating UserType...' : 'Create UserType'}
+  //       </Button>
+  //     </Label>
+  //     {showCalloutBox ? (
+  //       <CalloutBox>
+  //         {callOutText}{' '}
+  //         <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+  //       </CalloutBox>
+  //     ) : null}
+  //   {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
+  //   </Form>
+  // );
 }
 
 export default compose(graphql(EXECUTE, { name: 'createUserType' }))(

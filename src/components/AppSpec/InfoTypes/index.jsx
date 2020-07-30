@@ -25,7 +25,8 @@ import { Context as UnitDataContext } from '../../../custom/UnitDataContext';
 
 // ns__custom_start unit: appSpec, comp: InfoTypes, loc: styling
 
-const InfoTypesStyleWrapper = styled.div``;
+const InfoTypesStyleWrapper = styled.div`
+  margin: 0 0 0 7%`;
 
 const Button = styled.button`
   display: block;
@@ -91,20 +92,12 @@ class InfoTypes extends Component {
     const { state } = this.context;
     const { childState, parentState } = this.state;
     const [data] = getChildData(parentState);
-    console.log(`data`, data)
-    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    
 
     return (
+      <>
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-        <InfoTypeCreationForm
-          parentId={screenId}
-          refetchQueries={refetchQueries}
-          // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
-          label={'Info Type'}
-          validateInfoTypes={validateInfoTypes}
-          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
-          /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
-        />
+        
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedValidation */}
         {parentState.map((infoType) => {
           if (infoType.parentId) return;
@@ -129,7 +122,56 @@ class InfoTypes extends Component {
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
         {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>
+      <InfoTypeCreationForm
+          parentId={screenId}
+          refetchQueries={refetchQueries}
+          // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+          label={'Info Type'}
+          validateInfoTypes={validateInfoTypes}
+          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+          /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+        />
+      </>
     );
+
+    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+
+    // return (
+    //   <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
+    //     <InfoTypeCreationForm
+    //       parentId={screenId}
+    //       refetchQueries={refetchQueries}
+    //       // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+    //       label={'Info Type'}
+    //       validateInfoTypes={validateInfoTypes}
+    //       /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+    //       /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+    //     />
+    //     {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedValidation */}
+    //     {parentState.map((infoType) => {
+    //       if (infoType.parentId) return;
+    //     {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */}
+    //       return (
+    //         <InfoType
+    //           key={v4()}
+    //           infoType={infoType}
+    //           selected={infoType.id === selectedInfoTypeId}
+    //           onUpdate={onUpdate}
+    //           parentId={screenId}
+    //           refetchQueries={refetchQueries}
+    //           onSelect={this.handleSelect}
+    //           /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
+    //           hasParentId={infoType.parentId}
+    //           childState={childState}
+    //           /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
+    //         />
+    //       );
+    //     })}
+      
+    //     {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+    //     {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
+    //   </InfoTypesStyleWrapper>
+    // );
   }
 }
 

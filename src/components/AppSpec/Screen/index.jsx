@@ -27,6 +27,7 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 import InfoTypes from '../InfoTypes';
 
 // ns__custom_start unit: appSpec, comp: Screen, loc: addedImports
+import { InputLabel, makeStyles } from '@material-ui/core';
 // ns__custom_end unit: appSpec, comp: Screen, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: Screen, loc: styling
@@ -35,18 +36,15 @@ const ScreenStyleWrapper = styled.div(
   ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
+  
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 1px 1px 3px #888888;
   background-color: ${isDeleting && 'tomato'};
   cursor: ${selected ? 'auto' : 'pointer'};
 
-  &:hover {
-    border: 1px solid aquamarine;
-  }
+ 
 `
 );
-// ns__custom_end unit: appSpec, comp: Screen, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -60,6 +58,26 @@ const Button = styled.button`
     color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
+
+const TitleWrapper = styled.p`
+  background: #D2ECEF;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: initial;
+  text-transfor: capitalize;
+  font-weight: bold;
+  margin-top: 8px;
+`
+
+
+const useStyles = makeStyles(theme => ({
+  titleLabel: {
+      fontSize: '.8rem',
+      textAlign: 'initial',
+
+  }
+}))
+// ns__custom_end unit: appSpec, comp: Screen, loc: styling
 
 function Screen({
   screen,
@@ -77,7 +95,9 @@ function Screen({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+
   // ns__custom_start unit: appSpec, comp: Screen, loc: beginning
+  const styles = useStyles();
   // ns__custom_end unit: appSpec, comp: Screen, loc: beginning
 
   const infoTypeData =
@@ -177,8 +197,11 @@ function Screen({
 
   return (
     <ScreenStyleWrapper selected={selected}>
-      {screenValue}
-
+      
+      {/* ns__custom_start unit: appSpec, comp: Screen, loc: insideReturn */}
+       <InputLabel className={styles.titleLabel}>Screen</InputLabel>
+      <TitleWrapper>{screenValue}</TitleWrapper>
+    {/* ns__custom_end unit: appSpec, comp: Screen, loc: insideReturn */}
       <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>

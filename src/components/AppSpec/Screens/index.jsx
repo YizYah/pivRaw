@@ -17,7 +17,8 @@ import Screen from '../Screen';
 
 // ns__custom_start unit: appSpec, comp: Screens, loc: styling
 
-const ScreensStyleWrapper = styled.div``;
+const ScreensStyleWrapper = styled.div`
+    margin: 0 0 0 7%`;
 
 const Button = styled.button`
   display: block;
@@ -71,14 +72,9 @@ class Screens extends Component {
     // ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning
 
     return (
+      <>
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-        <ScreenCreationForm
-          parentId={ userTypeId }
-          refetchQueries={refetchQueries}
-          /* ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
-          validateScreens={validateScreens}
-          /* ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
-        />
+        
 
         { screens.map(screen => (
           <Screen
@@ -95,6 +91,14 @@ class Screens extends Component {
   {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderEnding */}
 
   </ScreensStyleWrapper>
+  <ScreenCreationForm
+          parentId={ userTypeId }
+          refetchQueries={refetchQueries}
+          /* ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
+          validateScreens={validateScreens}
+          /* ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
+        />
+  </>
   )
   }
 }

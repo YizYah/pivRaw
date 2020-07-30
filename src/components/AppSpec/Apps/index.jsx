@@ -39,6 +39,8 @@ const AppsStyleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  flex-direction: column;
+  align-content: center;
   // mystyling...
 `;
 // ns__custom_end unit: appSpec, comp: Apps, loc: styling

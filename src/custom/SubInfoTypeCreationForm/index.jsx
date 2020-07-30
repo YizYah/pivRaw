@@ -7,7 +7,7 @@ import compose from '@shopify/react-compose';
 // ns__custom_start unit: appSpec, comp: Sub_Info_TypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField, InputAdornment } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import {
   CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
@@ -21,16 +21,15 @@ import PropTypes from 'prop-types';
 // change styling here
 const Form = styled.div`
   margin: 2em;
-  padding: 1.5em;
   border: none;
   border-radius: 5px;
-  background-color: #f5f5f5;
 `;
 
 const Label = styled.label`
   display: flex;
   align-items: center;
   flex-direction: row;
+  width: 100%
 `;
 
 const Input = styled.input`
@@ -110,6 +109,9 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '1rem',
   },
+  textField: {
+    width: '100%'
+  }
 });
 
 const Button = styled.button`
@@ -186,38 +188,42 @@ const SubInfoTypeCreationForm = ({
   }
 
   function handleKeyPress(e) {
-    if (e.charCode === 13) {
+    // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
+    // if (e.charCode === 13) {
+    //   handleSubmit(e);
+    // }
+    if (e.key === 'Enter') {
       handleSubmit(e);
     }
+    // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideHandleKeyPress
   }
 
   // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
   const showCallout = () => {
     setCallout(!callout);
   };
-  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
-
   return (
     <Form>
       {/* // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
       <Label htmlFor='screen-value'>
-        Sub Info Type:
-        <InputContainer>
-          <Input
-            type='text'
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            value={subInfoValue}
-            disabled={loading}
-          />
-
-          <IconButton className={styles.button} onClick={showCallout}>
-            <HelpOutlineIcon className={styles.helpIcon} />
-          </IconButton>
-        </InputContainer>
-        <Button type='submit' disabled={loading} onClick={handleSubmit}>
-          {loading ? 'Creating Sub Info Type...' : 'Create Sub Info Type'}
-        </Button>
+     
+        <TextField 
+           className={styles.textField}
+           label="Sub Info Type"
+           onChange={handleChange}
+           onKeyPress={handleKeyPress}
+           value={subInfoValue}
+           disabled={loading}
+           variant="outlined"
+           InputProps={{
+             endAdornment: (
+               <InputAdornment position="end">
+                    <HelpOutlineIcon className={styles.helpIcon} onClick={showCallout}/>
+               </InputAdornment>
+             )
+           }}
+        />
+        
       </Label>
       {showCalloutBox ? (
         <CalloutBox>
@@ -228,6 +234,39 @@ const SubInfoTypeCreationForm = ({
       {/* // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
     </Form>
   );
+  // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: beforeReturn*/
+
+  // return (
+  //   <Form>
+  //     {/* // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
+  //     <Label htmlFor='screen-value'>
+  //       Sub Info Type:
+  //       <InputContainer>
+  //         <Input
+  //           type='text'
+  //           onChange={handleChange}
+  //           onKeyPress={handleKeyPress}
+  //           value={subInfoValue}
+  //           disabled={loading}
+  //         />
+
+  //         <IconButton className={styles.button} onClick={showCallout}>
+  //           <HelpOutlineIcon className={styles.helpIcon} />
+  //         </IconButton>
+  //       </InputContainer>
+  //       <Button type='submit' disabled={loading} onClick={handleSubmit}>
+  //         {loading ? 'Creating Sub Info Type...' : 'Create Sub Info Type'}
+  //       </Button>
+  //     </Label>
+  //     {showCalloutBox ? (
+  //       <CalloutBox>
+  //         {callOutText}{' '}
+  //         <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+  //       </CalloutBox>
+  //     ) : null}
+  //     {/* // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
+  //   </Form>
+  // );
 };
 
 export default compose(

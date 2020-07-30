@@ -28,6 +28,7 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 import UserTypes from '../UserTypes';
 import Descriptions from '../Descriptions';
+import AppTitleAccordion from '../../../custom/AppTitleAccordion';
 
 // ns__custom_start unit: appSpec, comp: App, loc: addedImports
 // ns__custom_end unit: appSpec, comp: App, loc: addedImports
@@ -38,18 +39,16 @@ const AppStyleWrapper = styled.div(
   ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
+  
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #888888;
+  border: 1px solid black;
   background-color: ${isDeleting && 'tomato'};
   cursor: ${selected ? 'auto' : 'pointer'};
-
-  &:hover {
-    border: 1px solid aquamarine;
-  }
+  width: 50%;
+ 
 `
 );
-// ns__custom_end unit: appSpec, comp: App, loc: styling
+
 
 const Button = styled.button`
   background: none;
@@ -63,6 +62,17 @@ const Button = styled.button`
     color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
+
+
+AppStyleWrapper.defaultProps = {
+  "data-id": "App__wrapper"
+}
+
+Button.defaultProps = {
+  "data-id": "App__button"
+}
+
+// ns__custom_end unit: appSpec, comp: App, loc: styling
 
 function App({
   app,
@@ -178,7 +188,11 @@ function App({
 
   return (
     <AppStyleWrapper selected={selected}>
-      {appValue}
+
+      <AppTitleAccordion 
+        title={appValue}
+        description={descriptions[0] && descriptions[0].value}
+      />
       <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
