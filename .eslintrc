@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "rules": {
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "no-underscore-dangle": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
+  },
+}

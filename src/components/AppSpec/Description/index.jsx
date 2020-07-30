@@ -1,9 +1,21 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: Description
+
+// ns__custom_start unit: appSpec, comp: Description, loc: beforeImports
+'use strict';
+// ns__custom_end unit: appSpec, comp: Description, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
   DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
@@ -12,18 +24,16 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
+// ns__custom_start unit: appSpec, comp: Description, loc: addedImports
+// ns__custom_end unit: appSpec, comp: Description, loc: addedImports
 
-
-
-
+// ns__custom_start unit: appSpec, comp: Description, loc: styling
 // add styling here
-const DescriptionStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const DescriptionStyleWrapper = styled.div(
+  ({ selected, isDeleting }) =>`
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
@@ -32,7 +42,9 @@ const DescriptionStyleWrapper = styled.div(({
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
+// ns__custom_end unit: appSpec, comp: Description, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -43,7 +55,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -55,20 +67,26 @@ function Description({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__custom_start unit: appSpec, comp: Description, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: Description, loc: addedProps
 }) {
-  const [descriptionValue, updateDescriptionValue] = useState(description.value);
+  const [descriptionValue, updateDescriptionValue] = useState(
+    description.value
+  );
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: appSpec, comp: Description, loc: beginning
+  // ns__custom_end unit: appSpec, comp: Description, loc: beginning
 
-  
-
+  // ns__custom_start unit: appSpec, comp: Description, loc: beforeReturn
+  // ns__custom_end unit: appSpec, comp: Description, loc: beforeReturn
 
   if (!selected) {
     return (
-      <DescriptionStyleWrapper onClick={() => onSelect(description.id)}>
-        { descriptionValue }
+      <DescriptionStyleWrapper onClick={() =>onSelect(description.id)}>
+        {descriptionValue}
       </DescriptionStyleWrapper>
     );
   }
@@ -103,9 +121,9 @@ function Description({
     return (
       <DescriptionStyleWrapper>
         <EditInstanceForm
-          id={ description.id }
-          label="Description Value:"
-          value={ descriptionValue }
+          id={description.id}
+          label='Description Value:'
+          value={descriptionValue}
           onChange={handleDescriptionValueChange}
           onSave={handleDescriptionValueSave}
           onCancel={handleCancelEdit}
@@ -127,7 +145,7 @@ function Description({
             instanceId: description.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -140,11 +158,8 @@ function Description({
 
   if (isDeleteMode) {
     return (
-      <DescriptionStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { descriptionValue }
+      <DescriptionStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {descriptionValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -156,23 +171,16 @@ function Description({
 
   return (
     <DescriptionStyleWrapper selected={selected}>
-      { descriptionValue }
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      {descriptionValue}
+      <Button type='button' onClick={() =>updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button' onClick={() =>updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
-      
-
-
+      {/* ns__custom_start unit: appSpec, comp: Description, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: Description, loc: renderEnding */}
     </DescriptionStyleWrapper>
   );
 }
@@ -181,3 +189,23 @@ export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(Description);
+
+Description.propTypes = {
+  description: PropTypes.object,
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  onSelect: PropTypes.func,
+  app: PropTypes.shape({
+    children: PropTypes.array,
+    id: PropTypes.string,
+  }),
+  description: PropTypes.shape({
+    value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+  // ns__custom_start unit: appSpec, comp: Description, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
+};

@@ -1,6 +1,19 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: ResetPasswordForm
+
+// ns__custom_start unit: general, comp: ResetPasswordForm, loc: beforeImports
+
+
+
+// ns__custom_end unit: general, comp: ResetPasswordForm, loc: beforeImports
+
 import React, { useState } from 'react';
 
-const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) =>{
+const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [code, setCode] = useState('');
@@ -55,10 +68,10 @@ const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) =>{
       </div>
       <div>
         Confirm Password:
-        <input 
+        <input
           type="password"
-          onChange={handlePasswordConfirmChange} 
-          disabled={disabled} 
+          onChange={handlePasswordConfirmChange}
+          disabled={disabled}
         />
       </div>
       <div>

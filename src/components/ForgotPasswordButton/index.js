@@ -1,3 +1,16 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: ForgotPasswordButton
+
+// ns__custom_start unit: general, comp: ForgotPasswordButton, loc: beforeImports
+
+
+
+// ns__custom_end unit: general, comp: ForgotPasswordButton, loc: beforeImports
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import compose from '@shopify/react-compose';
@@ -38,7 +51,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
   const handleEmailSubmit = async userNameOrEmail => {
     setError('');
     setSubmitting(true);
-    
+
     try {
       await getPasswordResetCode({
         variables: {
@@ -62,7 +75,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
     try {
       await resetPassword({
         variables: {
-          userNameOrEmail, 
+          userNameOrEmail,
           password,
           code,
           stackId: platformId,
@@ -87,12 +100,12 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
 
   if (!userNameOrEmail) {
     return (
-      <SendCodeForm 
+      <SendCodeForm
         onSubmit={handleEmailSubmit}
-        onCancel={hideForm} 
+        onCancel={hideForm}
         disabled={submitting}
         error={error}
-      /> 
+      />
     );
   }
 
@@ -100,7 +113,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
     return (
       <ResetPasswordForm
         onSubmit={handlePasswordSubmit}
-        onCancel={hideForm} 
+        onCancel={hideForm}
         disabled={submitting}
         error={error}
       />

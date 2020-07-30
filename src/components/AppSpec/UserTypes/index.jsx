@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: UserTypes
+
+// ns__custom_start unit: appSpec, comp: UserTypes, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: UserTypes, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
@@ -5,7 +15,7 @@ import { v4 } from 'uuid';
 import UserTypeCreationForm from '../UserTypeCreationForm';
 import UserType from '../UserType';
 
-// np__added_start unit: appSpec, comp: UserTypes, loc: styling
+// ns__custom_start unit: appSpec, comp: UserTypes, loc: styling
 
 const UserTypesStyleWrapper = styled.div``;
 
@@ -13,7 +23,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// np__added_end unit: appSpec, comp: UserTypes, loc: styling
+// ns__custom_end unit: appSpec, comp: UserTypes, loc: styling
 
 class UserTypes extends Component {
   state = {
@@ -48,14 +58,22 @@ class UserTypes extends Component {
     const { appId, userTypes, refetchQueries, onUpdate } = this.props;
     const { selectedUserTypeId } = this.state;
 
-    {/* np__added_start unit: appSpec, comp: UserTypes, loc: renderBeginning */}
-    {/* np__added_end unit: appSpec, comp: UserTypes, loc: renderBeginning */}
+
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+    const validateUserTypes = userTypes.length
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
+
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning
 
     return (
       <UserTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <UserTypeCreationForm
           parentId={ appId }
           refetchQueries={refetchQueries}
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
+          validateUserTypes={validateUserTypes}
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
         />
 
         { userTypes.map(userType => (
@@ -69,8 +87,8 @@ class UserTypes extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* np__added_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
-  {/* np__added_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
+  {/* ns__custom_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
+  {/* ns__custom_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
 
   </UserTypesStyleWrapper>
   )

@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: Screens
+
+// ns__custom_start unit: appSpec, comp: Screens, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: Screens, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
@@ -5,7 +15,7 @@ import { v4 } from 'uuid';
 import ScreenCreationForm from '../ScreenCreationForm';
 import Screen from '../Screen';
 
-// np__added_start unit: appSpec, comp: Screens, loc: styling
+// ns__custom_start unit: appSpec, comp: Screens, loc: styling
 
 const ScreensStyleWrapper = styled.div``;
 
@@ -13,7 +23,7 @@ const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// np__added_end unit: appSpec, comp: Screens, loc: styling
+// ns__custom_end unit: appSpec, comp: Screens, loc: styling
 
 class Screens extends Component {
   state = {
@@ -42,20 +52,32 @@ class Screens extends Component {
     }
   }
 
-  handleSelect = id => this.setState({ selectedScreenId: id });
+  handleSelect = id =>{
+    console.log(`id screens`, id)
+    
+     this.setState({ selectedScreenId: id })};
 
   render () {
     const { userTypeId, screens, refetchQueries, onUpdate } = this.props;
     const { selectedScreenId } = this.state;
 
-    {/* np__added_start unit: appSpec, comp: Screens, loc: renderBeginning */}
-    {/* np__added_end unit: appSpec, comp: Screens, loc: renderBeginning */}
+    console.log(`screens`, screens)
+
+     // ns__custom_start unit: appSpec, comp: UserTypes, loc: beginning
+     const validateScreens = screens.length
+     // ns__custom_end unit: appSpec, comp: UserTypes, loc: beginning
+
+    // ns__custom_start unit: appSpec, comp: Screens, loc: renderBeginning
+    // ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning
 
     return (
       <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <ScreenCreationForm
           parentId={ userTypeId }
           refetchQueries={refetchQueries}
+          /* ns__custom_start unit: appSpec, comp: Screens, loc: addedProps */
+          validateScreens={validateScreens}
+          /* ns__custom_end unit: appSpec, comp: Screens, loc: addedProps */
         />
 
         { screens.map(screen => (
@@ -69,8 +91,8 @@ class Screens extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-  {/* np__added_start unit: appSpec, comp: Screens, loc: renderEnding */}
-  {/* np__added_end unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderEnding */}
+  {/* ns__custom_end unit: appSpec, comp: Screens, loc: renderEnding */}
 
   </ScreensStyleWrapper>
   )

@@ -1,3 +1,13 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: appSpec, comp: UserType
+
+// ns__custom_start unit: appSpec, comp: UserType, loc: beforeImports
+// ns__custom_end unit: appSpec, comp: UserType, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
@@ -5,19 +15,20 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+  UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
+  DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, TYPE_SCREEN_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 
+import Screens from '../Screens';
 
 
 
 // add styling here
-const InfoTypeStyleWrapper = styled.div(({
+const UserTypeStyleWrapper = styled.div(({
   selected,
   isDeleting,
 }) => `
@@ -43,12 +54,12 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
-function InfoType({
-  infoType,
+function UserType({
+  userType,
   parentId,
   selected,
   updateInstance,
@@ -56,36 +67,38 @@ function InfoType({
   refetchQueries,
   onSelect,
 }) {
-  const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
+  const [userTypeValue, updateUserTypeValue] = useState(userType.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
   
+  const screenData = userType.children && userType.children.find(child => child.typeId === TYPE_SCREEN_ID);
+  const screens = screenData ? screenData.instances : [];
 
 
   if (!selected) {
     return (
-      <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
-        { infoTypeValue }
-      </InfoTypeStyleWrapper>
+      <UserTypeStyleWrapper onClick={() => onSelect(userType.id)}>
+        { userTypeValue }
+      </UserTypeStyleWrapper>
     );
   }
 
-  function handleInfoTypeValueChange(e) {
-    updateInfoTypeValue(e.target.value);
+  function handleUserTypeValueChange(e) {
+    updateUserTypeValue(e.target.value);
   }
 
-  async function handleInfoTypeValueSave() {
+  async function handleUserTypeValueSave() {
     updateIsSaving(true);
 
     await updateInstance({
       variables: {
-        actionId: UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+        actionId: UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
-          value: infoTypeValue,
-          instanceId: infoType.id,
+          value: userTypeValue,
+          instanceId: userType.id,
         }),
       },
       refetchQueries,
@@ -101,17 +114,17 @@ function InfoType({
 
   if (isEditMode) {
     return (
-      <InfoTypeStyleWrapper>
+      <UserTypeStyleWrapper>
         <EditInstanceForm
-          id={ infoType.id }
-          label="InfoType Value:"
-          value={ infoTypeValue }
-          onChange={handleInfoTypeValueChange}
-          onSave={handleInfoTypeValueSave}
+          id={ userType.id }
+          label='UserType Value:'
+          value={ userTypeValue }
+          onChange={handleUserTypeValueChange}
+          onSave={handleUserTypeValueSave}
           onCancel={handleCancelEdit}
           disabled={isSaving}
         />
-      </InfoTypeStyleWrapper>
+      </UserTypeStyleWrapper>
     );
   }
 
@@ -121,10 +134,10 @@ function InfoType({
     try {
       await deleteInstance({
         variables: {
-          actionId: DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+          actionId: DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: infoType.id,
+            instanceId: userType.id,
           }),
         },
         refetchQueries
@@ -140,44 +153,50 @@ function InfoType({
 
   if (isDeleteMode) {
     return (
-      <InfoTypeStyleWrapper
+      <UserTypeStyleWrapper
         selected={selected}
         isDeleting={isDeleting}
       >
-        { infoTypeValue }
+        { userTypeValue }
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
           disabled={isDeleting}
         />
-      </InfoTypeStyleWrapper>
+      </UserTypeStyleWrapper>
     );
   }
 
   return (
-    <InfoTypeStyleWrapper selected={selected}>
-      { infoTypeValue }
+    <UserTypeStyleWrapper selected={selected}>
+      { userTypeValue }
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsEditMode(true)}
       >
         &#9998;
       </Button>
       <Button
-        type="button"
+        type='button'
         onClick={() => updateIsDeleteMode(true)}
       >
         &#128465;
       </Button>
 
       
+< Screens
+              screens = { screens }
+              userTypeId = { userType.id }
+              label='Screen?'
+              refetchQueries={refetchQueries}
+      />
 
 
-    </InfoTypeStyleWrapper>
+    </UserTypeStyleWrapper>
   );
 }
 
 export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
-)(InfoType);
+)(UserType);

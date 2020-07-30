@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-  export const SOURCE_APP_SPEC_QUERY = gql`
+export const SOURCE_APP_SPEC_QUERY = gql`
   query UNIT(
     $id: ID!
     $typeRelationships: String!
@@ -12,7 +12,6 @@ import gql from 'graphql-tag';
       parameters: $parameters
     )
     {
-      
         instance {
             id
             value
@@ -20,44 +19,70 @@ import gql from 'graphql-tag';
         children {
             typeId
             instances {
+                        
+                instance {
+                    id
+                    value
+                }
                 
-		instance {
-		    id
-		    value
-		}
-		children {
-		    typeId
-		    instances {
-		        
-			instance {
-			    id
-			    value
-			}
-			children {
-			    typeId
-			    instances {
-			        
-				instance {
-				    id
-				    value
-				}
-			    }
-			}
-		    }
-		}
+                children {
+                    typeId
+                    instances {        
+                        instance {
+                            id
+                            value
+                        }
+                        
+                        children {
+                            typeId
+                            instances {
+                                
+                                instance {
+                                    id
+                                    value
+                                }
+                                
+                                children {
+                                    typeId
+                                    instances {
+                                        
+                                        instance {
+                                            id
+                                            value
+                                        }
+                                    }
+                                }
+
+                                children {
+                                    typeId
+                                    instances {
+                                        
+                                        instance {
+                                            id
+                                            value
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
-    
     }
   }
 `;
 
 export const APP_SPEC_RELATIONSHIPS = {
-   app: {
+    app: {
         userType: {
-        screen: {
-        infoType: null
-    }
-    }, description: null
+            screen: {
+                infoType: {
+                    hasParent: null
+                }
+            }
+        },
+        description: null
     },
 };

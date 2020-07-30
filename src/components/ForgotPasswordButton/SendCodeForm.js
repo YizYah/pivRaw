@@ -1,3 +1,16 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: SendCodeForm
+
+// ns__custom_start unit: general, comp: SendCodeForm, loc: beforeImports
+
+
+
+// ns__custom_end unit: general, comp: SendCodeForm, loc: beforeImports
+
 import React, { useState } from 'react';
 
 const SendCodeForm = ({ onSubmit, onCancel, error, disabled }) => {

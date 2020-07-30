@@ -1,3 +1,16 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: RegistrationForm
+
+// ns__custom_start unit: general, comp: RegistrationForm, loc: beforeImports
+
+
+
+// ns__custom_end unit: general, comp: RegistrationForm, loc: beforeImports
+
 import React, {useState} from 'react'
 import {Formik, Form} from 'formik'
 import {useMutation} from '@apollo/react-hooks'
@@ -34,7 +47,7 @@ const validationSchema = Yup.object().shape({
   .label('password')
   .matches(/(?=.*\d)/, 'Must have at least one numerical character')
   .matches(
-    /(?=.*[#?!@$%^&*-.,:;'"><[\]{}()_|\\/~])/,
+    /(?=.*[#?!@$%^&*-.,:;''><[\]{}()_|\\/~])/,
     'Must have at least one special character.',
   )
   .min(8, 'Must be at least 8 characters.')
