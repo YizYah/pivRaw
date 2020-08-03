@@ -196,7 +196,7 @@ function InfoType({
         &#128465;
       </Button>
 
-      {/* // ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
+      {/* ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
 
       <SubInfoComponent
         infoType={parentState}
@@ -217,7 +217,7 @@ function InfoType({
         childState={childState}
       /> */}
 
-      {/* // ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
 }
