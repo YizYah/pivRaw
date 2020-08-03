@@ -206,17 +206,7 @@ function InfoType({
         onSelect={handleSelect}
         selectSubInfoId={selectSubInfoId}
       />
-
-      {/* <SubInfoTypes
-        subInfoTypes={infoType._children}
-        infoTypeId={infoType.id}
-        refetchQueries={refetchQueries}
-        label='Sub Info Type'
-        hasParentId={hasParentId}
-        parentId={parentId}
-        childState={childState}
-      /> */}
-
+      
       {/* ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
