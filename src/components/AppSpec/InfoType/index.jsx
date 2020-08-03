@@ -18,7 +18,7 @@ import { graphql } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
+  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -38,7 +38,7 @@ import SubInfoComponent from '../../../custom/SubInfoTypesRecursive';
 // ns__custom_start unit: appSpec, comp: InfoType, loc: styling
 // add styling here
 const InfoTypeStyleWrapper = styled.div(
-  ({ selected, isDeleting }) =>`
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine' : '1px solid white'};
@@ -63,7 +63,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${(props) =>props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -77,7 +77,7 @@ function InfoType({
   onSelect,
   // ns__custom_start unit: appSpec, comp: InfoType, loc: addedProps
   hasParentId,
-  childState,
+  childState
   // ns__custom_end unit: appSpec, comp: InfoType, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
@@ -102,7 +102,7 @@ function InfoType({
 
   if (!selected) {
     return (
-      <InfoTypeStyleWrapper onClick={() =>onSelect(infoType.id)}>
+      <InfoTypeStyleWrapper onClick={() => onSelect(infoType.id)}>
         {infoTypeValue}
       </InfoTypeStyleWrapper>
     );
@@ -120,10 +120,10 @@ function InfoType({
         actionId: UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: infoTypeValue,
-          instanceId: infoType.id,
-        }),
+          instanceId: infoType.id
+        })
       },
-      refetchQueries,
+      refetchQueries
     });
 
     updateIsEditMode(false);
@@ -159,10 +159,10 @@ function InfoType({
           actionId: DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: infoType.id,
-          }),
+            instanceId: infoType.id
+          })
         },
-        refetchQueries,
+        refetchQueries
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -189,10 +189,10 @@ function InfoType({
   return (
     <InfoTypeStyleWrapper selected={selected}>
       {infoTypeValue}
-      <Button type='button' onClick={() =>updateIsEditMode(true)}>
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button type='button' onClick={() =>updateIsDeleteMode(true)}>
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
@@ -237,12 +237,12 @@ InfoType.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string,
+    id: PropTypes.string
   }),
   infoType: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string,
-  }),
+    id: PropTypes.string
+  })
   // ns__custom_start unit: appSpec, comp: InfoType, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: InfoType, loc: addedPropTypes
 };

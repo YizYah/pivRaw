@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createRef } from 'react';
-import SubInfoTypeCreationForm from '../SubInfoTypeCreationForm';
 import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 import { v4 } from 'uuid';
+import SubInfoTypeCreationForm from '../SubInfoTypeCreationForm';
 
 import EditInstanceForm from '../../components/EditInstanceForm';
 import DeleteInstanceMenu from '../../components/DeleteInstanceMenu';
@@ -64,7 +64,7 @@ const SubInfoComponent = ({
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  let wrapperRef = createRef();
+  const wrapperRef = createRef();
 
   useEffect(() => {
     if (!currentId) {
@@ -393,7 +393,7 @@ const Child = ({
                 <Child
                   {...instance}
                   show={showChild}
-                  last={true}
+                  last
                   instanceId={instance.id}
                   refetchQueries={refetchQueries}
                   updateInstance={()=> updateInstance}

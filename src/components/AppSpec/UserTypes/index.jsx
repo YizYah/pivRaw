@@ -15,6 +15,9 @@ import { v4 } from 'uuid';
 import UserTypeCreationForm from '../UserTypeCreationForm';
 import UserType from '../UserType';
 
+// ns__custom_start unit: appSpec, comp: UserTypes, loc: addedImports
+// ns__custom_end unit: appSpec, comp: UserTypes, loc: addedImports
+
 // ns__custom_start unit: appSpec, comp: UserTypes, loc: styling
 
 const UserTypesStyleWrapper = styled.div``;
@@ -25,73 +28,76 @@ const Button = styled.button`
 `;
 // ns__custom_end unit: appSpec, comp: UserTypes, loc: styling
 
+// ns__custom_start unit: appSpec, comp: UserTypes, loc: beginning
+
+// ns__custom_end unit: appSpec, comp: UserTypes, loc: beginnin
+
 class UserTypes extends Component {
   state = {
-    selectedUserTypeId: null,
+    selectedUserTypeId: null
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedState
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: addedState
   };
 
   wrapperRef = createRef();
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: componentDidMount
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: componentDidMount
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: appSpec, comp: UserTypes, loc: componentWillUnmount
+    // ns__custom_end unit: appSpec, comp: UserTypes, loc: componentWillUnmount
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     const node = this.wrapperRef.current;
 
-    if (
-      node &&
-      node !== e.target &&
-      !node.contains(e.target)
-    ) {
+    if (node && node !== e.target && !node.contains(e.target)) {
       this.setState({ selectedUserTypeId: null });
     }
-  }
+  };
 
-  handleSelect = id => this.setState({ selectedUserTypeId: id });
+  handleSelect = (id) => this.setState({ selectedUserTypeId: id });
 
-  render () {
+  render() {
     const { appId, userTypes, refetchQueries, onUpdate } = this.props;
     const { selectedUserTypeId } = this.state;
 
-
-    // ns__custom_start unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-    const validateUserTypes = userTypes.length
-    // ns__custom_end unit: appSpec, comp: UserTypes, loc: additionalDeclaratoin
-
     // ns__custom_start unit: appSpec, comp: UserTypes, loc: renderBeginning
+    const validateUserTypes = userTypes.length;
     // ns__custom_end unit: appSpec, comp: UserTypes, loc: renderBeginning
 
     return (
       <UserTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <UserTypeCreationForm
-          parentId={ appId }
+          parentId={appId}
           refetchQueries={refetchQueries}
-          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm
           validateUserTypes={validateUserTypes}
-          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm 
+          // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForCreationForm
         />
 
-        { userTypes.map(userType => (
+        {userTypes.map((userType) => (
           <UserType
             key={v4()}
-            userType={ userType }
-            selected={ userType.id === selectedUserTypeId }
+            userType={userType}
+            selected={userType.id === selectedUserTypeId}
             onUpdate={onUpdate}
-            parentId={ appId }
+            parentId={appId}
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
+            // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedPropsForChildren
+            // ns__custom_end unit: appSpec, comp: UserTypes, loc: addedPropsForChildren
           />
-        )) }
-  {/* ns__custom_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
-  {/* ns__custom_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
-
-  </UserTypesStyleWrapper>
-  )
+        ))}
+        {/* ns__custom_start unit: appSpec, comp: UserTypes, loc: renderEnding */}
+        {/* ns__custom_end unit: appSpec, comp: UserTypes, loc: renderEnding */}
+      </UserTypesStyleWrapper>
+    );
   }
 }
 

@@ -10,17 +10,18 @@
 
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
-
+import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import { CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID } from '../../../config';
+
+import { keyframes } from 'styled-components';
 
 // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedImports
 
@@ -102,21 +103,21 @@ const CalloutBox = styled.div`
 
 const useStyles = makeStyles({
   button: {
-    minWidth: 0,
+    minWidth: 0
   },
   customWidth: {
     maxWidth: '500',
     minWidth: '300',
-    backgroundColor: 'blue',
+    backgroundColor: 'blue'
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162',
+    color: '#f9d162'
   },
   closeIcon: {
     color: 'white',
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 });
 
 // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: styling
@@ -130,7 +131,7 @@ function ScreenCreationForm({
   createScreen,
   refetchQueries,
   // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedProps
-  validateScreens,
+  validateScreens
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedProps
 }) {
   const [screenValue, updateScreenValue] = useState('');
@@ -140,7 +141,7 @@ function ScreenCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateScreens === 0;
-  const callOutText = 'What\'s the name of this screen?';
+  const callOutText = "What's the name of this screen?";
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -161,11 +162,11 @@ function ScreenCreationForm({
         actionId: CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: screenValue,
+          value: screenValue
         }),
-        unrestricted: false,
+        unrestricted: false
       },
-      refetchQueries,
+      refetchQueries
     });
 
     updateScreenValue('');
@@ -186,34 +187,34 @@ function ScreenCreationForm({
 
   // ns__start_replacement return
   return (
-      <Form>
-        <Label htmlFor='screen-value'>
-          Screen:
-          <InputContainer>
-            <Input
-                id='screen-value'
-                type='text'
-                onChange={handleChange}
-                onKeyPress={handleKeyPress}
-                value={screenValue}
-                disabled={loading}
-            />
+    <Form>
+      <Label htmlFor='screen-value'>
+        Screen:
+        <InputContainer>
+          <Input
+            id='screen-value'
+            type='text'
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+            value={screenValue}
+            disabled={loading}
+          />
 
-            <IconButton className={styles.button} onClick={showCallout}>
-              <HelpOutlineIcon className={styles.helpIcon} />
-            </IconButton>
-          </InputContainer>
-          <Button type='submit' disabled={loading} onClick={handleSubmit}>
-            {loading ? 'Creating Screen...' : 'Create Screen'}
-          </Button>
-        </Label>
-        {showCalloutBox ? (
-            <CalloutBox>
-              {callOutText}{' '}
-              <CloseIcon className={styles.closeIcon} onClick={showCallout} />
-            </CalloutBox>
-        ) : null}
-      </Form>
+          <IconButton className={styles.button} onClick={showCallout}>
+            <HelpOutlineIcon className={styles.helpIcon} />
+          </IconButton>
+        </InputContainer>
+        <Button type='submit' disabled={loading} onClick={handleSubmit}>
+          {loading ? 'Creating Screen...' : 'Create Screen'}
+        </Button>
+      </Label>
+      {showCalloutBox ? (
+        <CalloutBox>
+          {callOutText}{' '}
+          <CloseIcon className={styles.closeIcon} onClick={showCallout} />
+        </CalloutBox>
+      ) : null}
+    </Form>
   );
   // ns__end_replacement return
 }
@@ -228,7 +229,7 @@ ScreenCreationForm.propTypes = {
   createScreen: PropTypes.func,
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
-  validateScreens: PropTypes.number,
+  validateScreens: PropTypes.number
   // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
 };

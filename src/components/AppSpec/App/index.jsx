@@ -20,7 +20,7 @@ import {
   UPDATE_APP_FOR_APP_SPEC_ACTION_ID,
   DELETE_APP_FOR_APP_SPEC_ACTION_ID,
   TYPE_USER_TYPE_ID,
-  TYPE_DESCRIPTION_ID,
+  TYPE_DESCRIPTION_ID
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -71,7 +71,7 @@ function App({
   updateInstance,
   deleteInstance,
   refetchQueries,
-  onSelect,
+  onSelect
 }) {
   const [appValue, updateAppValue] = useState(app.value);
   const [isEditMode, updateIsEditMode] = useState(false);
@@ -81,13 +81,9 @@ function App({
   // ns__custom_start unit: appSpec, comp: App, loc: beginning
   // ns__custom_end unit: appSpec, comp: App, loc: beginning
 
-  const userTypeData =
-    app.children &&
-    app.children.find((child) => child.typeId === TYPE_USER_TYPE_ID);
+  const userTypeData = app.children &&  app.children.find((child) => child.typeId === TYPE_USER_TYPE_ID);
   const userTypes = userTypeData ? userTypeData.instances : [];
-  const descriptionData =
-    app.children &&
-    app.children.find((child) => child.typeId === TYPE_DESCRIPTION_ID);
+  const descriptionData = app.children &&  app.children.find((child) => child.typeId === TYPE_DESCRIPTION_ID);
   const descriptions = descriptionData ? descriptionData.instances : [];
 
   if (!selected) {
@@ -110,10 +106,10 @@ function App({
         actionId: UPDATE_APP_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: appValue,
-          instanceId: app.id,
-        }),
+          instanceId: app.id
+        })
       },
-      refetchQueries,
+      refetchQueries
     });
 
     updateIsEditMode(false);
@@ -149,10 +145,10 @@ function App({
           actionId: DELETE_APP_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: app.id,
-          }),
+            instanceId: app.id
+          })
         },
-        refetchQueries,
+        refetchQueries
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -165,7 +161,9 @@ function App({
 
   if (isDeleteMode) {
     return (
-      <AppStyleWrapper selected={selected} isDeleting={isDeleting}>
+      <AppStyleWrapper 
+      selected={selected} 
+      isDeleting={isDeleting}>
         {appValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
@@ -216,8 +214,8 @@ App.propTypes = {
   refetchQueries: PropTypes.array,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string,
-  }),
+    id: PropTypes.string
+  })
   // ns__custom_start unit: appSpec, comp: App, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: App, loc: addedPropTypes
 };

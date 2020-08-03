@@ -41,7 +41,7 @@ class InfoTypes extends Component {
     selectedInfoTypeId: null,
     // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
     childState: [],
-    parentState: [],
+    parentState: []
     // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
   };
 
@@ -59,7 +59,7 @@ class InfoTypes extends Component {
 
       this.setState({
         childState: childData,
-        parentState: parentData,
+        parentState: parentData
       });
     }
 
@@ -86,29 +86,30 @@ class InfoTypes extends Component {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
 
-    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeReturn */
     let validateInfoTypes = infoTypes.length;
     const { state } = this.context;
     const { childState, parentState } = this.state;
     const [data] = getChildData(parentState);
-    console.log(`data`, data)
-    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning */
+    console.log(`data`, data);
+    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeReturn */
 
     return (
       <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <InfoTypeCreationForm
           parentId={screenId}
           refetchQueries={refetchQueries}
-          // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm
+          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
           label={'Info Type'}
           validateInfoTypes={validateInfoTypes}
-          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
           /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
         />
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedValidation */}
         {parentState.map((infoType) => {
           if (infoType.parentId) return;
-        {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */}
+          {
+            /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */
+          }
           return (
             <InfoType
               key={v4()}
@@ -125,7 +126,7 @@ class InfoTypes extends Component {
             />
           );
         })}
-      
+
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderEnding */}
         {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderEnding */}
       </InfoTypesStyleWrapper>

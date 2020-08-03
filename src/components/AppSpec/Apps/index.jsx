@@ -22,7 +22,7 @@ import App from '../App';
 import { SOURCE_APP_SPEC_ID } from '../../../config';
 import {
   APP_SPEC_RELATIONSHIPS,
-  SOURCE_APP_SPEC_QUERY,
+  SOURCE_APP_SPEC_QUERY
 } from '../../source-props/appSpec';
 
 // ns__custom_start unit: appSpec, comp: Apps, loc: addedImports
@@ -48,7 +48,7 @@ class Apps extends Component {
   static contextType = UnitDataContext;
   // ns__custom_end unit: appSpec, comp: Apps, loc: beginning
   state = {
-    selectedAppId: null,
+    selectedAppId: null
   };
 
   wrapperRef = createRef();
@@ -69,7 +69,7 @@ class Apps extends Component {
     document.removeEventListener('mousedown', this.handleClick);
   }
 
-  handleClick = (e) =>{
+  handleClick = (e) => {
     const node = this.wrapperRef.current;
 
     if (node && node !== e.target && !node.contains(e.target)) {
@@ -77,13 +77,13 @@ class Apps extends Component {
     }
   };
 
-  handleSelect = (id) =>this.setState({ selectedAppId: id });
+  handleSelect = (id) => this.setState({ selectedAppId: id });
 
   render() {
     const { customerId } = this.props;
     const { selectedAppId } = this.state;
     const parameters = {
-      currentCustomer: customerId,
+      currentCustomer: customerId
     };
 
     // ns__custom_start unit: appSpec, comp: Apps, loc: renderBeginning
@@ -97,7 +97,7 @@ class Apps extends Component {
         query={SOURCE_APP_SPEC_QUERY}
         parameters={parameters}
       >
-        {({ loading, error, data, refetchQueries }) =>{
+        {({ loading, error, data, refetchQueries }) => {
           if (loading) return 'Loading...';
 
           if (error) {
@@ -105,7 +105,7 @@ class Apps extends Component {
             return `Error: ${error.graphQLErrors}`;
           }
 
-          const apps = data.unitData.map((el) =>flattenData(el));
+          const apps = data.unitData.map((el) => flattenData(el));
 
           // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
           /* NOTE: one app is assumed here. */
@@ -139,7 +139,7 @@ class Apps extends Component {
                 show
               >
                 {apps &&
-                  apps.map((app) =>(
+                  apps.map((app) => (
                     <App
                       key={v4()}
                       parentId={customerId}

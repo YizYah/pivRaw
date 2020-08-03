@@ -18,7 +18,7 @@ import { graphql } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import {
   UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
-  DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
+  DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -30,7 +30,7 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 // ns__custom_start unit: appSpec, comp: Description, loc: styling
 // add styling here
 const DescriptionStyleWrapper = styled.div(
-  ({ selected, isDeleting }) =>`
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
   border: ${selected ? '1px solid aquamarine' : '1px solid white'};
@@ -66,13 +66,11 @@ function Description({
   updateInstance,
   deleteInstance,
   refetchQueries,
-  onSelect,
+  onSelect
   // ns__custom_start unit: appSpec, comp: Description, loc: addedProps
   // ns__custom_end unit: appSpec, comp: Description, loc: addedProps
 }) {
-  const [descriptionValue, updateDescriptionValue] = useState(
-    description.value
-  );
+  const [descriptionValue, updateDescriptionValue] = useState(description.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
@@ -85,7 +83,7 @@ function Description({
 
   if (!selected) {
     return (
-      <DescriptionStyleWrapper onClick={() =>onSelect(description.id)}>
+      <DescriptionStyleWrapper onClick={() => onSelect(description.id)}>
         {descriptionValue}
       </DescriptionStyleWrapper>
     );
@@ -103,10 +101,10 @@ function Description({
         actionId: UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: descriptionValue,
-          instanceId: description.id,
-        }),
+          instanceId: description.id
+        })
       },
-      refetchQueries,
+      refetchQueries
     });
 
     updateIsEditMode(false);
@@ -142,10 +140,10 @@ function Description({
           actionId: DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: description.id,
-          }),
+            instanceId: description.id
+          })
         },
-        refetchQueries,
+        refetchQueries
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -172,10 +170,10 @@ function Description({
   return (
     <DescriptionStyleWrapper selected={selected}>
       {descriptionValue}
-      <Button type='button' onClick={() =>updateIsEditMode(true)}>
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button type='button' onClick={() =>updateIsDeleteMode(true)}>
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
@@ -200,12 +198,12 @@ Description.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string,
+    id: PropTypes.string
   }),
   description: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string,
-  }),
+    id: PropTypes.string
+  })
   // ns__custom_start unit: appSpec, comp: Description, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
 };

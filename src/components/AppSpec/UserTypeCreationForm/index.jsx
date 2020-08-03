@@ -10,18 +10,18 @@
 
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { withNoStack, EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
-
+import { CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
 
 // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedImports
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
-import { CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-
+import { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedImports
 
 // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: styling
@@ -35,7 +35,6 @@ const Form = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 `;
 
 const Label = styled.label`
@@ -106,21 +105,21 @@ const CalloutBox = styled.div`
 
 const useStyles = makeStyles({
   button: {
-    minWidth: 0,
+    minWidth: 0
   },
   customWidth: {
     maxWidth: '500',
     minWidth: '300',
-    backgroundColor: 'blue',
+    backgroundColor: 'blue'
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162',
+    color: '#f9d162'
   },
   closeIcon: {
     color: 'white',
-    fontSize: '1.2rem',
-  },
+    fontSize: '1.2rem'
+  }
 });
 
 // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: styling
@@ -133,9 +132,9 @@ function UserTypeCreationForm({
   parentId,
   createUserType,
   refetchQueries,
-  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedPropsForCreationForm
-  validateUserTypes,
-  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedPropsForCreationForm
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
+  validateUserTypes
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
 }) {
   const [userTypeValue, updateUserTypeValue] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -144,7 +143,7 @@ function UserTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateUserTypes === 0;
-  const callOutText = 'What\'s the type of user for this App?';
+  const callOutText = "What's the type of user for this App?";
   // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beginning
 
   function handleChange(e) {
@@ -165,18 +164,15 @@ function UserTypeCreationForm({
         actionId: CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: userTypeValue,
+          value: userTypeValue
         }),
-        unrestricted: false,
+        unrestricted: false
       },
-      refetchQueries,
+      refetchQueries
     });
 
     const newUserTypeData = JSON.parse(createUserTypeResponse.data.Execute);
 
-    
-    
-    
     updateUserTypeValue('');
     updateLoading(false);
   }
@@ -192,6 +188,7 @@ function UserTypeCreationForm({
   };
   // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: beforeReturn
 
+  // ns__start_section return
   return (
     <Form>
       {/* ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
@@ -211,7 +208,6 @@ function UserTypeCreationForm({
             <HelpOutlineIcon className={styles.helpIcon} />
           </IconButton>
         </InputContainer>
-     
         <Button type='submit' disabled={loading} onClick={handleSubmit}>
           {loading ? 'Creating UserType...' : 'Create UserType'}
         </Button>
@@ -222,7 +218,7 @@ function UserTypeCreationForm({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-    {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
+      {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
     </Form>
   );
 }
@@ -230,3 +226,11 @@ function UserTypeCreationForm({
 export default compose(graphql(EXECUTE, { name: 'createUserType' }))(
   UserTypeCreationForm
 );
+
+UserTypeCreationForm.propTypes = {
+  parentId: PropTypes.string,
+  refetchQueries: PropTypes.array,
+  createUserType: PropTypes.func
+  // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedPropTypes
+};
