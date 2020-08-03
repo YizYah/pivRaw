@@ -18,7 +18,7 @@ import { graphql } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import {
   UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID
+  DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -77,7 +77,7 @@ function InfoType({
   onSelect,
   // ns__custom_start unit: appSpec, comp: InfoType, loc: addedProps
   hasParentId,
-  childState
+  childState,
   // ns__custom_end unit: appSpec, comp: InfoType, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState(infoType.value);
@@ -120,10 +120,10 @@ function InfoType({
         actionId: UPDATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: infoTypeValue,
-          instanceId: infoType.id
-        })
+          instanceId: infoType.id,
+        }),
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateIsEditMode(false);
@@ -159,10 +159,10 @@ function InfoType({
           actionId: DELETE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: infoType.id
-          })
+            instanceId: infoType.id,
+          }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -206,7 +206,7 @@ function InfoType({
         onSelect={handleSelect}
         selectSubInfoId={selectSubInfoId}
       />
-      
+
       {/* ns__custom_end unit: appSpec, comp: InfoType, loc: renderEnding */}
     </InfoTypeStyleWrapper>
   );
@@ -227,12 +227,12 @@ InfoType.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   infoType: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string
-  })
+    id: PropTypes.string,
+  }),
   // ns__custom_start unit: appSpec, comp: InfoType, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: InfoType, loc: addedPropTypes
 };
