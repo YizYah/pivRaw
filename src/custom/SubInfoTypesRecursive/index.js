@@ -72,6 +72,8 @@ const SubInfoComponent = ({
   refetchQueries,
   updateInstance,
   deleteInstance,
+  onClick
+
 }) => {
   const [infoTypeValue, setSubInfoTypeValue] = useState('');
   const [show, setShow] = useState(false);
@@ -200,12 +202,14 @@ const SubInfoComponent = ({
               <span
                 onClick={() => {
                   checkID(instance.id, instance._children);
+                  setselectedInfoTypeId(instance.id);
                   setCurrentId(instance.id);
                 }}
                 onChange={() => handleSubInfoTypeValueChange}
               >
                <InputLabel className={styles.titleLabel}>Sub Info Type</InputLabel>
-               <TitleWrapper> {instance.value}</TitleWrapper>
+               <TitleWrapper> {instance.value}
+               {instance.id}</TitleWrapper>
               </span>
               <Button
                 type='button'
@@ -238,6 +242,8 @@ const SubInfoComponent = ({
                 refetchQueries={refetchQueries}
                 updateInstance={updateInstance}
                 deleteInstance={deleteInstance}
+                onClick={onClick}
+                currentId={currentId}
               />
               {instance._children.length ? (
                 <SubInfoComponent
@@ -245,7 +251,9 @@ const SubInfoComponent = ({
                   key={v4()}
                   refetchQueries={refetchQueries}
                   updateInstance={updateInstance}
-                deleteInstance={deleteInstance}
+                  deleteInstance={deleteInstance}
+                  onClick={(id) => setCurrentId(id)}
+                  selected={currentId === selectedInfoTypeId}
                 />
               ) : null}
             </InfoTypesStyleWrapper>
@@ -274,9 +282,12 @@ const Child = ({
   last,
   updateInstance,
   isEditMode,
-  deleteInstance
+  deleteInstance,
+  onClick,
+  currentId,
+  selected
 }) => {
-  const [currentId, setChildCurrentId] = useState(null);
+  const [currentChildId, setChildCurrentId] = useState(null);
   const [showChild, setshowChild] = useState(!show);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
@@ -375,15 +386,18 @@ const Child = ({
 
   return (
     <>
-     {console.log(`currentId`,currentId)}
+     {console.log(`selected`,selected)}
+     {console.log(`currentId`, currentId)}
+     {console.log(`instanceid`, instanceId)}
       {childState.map((instance) => {
         return (
           <React.Fragment key={v4()}>
-            {show ? (
+            {selected && show ? (
               <SubInfoTypeWrapper key={v4()}>
                 <span
                   onClick={() => {
                     setChildCurrentId(instance.id);
+                    onClick()
                   }}
                   onChange={handleSubInfoTypeValueChange}
                   key={v4()}
@@ -421,13 +435,16 @@ const Child = ({
                   refetchQueries={refetchQueries}
                   updateInstance={()=> updateInstance}
                   deleteInstance={()=>deleteInstance}
+                  onClick={!last ? onClick : null}
+                  currentId={currentId}
+                  selected={selected}
                 />
               </SubInfoTypeWrapper>
             ) : null}
           </React.Fragment>
         );
       })}
-       {!last ? <SubInfoTypeCreationForm
+       {selected  && !last? <SubInfoTypeCreationForm
         parentId={parentId}
         childId={currentId}
         refetchQueries={refetchQueries}

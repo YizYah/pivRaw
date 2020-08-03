@@ -218,7 +218,6 @@ function InfoType({
       </Button>
 
       {/* // ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
-      {console.log(`parentState`,parentState)}
       <SubInfoComponent
         infoType={parentState}
         instanceId={infoType.id}
