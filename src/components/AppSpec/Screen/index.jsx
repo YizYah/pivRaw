@@ -14,11 +14,10 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
-
 import {
   UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
   DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
-  TYPE_INFO_TYPE_ID
+  TYPE_INFO_TYPE_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -69,7 +68,7 @@ function Screen({
   updateInstance,
   deleteInstance,
   refetchQueries,
-  onSelect
+  onSelect,
   // ns__custom_start unit: appSpec, comp: Screen, loc: addedProps
   // ns__custom_end unit: appSpec, comp: Screen, loc: addedProps
 }) {
@@ -81,7 +80,9 @@ function Screen({
   // ns__custom_start unit: appSpec, comp: Screen, loc: beginning
   // ns__custom_end unit: appSpec, comp: Screen, loc: beginning
 
-  const infoTypeData = screen.children &&  screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
+  const infoTypeData =
+    screen.children &&
+    screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
   const infoTypes = infoTypeData ? infoTypeData.instances : [];
 
   // ns__custom_start unit: appSpec, comp: Screen, loc: beforeReturn
@@ -107,10 +108,10 @@ function Screen({
         actionId: UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: screenValue,
-          instanceId: screen.id
-        })
+          instanceId: screen.id,
+        }),
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateIsEditMode(false);
@@ -146,10 +147,10 @@ function Screen({
           actionId: DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: screen.id
-          })
+            instanceId: screen.id,
+          }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -211,13 +212,13 @@ Screen.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   screen: PropTypes.shape({
     value: PropTypes.string,
     id: PropTypes.string,
-    children: PropTypes.array
-  })
+    children: PropTypes.array,
+  }),
   // ns__custom_start unit: appSpec, comp: Screen, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: Screen, loc: addedPropTypes
 };

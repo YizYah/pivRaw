@@ -103,21 +103,21 @@ const CalloutBox = styled.div`
 
 const useStyles = makeStyles({
   button: {
-    minWidth: 0
+    minWidth: 0,
   },
   customWidth: {
     maxWidth: '500',
     minWidth: '300',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162'
+    color: '#f9d162',
   },
   closeIcon: {
     color: 'white',
-    fontSize: '1rem'
-  }
+    fontSize: '1rem',
+  },
 });
 
 // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: styling
@@ -131,7 +131,7 @@ function ScreenCreationForm({
   createScreen,
   refetchQueries,
   // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedProps
-  validateScreens
+  validateScreens,
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedProps
 }) {
   const [screenValue, updateScreenValue] = useState('');
@@ -162,11 +162,11 @@ function ScreenCreationForm({
         actionId: CREATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: screenValue
+          value: screenValue,
         }),
-        unrestricted: false
+        unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateScreenValue('');
@@ -229,7 +229,7 @@ ScreenCreationForm.propTypes = {
   createScreen: PropTypes.func,
   refetchQueries: PropTypes.array,
   onSelect: PropTypes.func,
-  validateScreens: PropTypes.number
+  validateScreens: PropTypes.number,
   // ns__custom_start unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: ScreenCreationForm, loc: addedPropTypes
 };

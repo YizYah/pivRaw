@@ -17,7 +17,7 @@ import { graphql } from '@apollo/react-hoc';
 import {
   UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
   DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
-  TYPE_SCREEN_ID
+  TYPE_SCREEN_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -68,7 +68,7 @@ function UserType({
   updateInstance,
   deleteInstance,
   refetchQueries,
-  onSelect
+  onSelect,
   // ns__custom_start unit: appSpec, comp: UserType, loc: addedProps
   // ns__custom_end unit: appSpec, comp: UserType, loc: addedProps
 }) {
@@ -106,10 +106,10 @@ function UserType({
         actionId: UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: userTypeValue,
-          instanceId: userType.id
-        })
+          instanceId: userType.id,
+        }),
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateIsEditMode(false);
@@ -145,10 +145,10 @@ function UserType({
           actionId: DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: userType.id
-          })
+            instanceId: userType.id,
+          }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -212,12 +212,12 @@ UserType.propTypes = {
   onSelect: PropTypes.func,
   userType: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   userType: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string
-  })
+    id: PropTypes.string,
+  }),
   // ns__custom_start unit: appSpec, comp: UserType, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: UserType, loc: addedPropTypes
 };

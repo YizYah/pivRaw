@@ -33,7 +33,7 @@ const Button = styled.button`
 
 class Screens extends Component {
   state = {
-    selectedScreenId: null
+    selectedScreenId: null,
     // ns__custom_start unit: appSpec, comp: Screens, loc: addedState
     // ns__custom_end unit: appSpec, comp: Screens, loc: addedState
   };
@@ -81,9 +81,9 @@ class Screens extends Component {
         <ScreenCreationForm
           parentId={userTypeId}
           refetchQueries={refetchQueries}
-          // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropsForCreationForm 
+          // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropsForCreationForm
           validateScreens={validateScreens}
-          // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropsForCreationForm 
+          // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropsForCreationForm
         />
 
         {screens.map((screen) => (
@@ -95,8 +95,8 @@ class Screens extends Component {
             parentId={userTypeId}
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
-            // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropsForChildren 
-            // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropsForChildren 
+            // ns__custom_start unit: appSpec, comp: Screens, loc: addedPropsForChildren
+            // ns__custom_end unit: appSpec, comp: Screens, loc: addedPropsForChildren
           />
         ))}
         {/* ns__custom_start unit: appSpec, comp: Screens, loc: renderEnding */}

@@ -102,21 +102,21 @@ const CalloutBox = styled.div`
 
 const useStyles = makeStyles({
   button: {
-    minWidth: 0
+    minWidth: 0,
   },
   customWidth: {
     maxWidth: '500',
     minWidth: '300',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162'
+    color: '#f9d162',
   },
   closeIcon: {
     color: 'white',
-    fontSize: '1rem'
-  }
+    fontSize: '1rem',
+  },
 });
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: styling
 
@@ -130,7 +130,7 @@ function InfoTypeCreationForm({
   refetchQueries,
   // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
   validateInfoTypes,
-  label
+  label,
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedProps
 }) {
   const [infoTypeValue, updateInfoTypeValue] = useState('');
@@ -161,11 +161,11 @@ function InfoTypeCreationForm({
         actionId: CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: infoTypeValue
+          value: infoTypeValue,
         }),
-        unrestricted: false
+        unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateInfoTypeValue('');
@@ -231,12 +231,12 @@ InfoTypeCreationForm.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   infoType: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string
-  })
+    id: PropTypes.string,
+  }),
 
   // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedPropTypes

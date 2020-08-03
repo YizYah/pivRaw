@@ -34,7 +34,7 @@ const Button = styled.button`
 
 class UserTypes extends Component {
   state = {
-    selectedUserTypeId: null
+    selectedUserTypeId: null,
     // ns__custom_start unit: appSpec, comp: UserTypes, loc: addedState
     // ns__custom_end unit: appSpec, comp: UserTypes, loc: addedState
   };

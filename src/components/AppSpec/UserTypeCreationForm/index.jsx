@@ -105,21 +105,21 @@ const CalloutBox = styled.div`
 
 const useStyles = makeStyles({
   button: {
-    minWidth: 0
+    minWidth: 0,
   },
   customWidth: {
     maxWidth: '500',
     minWidth: '300',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   helpIcon: {
     fontSize: '1.5rem',
-    color: '#f9d162'
+    color: '#f9d162',
   },
   closeIcon: {
     color: 'white',
-    fontSize: '1.2rem'
-  }
+    fontSize: '1.2rem',
+  },
 });
 
 // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: styling
@@ -133,7 +133,7 @@ function UserTypeCreationForm({
   createUserType,
   refetchQueries,
   // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
-  validateUserTypes
+  validateUserTypes,
   // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedProps
 }) {
   const [userTypeValue, updateUserTypeValue] = useState('');
@@ -164,11 +164,11 @@ function UserTypeCreationForm({
         actionId: CREATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: userTypeValue
+          value: userTypeValue,
         }),
-        unrestricted: false
+        unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     const newUserTypeData = JSON.parse(createUserTypeResponse.data.Execute);
@@ -230,7 +230,7 @@ export default compose(graphql(EXECUTE, { name: 'createUserType' }))(
 UserTypeCreationForm.propTypes = {
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
-  createUserType: PropTypes.func
+  createUserType: PropTypes.func,
   // ns__custom_start unit: appSpec, comp: UserTypeCreationForm, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: addedPropTypes
 };

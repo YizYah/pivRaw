@@ -60,7 +60,7 @@ const SubInfoComponent = ({
   const [selectedInfoTypeId, setselectedInfoTypeId] = useState(null);
   const [subInfoTypeID, setSubInfoTypeID] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  
+
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -87,7 +87,7 @@ const SubInfoComponent = ({
     });
 
     setIsEditMode(false);
-    
+
     setIsSaving(false);
   }
 
@@ -116,7 +116,6 @@ const SubInfoComponent = ({
 
   const handleCancelEdit = () => {
     setIsEditMode(false);
-    
   };
 
   const handleCanelDelete = () => {
@@ -166,8 +165,6 @@ const SubInfoComponent = ({
   };
 
   if (!infoType) return null;
-
-  
 
   return (
     <InfoTypesStyleWrapper ref={wrapperRef} key={v4()}>
@@ -228,7 +225,7 @@ const SubInfoComponent = ({
                   key={v4()}
                   refetchQueries={refetchQueries}
                   updateInstance={updateInstance}
-                deleteInstance={deleteInstance}
+                  deleteInstance={deleteInstance}
                 />
               ) : null}
             </SubInfoTypeWrapper>
@@ -239,9 +236,6 @@ const SubInfoComponent = ({
   );
 };
 
-
-
-
 const Child = ({
   _children,
   instanceId,
@@ -251,7 +245,7 @@ const Child = ({
   last,
   updateInstance,
   isEditMode,
-  deleteInstance
+  deleteInstance,
 }) => {
   const [currentId, setChildCurrentId] = useState('');
   const [showChild, setshowChild] = useState(!show);
@@ -259,13 +253,13 @@ const Child = ({
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [infoTypeValue, setChildSubInfoTypeValue] = useState(null);
   const [childState, setChildState] = useState([]);
-  const [isChildEditMode, setIsChildEditMode] =useState(false)
+  const [isChildEditMode, setIsChildEditMode] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     setChildState(_children);
   }, [isEditMode, isChildEditMode, currentId]);
-  
+
   async function handleInfoTypeValueSave() {
     setIsSaving(true);
 
@@ -280,7 +274,6 @@ const Child = ({
       refetchQueries,
     });
 
-    
     setIsChildEditMode(false);
     setIsSaving(false);
   }
@@ -304,13 +297,11 @@ const Child = ({
     }
   };
 
-
   const handleSubInfoTypeValueChange = (e) => {
     setChildSubInfoTypeValue(e.target.value);
   };
 
   const handleCancelEdit = () => {
-    
     setIsChildEditMode(false);
   };
 
@@ -349,11 +340,13 @@ const Child = ({
 
   return (
     <>
-      {!last ? <SubInfoTypeCreationForm
-        parentId={parentId}
-        childId={currentId}
-        refetchQueries={refetchQueries}
-      /> : null}
+      {!last ? (
+        <SubInfoTypeCreationForm
+          parentId={parentId}
+          childId={currentId}
+          refetchQueries={refetchQueries}
+        />
+      ) : null}
       {childState.map((instance) => {
         return (
           <React.Fragment key={v4()}>
@@ -396,8 +389,8 @@ const Child = ({
                   last
                   instanceId={instance.id}
                   refetchQueries={refetchQueries}
-                  updateInstance={()=> updateInstance}
-                  deleteInstance={()=>deleteInstance}
+                  updateInstance={() => updateInstance}
+                  deleteInstance={() => deleteInstance}
                 />
               </SubInfoTypeWrapper>
             ) : null}

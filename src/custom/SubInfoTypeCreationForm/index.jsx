@@ -168,7 +168,7 @@ const SubInfoTypeCreationForm = ({
       });
 
       const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
-      
+
       const createChildInfoTypeResponse = await saveInstance({
         variables: {
           actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,

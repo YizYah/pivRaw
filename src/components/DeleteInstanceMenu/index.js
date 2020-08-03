@@ -43,7 +43,7 @@ function DeleteInstanceMenu({ onDelete, onCancel, disabled }) {
         disabled={disabled}
       >
         &#10003;
-    </Button>
+      </Button>
       <Button
         type='button'
         hoverColor='#FF0000'

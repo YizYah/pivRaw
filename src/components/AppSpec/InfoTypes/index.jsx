@@ -41,7 +41,7 @@ class InfoTypes extends Component {
     selectedInfoTypeId: null,
     // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedState
     childState: [],
-    parentState: []
+    parentState: [],
     // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedState
   };
 
@@ -59,7 +59,7 @@ class InfoTypes extends Component {
 
       this.setState({
         childState: childData,
-        parentState: parentData
+        parentState: parentData,
       });
     }
 
