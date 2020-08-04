@@ -86,30 +86,31 @@ class InfoTypes extends Component {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
 
-    /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeReturn */
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeReturn 
     let validateInfoTypes = infoTypes.length;
     const { state } = this.context;
     const { childState, parentState } = this.state;
     const [data] = getChildData(parentState);
     console.log(`data`, data);
-    /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeReturn */
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeReturn 
 
     return (
-      <InfoTypesStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
+      <InfoTypesStyleWrapper 
+          ref={this.wrapperRef} 
+          onClick={this.handleClick}
+          >
         <InfoTypeCreationForm
           parentId={screenId}
           refetchQueries={refetchQueries}
-          /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+         // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm 
           label={'Info Type'}
           validateInfoTypes={validateInfoTypes}
-          /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm */
+         // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForCreationForm 
         />
         {/* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedValidation */}
         {parentState.map((infoType) => {
           if (infoType.parentId) return;
-          {
-            /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */
-          }
+        {/* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedValidation */ }
           return (
             <InfoType
               key={v4()}
@@ -119,10 +120,10 @@ class InfoTypes extends Component {
               parentId={screenId}
               refetchQueries={refetchQueries}
               onSelect={this.handleSelect}
-              /* ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
+             // ns__custom_start unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren 
               hasParentId={infoType.parentId}
               childState={childState}
-              /* ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren */
+             // ns__custom_end unit: appSpec, comp: InfoTypes, loc: addedPropsForChildren 
             />
           );
         })}

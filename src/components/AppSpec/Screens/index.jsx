@@ -60,10 +60,7 @@ class Screens extends Component {
     }
   };
 
-  handleSelect = (id) => {
-    console.log(`id screens`, id);
-
-    this.setState({ selectedScreenId: id });
+  handleSelect = (id) => { this.setState({ selectedScreenId: id });
   };
 
   render() {
@@ -77,7 +74,10 @@ class Screens extends Component {
     // ns__custom_end unit: appSpec, comp: Screens, loc: renderBeginning
 
     return (
-      <ScreensStyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
+      <ScreensStyleWrapper 
+        ref={this.wrapperRef} 
+        onClick={this.handleClick}
+      >
         <ScreenCreationForm
           parentId={userTypeId}
           refetchQueries={refetchQueries}

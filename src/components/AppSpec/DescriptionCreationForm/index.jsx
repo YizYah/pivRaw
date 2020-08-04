@@ -38,7 +38,7 @@ const Button = styled.button`
 function DescriptionCreationForm({
   parentId,
   createDescription,
-  refetchQueries
+  refetchQueries,
   // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedPropsForCreationForm
   // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedPropsForCreationForm
 }) {
@@ -65,11 +65,11 @@ function DescriptionCreationForm({
         actionId: CREATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: parentId,
-          value: descriptionValue
+          value: descriptionValue,
         }),
-        unrestricted: false
+        unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateDescriptionValue('');
@@ -107,14 +107,15 @@ function DescriptionCreationForm({
   // ns__end_section return
 }
 
-export default compose(graphql(EXECUTE, { name: 'createDescription' }))(
+export default compose(graphql(EXECUTE, { name: 'createDescription' }),
+)(
   DescriptionCreationForm
 );
 
 DescriptionCreationForm.propTypes = {
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
-  createDescription: PropTypes.func
+  createDescription: PropTypes.func,
   // ns__custom_start unit: appSpec, comp: DescriptionCreationForm, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: DescriptionCreationForm, loc: addedPropTypes
 };

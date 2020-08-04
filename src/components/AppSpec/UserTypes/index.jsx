@@ -30,7 +30,7 @@ const Button = styled.button`
 
 // ns__custom_start unit: appSpec, comp: UserTypes, loc: beginning
 
-// ns__custom_end unit: appSpec, comp: UserTypes, loc: beginnin
+// ns__custom_end unit: appSpec, comp: UserTypes, loc: beginning
 
 class UserTypes extends Component {
   state = {

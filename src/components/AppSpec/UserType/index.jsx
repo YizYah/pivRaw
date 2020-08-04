@@ -15,9 +15,7 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
-  TYPE_SCREEN_ID,
+  UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, TYPE_SCREEN_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -78,9 +76,7 @@ function UserType({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  const screenData =
-    userType.children &&
-    userType.children.find((child) => child.typeId === TYPE_SCREEN_ID);
+  const screenData = userType.children && userType.children.find((child) => child.typeId === TYPE_SCREEN_ID);
   const screens = screenData ? screenData.instances : [];
 
   // ns__custom_start unit: appSpec, comp: UserType, loc: beginning

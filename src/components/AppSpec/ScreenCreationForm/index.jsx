@@ -219,7 +219,8 @@ function ScreenCreationForm({
   // ns__end_replacement return
 }
 
-export default compose(graphql(EXECUTE, { name: 'createScreen' }))(
+export default compose(graphql(EXECUTE, { name: 'createScreen' }),
+)(
   ScreenCreationForm
 );
 

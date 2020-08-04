@@ -17,8 +17,7 @@ import { graphql } from '@apollo/react-hoc';
 
 import PropTypes from 'prop-types';
 import {
-  UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
-  DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID
+  UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID, DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -66,11 +65,13 @@ function Description({
   updateInstance,
   deleteInstance,
   refetchQueries,
-  onSelect
+  onSelect,
   // ns__custom_start unit: appSpec, comp: Description, loc: addedProps
   // ns__custom_end unit: appSpec, comp: Description, loc: addedProps
 }) {
-  const [descriptionValue, updateDescriptionValue] = useState(description.value);
+  const [descriptionValue, updateDescriptionValue] = useState(
+    description.value
+  );
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
@@ -101,10 +102,10 @@ function Description({
         actionId: UPDATE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
         executionParameters: JSON.stringify({
           value: descriptionValue,
-          instanceId: description.id
-        })
+          instanceId: description.id,
+        }),
       },
-      refetchQueries
+      refetchQueries,
     });
 
     updateIsEditMode(false);
@@ -140,10 +141,10 @@ function Description({
           actionId: DELETE_DESCRIPTION_FOR_APP_SPEC_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: description.id
-          })
+            instanceId: description.id,
+          }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -198,12 +199,12 @@ Description.propTypes = {
   onSelect: PropTypes.func,
   app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   description: PropTypes.shape({
     value: PropTypes.string,
-    id: PropTypes.string
-  })
+    id: PropTypes.string,
+  }),
   // ns__custom_start unit: appSpec, comp: Description, loc: addedPropTypes
   // ns__custom_end unit: appSpec, comp: Description, loc: addedPropTypes
 };

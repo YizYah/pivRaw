@@ -15,9 +15,7 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,
-  DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,
-  TYPE_INFO_TYPE_ID,
+  UPDATE_SCREEN_FOR_APP_SPEC_ACTION_ID,  DELETE_SCREEN_FOR_APP_SPEC_ACTION_ID,  TYPE_INFO_TYPE_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
@@ -80,9 +78,7 @@ function Screen({
   // ns__custom_start unit: appSpec, comp: Screen, loc: beginning
   // ns__custom_end unit: appSpec, comp: Screen, loc: beginning
 
-  const infoTypeData =
-    screen.children &&
-    screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
+  const infoTypeData = screen.children && screen.children.find((child) => child.typeId === TYPE_INFO_TYPE_ID);
   const infoTypes = infoTypeData ? infoTypeData.instances : [];
 
   // ns__custom_start unit: appSpec, comp: Screen, loc: beforeReturn

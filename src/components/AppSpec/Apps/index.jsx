@@ -22,7 +22,7 @@ import App from '../App';
 import { SOURCE_APP_SPEC_ID } from '../../../config';
 import {
   APP_SPEC_RELATIONSHIPS,
-  SOURCE_APP_SPEC_QUERY
+  SOURCE_APP_SPEC_QUERY,
 } from '../../source-props/appSpec';
 
 // ns__custom_start unit: appSpec, comp: Apps, loc: addedImports
@@ -48,7 +48,7 @@ class Apps extends Component {
   static contextType = UnitDataContext;
   // ns__custom_end unit: appSpec, comp: Apps, loc: beginning
   state = {
-    selectedAppId: null
+    selectedAppId: null,
   };
 
   wrapperRef = createRef();
@@ -83,7 +83,7 @@ class Apps extends Component {
     const { customerId } = this.props;
     const { selectedAppId } = this.state;
     const parameters = {
-      currentCustomer: customerId
+      currentCustomer: customerId,
     };
 
     // ns__custom_start unit: appSpec, comp: Apps, loc: renderBeginning
