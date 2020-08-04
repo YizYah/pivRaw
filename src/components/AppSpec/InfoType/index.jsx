@@ -196,6 +196,10 @@ function InfoType({
         &#128465;
       </Button>
 
+      
+      
+      
+      
       {/* ns__custom_start unit: appSpec, comp: InfoType, loc: renderEnding */}
 
       <SubInfoComponent

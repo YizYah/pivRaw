@@ -86,13 +86,13 @@ class InfoTypes extends Component {
     const { screenId, infoTypes, refetchQueries, onUpdate } = this.props;
     const { selectedInfoTypeId } = this.state;
 
-    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: beforeReturn 
+    // ns__custom_start unit: appSpec, comp: InfoTypes, loc: renderBeginning 
     let validateInfoTypes = infoTypes.length;
     const { state } = this.context;
     const { childState, parentState } = this.state;
     const [data] = getChildData(parentState);
     console.log(`data`, data);
-    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: beforeReturn 
+    // ns__custom_end unit: appSpec, comp: InfoTypes, loc: renderBeginning 
 
     return (
       <InfoTypesStyleWrapper 

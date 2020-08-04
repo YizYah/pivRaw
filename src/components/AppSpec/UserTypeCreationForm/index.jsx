@@ -221,6 +221,7 @@ function UserTypeCreationForm({
       {/* ns__custom_end unit: appSpec, comp: UserTypeCreationForm, loc: insideReturn */}
     </Form>
   );
+ // ns__end_section return
 }
 
 export default compose(graphql(EXECUTE, { name: 'createUserType' }))(
