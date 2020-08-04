@@ -15,26 +15,25 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID,
-  DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, TYPE_SCREEN_ID,
+  UPDATE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, DELETE_USER_TYPE_FOR_APP_SPEC_ACTION_ID, TYPE_SCREEN_ID,
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-
 import Screens from '../Screens';
 
+// ns__custom_start unit: appSpec, comp: UserType, loc: addedImports
+import PropTypes from 'prop-types';
+// ns__custom_end unit: appSpec, comp: UserType, loc: addedImports
 
-
+// ns__custom_start unit: appSpec, comp: UserType, loc: styling
 // add styling here
-const UserTypeStyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
+const UserTypeStyleWrapper = styled.div(
+  ({ selected, isDeleting }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
+  border: ${selected ? '1px solid aquamarine' : '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
@@ -43,7 +42,8 @@ const UserTypeStyleWrapper = styled.div(({
   &:hover {
     border: 1px solid aquamarine;
   }
-`);
+`
+);
 
 const Button = styled.button`
   background: none;
@@ -57,6 +57,7 @@ const Button = styled.button`
     color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
+// ns__custom_end unit: appSpec, comp: UserType, loc: styling
 
 function UserType({
   userType,
@@ -66,6 +67,8 @@ function UserType({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__custom_start unit: appSpec, comp: UserType, loc: addedProps
+  // ns__custom_end unit: appSpec, comp: UserType, loc: addedProps
 }) {
   const [userTypeValue, updateUserTypeValue] = useState(userType.value);
   const [isEditMode, updateIsEditMode] = useState(false);
@@ -73,15 +76,16 @@ function UserType({
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  
-  const screenData = userType.children && userType.children.find(child => child.typeId === TYPE_SCREEN_ID);
+  const screenData = userType.children && userType.children.find((child) => child.typeId === TYPE_SCREEN_ID);
   const screens = screenData ? screenData.instances : [];
 
+  // ns__custom_start unit: appSpec, comp: UserType, loc: beginning
+  // ns__custom_end unit: appSpec, comp: UserType, loc: beginning
 
   if (!selected) {
     return (
       <UserTypeStyleWrapper onClick={() => onSelect(userType.id)}>
-        { userTypeValue }
+        {userTypeValue}
       </UserTypeStyleWrapper>
     );
   }
@@ -116,9 +120,9 @@ function UserType({
     return (
       <UserTypeStyleWrapper>
         <EditInstanceForm
-          id={ userType.id }
+          id={userType.id}
           label='UserType Value:'
-          value={ userTypeValue }
+          value={userTypeValue}
           onChange={handleUserTypeValueChange}
           onSave={handleUserTypeValueSave}
           onCancel={handleCancelEdit}
@@ -140,7 +144,7 @@ function UserType({
             instanceId: userType.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -153,11 +157,8 @@ function UserType({
 
   if (isDeleteMode) {
     return (
-      <UserTypeStyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
-        { userTypeValue }
+      <UserTypeStyleWrapper selected={selected} isDeleting={isDeleting}>
+        {userTypeValue}
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
@@ -167,31 +168,27 @@ function UserType({
     );
   }
 
+  // ns__custom_start unit: appSpec, comp: UserType, loc: beforeReturn
+  //ns__custom_end unit: appSpec, comp: UserType, loc: beforeReturn
+
   return (
     <UserTypeStyleWrapper selected={selected}>
-      { userTypeValue }
-      <Button
-        type='button'
-        onClick={() => updateIsEditMode(true)}
-      >
+      {userTypeValue}
+      <Button type='button' onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type='button'
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button' onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
-      
-< Screens
-              screens = { screens }
-              userTypeId = { userType.id }
-              label='Screen?'
-              refetchQueries={refetchQueries}
+      <Screens
+        screens={screens}
+        userTypeId={userType.id}
+        label='Screen?'
+        refetchQueries={refetchQueries}
       />
-
-
+      {/* ns__custom_start unit: appSpec, comp: UserType, loc: renderEnding */}
+      {/* ns__custom_end unit: appSpec, comp: UserType, loc: renderEnding */}
     </UserTypeStyleWrapper>
   );
 }
@@ -200,3 +197,23 @@ export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )(UserType);
+
+UserType.propTypes = {
+  userType: PropTypes.object,
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  onSelect: PropTypes.func,
+  userType: PropTypes.shape({
+    children: PropTypes.array,
+    id: PropTypes.string,
+  }),
+  userType: PropTypes.shape({
+    value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+  // ns__custom_start unit: appSpec, comp: UserType, loc: addedPropTypes
+  // ns__custom_end unit: appSpec, comp: UserType, loc: addedPropTypes
+};

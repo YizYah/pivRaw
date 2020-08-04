@@ -7,8 +7,6 @@
 
 // ns__custom_start unit: general, comp: NavBar, loc: beforeImports
 
-
-
 // ns__custom_end unit: general, comp: NavBar, loc: beforeImports
 
 import React from 'react';

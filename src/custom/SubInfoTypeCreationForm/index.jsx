@@ -168,7 +168,7 @@ const SubInfoTypeCreationForm = ({
       });
 
       const newInfoTypeData = JSON.parse(createInfoTypeResponse.data.Execute);
-      
+
       const createChildInfoTypeResponse = await saveInstance({
         variables: {
           actionId: ADD_HAS_PARENT_FOR_PARENT_ACTION_ID,
@@ -199,7 +199,7 @@ const SubInfoTypeCreationForm = ({
 
   return (
     <Form>
-      {/* // ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
+      {/*  ns__custom_start unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
       <Label htmlFor='screen-value'>
         Sub Info Type:
         <InputContainer>
@@ -225,7 +225,7 @@ const SubInfoTypeCreationForm = ({
           <CloseIcon className={styles.closeIcon} onClick={showCallout} />
         </CalloutBox>
       ) : null}
-      {/* // ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
+      {/*  ns__custom_end unit: appSpec, comp: Sub_Info_Type_Creation, loc: insideReturn */}
     </Form>
   );
 };

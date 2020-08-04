@@ -69,7 +69,7 @@ class Apps extends Component {
     document.removeEventListener('mousedown', this.handleClick);
   }
 
-  handleClick = (e) =>{
+  handleClick = (e) => {
     const node = this.wrapperRef.current;
 
     if (node && node !== e.target && !node.contains(e.target)) {
@@ -77,7 +77,7 @@ class Apps extends Component {
     }
   };
 
-  handleSelect = (id) =>this.setState({ selectedAppId: id });
+  handleSelect = (id) => this.setState({ selectedAppId: id });
 
   render() {
     const { customerId } = this.props;
@@ -97,7 +97,7 @@ class Apps extends Component {
         query={SOURCE_APP_SPEC_QUERY}
         parameters={parameters}
       >
-        {({ loading, error, data, refetchQueries }) =>{
+        {({ loading, error, data, refetchQueries }) => {
           if (loading) return 'Loading...';
 
           if (error) {
@@ -105,7 +105,7 @@ class Apps extends Component {
             return `Error: ${error.graphQLErrors}`;
           }
 
-          const apps = data.unitData.map((el) =>flattenData(el));
+          const apps = data.unitData.map((el) => flattenData(el));
 
           // ns__custom_start unit: appSpec, comp: Apps, loc: beforeReturn
           /* NOTE: one app is assumed here. */
@@ -139,7 +139,7 @@ class Apps extends Component {
                 show
               >
                 {apps &&
-                  apps.map((app) =>(
+                  apps.map((app) => (
                     <App
                       key={v4()}
                       parentId={customerId}

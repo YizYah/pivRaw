@@ -7,8 +7,6 @@
 
 // ns__custom_start unit: general, comp: DeleteInstanceMenu, loc: beforeImports
 
-
-
 // ns__custom_end unit: general, comp: DeleteInstanceMenu, loc: beforeImports
 
 import React from 'react';
@@ -34,11 +32,7 @@ const Container = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function DeleteInstanceMenu({
-  onDelete,
-  onCancel,
-  disabled,
-}) {
+function DeleteInstanceMenu({ onDelete, onCancel, disabled }) {
   return (
     <Container>
       Delete?
@@ -59,7 +53,7 @@ function DeleteInstanceMenu({
         &#10005;
       </Button>
     </Container>
-  )
+  );
 }
 
 export default DeleteInstanceMenu;

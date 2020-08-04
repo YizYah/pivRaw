@@ -7,8 +7,6 @@
 
 // ns__custom_start unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
 
-
-
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beforeImports
 
 import React, { useState } from 'react';
@@ -24,8 +22,6 @@ import { makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { CREATE_INFO_TYPE_FOR_APP_SPEC_ACTION_ID } from '../../../config';
-
- 
 
 // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: addedImports
 
@@ -144,7 +140,7 @@ function InfoTypeCreationForm({
   const styles = useStyles();
   const [callout, setCallout] = useState(false);
   const showCalloutBox = callout || validateInfoTypes === 0;
-const callOutText = 'What\'s the name of the type info?';
+  const callOutText = "What's the name of the type info?";
   // ns__custom_end unit: appSpec, comp: InfoTypeCreationForm, loc: beginning
 
   function handleChange(e) {
